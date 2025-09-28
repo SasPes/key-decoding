@@ -13,7 +13,7 @@ function Key(keyType, outline, show) {
     this.show = show;
     this.pins = [];
 
-    var pinCount = outline === "5 pins" ? 5 : 6;
+    var pinCount = parseInt(outline[0], 10);
     if (show === "decode") {
         for (var i = 0; i < pinCount; i++) {
             this.pins.push(0);
@@ -46,7 +46,7 @@ function Key(keyType, outline, show) {
     };
 
     this.updatePins = function() {
-        var pinCount = this.outline === "5 pins" ? 5 : 6;
+        var pinCount = parseInt(outline[0], 10);
         this.pins = [];
         for (var i = 0; i < pinCount; i++) {
             this.pins.push(Math.floor(Math.random() * 10));
@@ -58,9 +58,8 @@ function Key(keyType, outline, show) {
         fillScreen(bgColor);
         display.drawRoundRect(1, 1, displayWidth-2, displayHeight-2, 4, priColor);
         setTextSize(2);
-        drawString("Key Type: " + this.keyType, 10, 10);
-        drawString("Outline: " + this.outline, 10, 30);
-        drawPinsWithUnderline(this.pins, selectedPinIndex);
+        drawString(this.keyType + " - " + this.outline, 10, 10);
+        drawPinsWithUnderline(this.pins, selectedPinIndex, this.show);
     };
 }
 
@@ -130,7 +129,7 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
     display.drawLine(x, bottomY, rightX, bottomY, color);
 }
 
-function drawPinsWithUnderline(pins, selectedPinIndex) {
+function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
     var pinSpacing = 30;
     var y = 55;
     var underlineY = y + 15;
@@ -140,7 +139,7 @@ function drawPinsWithUnderline(pins, selectedPinIndex) {
     for (var i = 0; i < pins.length; i++) {
         var x = startX + i * pinSpacing;
         drawString(pins[i].toString(), x, y);
-        if (typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
+        if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
             display.drawRect(x - 1, underlineY, 12, 2, secColor);
         }
     }
@@ -163,13 +162,13 @@ var selectedPinIndex = 0;
 function chooseAndCreateKey() {
     var keyType = dialogChoice({
         ["Titan"]: "Titan",
-        ["Key2"]: "key2",
-        ["Key3"]: "key3"
+        ["Best SFIC"]: "Best SFIC"
     });
 
     var outline = dialogChoice({
         ["5 pins"]: "5 pins",
-        ["6 pins"]: "6 pins"
+        ["6 pins"]: "6 pins",
+        ["7 pins"]: "7 pins"
     });
 
     var show = dialogChoice({
