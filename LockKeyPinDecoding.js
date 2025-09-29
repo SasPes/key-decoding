@@ -13,7 +13,7 @@ function Key(keyType, outline, show) {
     this.show = show;
     this.pins = [];
 
-    var pinCount = parseInt(outline[0], 10);
+    const pinCount = parseInt(outline[0], 10);
     if (show === "decode") {
         for (var i = 0; i < pinCount; i++) {
             this.pins.push(0);
@@ -25,9 +25,9 @@ function Key(keyType, outline, show) {
     }
 
     this.load = function() {
-        var savedData = storageRead("key_data");
+        const savedData = storageRead("key_data");
         if (savedData) {
-            var data = JSON.parse(savedData);
+            const data = JSON.parse(savedData);
             this.keyType = data.keyType;
             this.outline = data.outline;
             this.show = data.show;
@@ -36,7 +36,7 @@ function Key(keyType, outline, show) {
     };
 
     this.save = function() {
-        var data = {
+        const data = {
             keyType: this.keyType,
             outline: this.outline,
             show: this.show,
@@ -46,7 +46,7 @@ function Key(keyType, outline, show) {
     };
 
     this.updatePins = function() {
-        var pinCount = parseInt(outline[0], 10);
+        const pinCount = parseInt(outline[0], 10);
         this.pins = [];
         for (var i = 0; i < pinCount; i++) {
             this.pins.push(Math.floor(Math.random() * 10));
@@ -63,7 +63,6 @@ function Key(keyType, outline, show) {
     };
 }
 
-// Pin dip shapes for values 0-9
 const dipShapes = {
     0: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     1: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
@@ -78,25 +77,22 @@ const dipShapes = {
 };
 
 function drawKeyShape(x, y, width, height, color, pinCount, pins) {
-    var bodyHeight = height * 2;
-    var notchSpacing = width / (pinCount + 1);
-
-    // Add a pinOffset to shift each pin's start position right
-    var pinOffset = 3; // adjust as needed
+    const bodyHeight = height * 2;
+    const notchSpacing = width / (pinCount + 1);
+    const pinOffset = 3;
 
     for (var px = Math.round(x); px <= Math.round(x + width); px++) {
         var py = y;
         for (var i = 0; i < pinCount; i++) {
-            var pinValue = pins && pins[i];
-            var dipShape = dipShapes[pinValue];
+            const pinValue = pins && pins[i];
+            const dipShape = dipShapes[pinValue];
             if (dipShape) {
-                var dipWidth = dipShape.length;
-                // Shift pinCenter right by pinOffset * i
-                var pinCenter = Math.round(x + (i + 1) * notchSpacing + pinOffset * i);
-                var dipStart = pinCenter - Math.floor(dipWidth / 2);
-                var dipEnd = pinCenter + Math.floor(dipWidth / 2);
+                const dipWidth = dipShape.length;
+                const pinCenter = Math.round(x + (i + 1) * notchSpacing + pinOffset * i);
+                const dipStart = pinCenter - Math.floor(dipWidth / 2);
+                const dipEnd = pinCenter + Math.floor(dipWidth / 2);
                 if (px >= dipStart && px < dipEnd) {
-                    var dipIdx = px - dipStart;
+                    const dipIdx = px - dipStart;
                     py = y + dipShape[dipIdx];
                     break;
                 }
@@ -105,47 +101,39 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
         display.drawPixel(px, py, color);
     }
 
-    // Move bottom edge down
-    var bottomEdgeOffset = 10; // adjust as needed
-    var rightX = x + width;
-    var topY = y;
-    var bottomY = y + bodyHeight + bottomEdgeOffset;
+    const bottomEdgeOffset = 10;
+    const rightX = x + width;
+    const topY = y;
+    const bottomY = y + bodyHeight + bottomEdgeOffset;
 
-    // Calculate end points for diagonals
-    var diagLength = 21;
-    var diagTopX = rightX + diagLength;
-    var diagTopY = topY + diagLength;
-    var diagBottomX = rightX + diagLength;
-    var diagBottomY = bottomY - diagLength;
+    const diagLength = 21;
+    const diagTopX = rightX + diagLength;
+    const diagTopY = topY + diagLength;
+    const diagBottomX = rightX + diagLength;
+    const diagBottomY = bottomY - diagLength;
 
-    // Draw diagonals
-    display.drawLine(rightX, topY, diagTopX, diagTopY, color);       // top-right diagonal
-    display.drawLine(rightX, bottomY, diagBottomX, diagBottomY, color); // bottom-right diagonal
-
-    // Draw vertical connector
+    display.drawLine(rightX, topY, diagTopX, diagTopY, color);
+    display.drawLine(rightX, bottomY, diagBottomX, diagBottomY, color);
     display.drawLine(diagTopX, diagTopY, diagBottomX, diagBottomY, color);
-
-    // Draw straight bottom edge
     display.drawLine(x, bottomY, rightX, bottomY, color);
 }
 
 function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
-    var pinSpacing = 30;
-    var y = 55;
-    var underlineY = y + 15;
-    var totalWidth = pinSpacing * pins.length - pinSpacing / 2;
-    var startX = (displayWidth - totalWidth) / 2; // Center pins
+    const pinSpacing = 30;
+    const y = 55;
+    const underlineY = y + 15;
+    const totalWidth = pinSpacing * pins.length - pinSpacing / 2;
+    const startX = (displayWidth - totalWidth) / 2;
 
     for (var i = 0; i < pins.length; i++) {
-        var x = startX + i * pinSpacing;
+        const x = startX + i * pinSpacing;
         drawString(pins[i].toString(), x, y);
         if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
             display.drawRect(x - 1, underlineY, 12, 2, secColor);
         }
     }
 
-    // Draw the key shape under the pins
-    var keyY = y + 30;
+    const keyY = y + 30;
     drawKeyShape(startX - 27, keyY, totalWidth + 40, 20, priColor, pins.length, pins);
 }
 
@@ -160,18 +148,18 @@ var key = null;
 var selectedPinIndex = 0;
 
 function chooseAndCreateKey() {
-    var keyType = dialogChoice({
+    const keyType = dialogChoice({
         ["Titan"]: "Titan",
         ["Best SFIC"]: "Best SFIC"
     });
 
-    var outline = dialogChoice({
+    const outline = dialogChoice({
         ["5 pins"]: "5 pins",
         ["6 pins"]: "6 pins",
         ["7 pins"]: "7 pins"
     });
 
-    var show = dialogChoice({
+    const show = dialogChoice({
         ["Decode"]: "decode",
         ["Random"]: "random"
     });
