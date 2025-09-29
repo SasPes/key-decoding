@@ -65,35 +65,28 @@ function Key(keyType, outline, show) {
 
 function generateDipShapes() {
     var dipShapes = {};
-    var maxWidth = 32;
-    var flatWidth = 2;
-    var flatTopWidth = 2; // Width of flat top section
+    var maxWidth = 31;
     var maxKeyCut = 8;
+    var flatSpotWidth = 5;
 
     for (var cut = 0; cut <= maxKeyCut; cut++) {
         var shape = [];
         var centerIndex = Math.floor(maxWidth / 2);
-        var dipDepth = cut * 3 + 2;
+        var maxDepth = cut * 3 + 2;
+        var flatHalfWidth = Math.floor(flatSpotWidth / 2);
 
         for (var i = 0; i < maxWidth; i++) {
             var distanceFromCenter = Math.abs(i - centerIndex);
 
-            if (distanceFromCenter <= flatWidth) {
-                // Flat bottom section
-                shape[i] = dipDepth;
-            } else if (distanceFromCenter >= (maxWidth / 2) - flatTopWidth && distanceFromCenter < maxWidth / 2) {
-                // Flat top section - positioned just before the edge
-                var minConnectingHeight = Math.min(3, dipDepth * 0.2);
-                shape[i] = minConnectingHeight;
+            if (distanceFromCenter <= flatHalfWidth) {
+                // Flat spot at the bottom
+                shape[i] = maxDepth;
             } else {
-                // Calculate smooth slope between flat bottom and flat top
-                var slopeDistance = distanceFromCenter - flatWidth;
-                var maxSlope = (maxWidth / 2) - flatWidth - flatTopWidth;
-                var slopeRatio = slopeDistance / maxSlope;
-
-                var minConnectingHeight = Math.min(3, dipDepth * 0.2);
-                var depth = dipDepth * (1 - slopeRatio) + minConnectingHeight * slopeRatio;
-                shape[i] = Math.max(minConnectingHeight, Math.round(depth));
+                // Linear slope from flat spot to edges
+                var slopeDistance = distanceFromCenter - flatHalfWidth;
+                var remainingDistance = centerIndex - flatHalfWidth;
+                var depth = maxDepth - Math.floor(slopeDistance * (maxDepth - 1) / remainingDistance);
+                shape[i] = Math.max(1, depth);
             }
         }
 
@@ -137,21 +130,14 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
     var shiftX = 15; // increased shift amount to move further right
 
     var rightX = x + width + shiftX;
-    var topY = y;
     var bottomY = y + height;
 
     var diagLength = 30;
-    var diagTopX = rightX + diagLength;
-    var diagTopY = topY + diagLength;
     var diagBottomX = rightX + diagLength;
     var diagBottomY = bottomY - diagLength;
 
     // Draw diagonals
-    // display.drawLine(rightX, topY, diagTopX, diagTopY, color);       // top-right diagonal
     display.drawLine(rightX, bottomY, diagBottomX, diagBottomY, color); // bottom-right diagonal
-
-    // Draw vertical connector
-    // display.drawLine(diagTopX, diagTopY, diagBottomX, diagBottomY, color);
 
     // Draw straight bottom edge
     display.drawLine(x, bottomY, rightX, bottomY, color);
@@ -174,7 +160,7 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
 
     // Draw the key shape under the pins
     var keyY = y + 30;
-    drawKeyShape(startX - 27, keyY, totalWidth + 40, 66, priColor, pins.length, pins);
+    drawKeyShape(startX - 25, keyY, totalWidth + 40, 66, priColor, pins.length, pins);
 }
 
 function refreshKeyDisplay(key) {
