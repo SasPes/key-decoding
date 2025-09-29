@@ -67,6 +67,7 @@ function generateDipShapes() {
     var dipShapes = {};
     var maxWidth = 32;
     var flatWidth = 2;
+    var flatTopWidth = 2; // Width of flat top section
     var maxKeyCut = 8;
 
     for (var cut = 0; cut <= maxKeyCut; cut++) {
@@ -80,13 +81,16 @@ function generateDipShapes() {
             if (distanceFromCenter <= flatWidth) {
                 // Flat bottom section
                 shape[i] = dipDepth;
+            } else if (distanceFromCenter >= (maxWidth / 2) - flatTopWidth && distanceFromCenter < maxWidth / 2) {
+                // Flat top section - positioned just before the edge
+                var minConnectingHeight = Math.min(3, dipDepth * 0.2);
+                shape[i] = minConnectingHeight;
             } else {
-                // Calculate smooth slope to ensure no gaps
+                // Calculate smooth slope between flat bottom and flat top
                 var slopeDistance = distanceFromCenter - flatWidth;
-                var maxSlope = (maxWidth / 2) - flatWidth;
+                var maxSlope = (maxWidth / 2) - flatWidth - flatTopWidth;
                 var slopeRatio = slopeDistance / maxSlope;
 
-                // Lower the connecting point - don't go all the way to 0
                 var minConnectingHeight = Math.min(3, dipDepth * 0.2);
                 var depth = dipDepth * (1 - slopeRatio) + minConnectingHeight * slopeRatio;
                 shape[i] = Math.max(minConnectingHeight, Math.round(depth));
