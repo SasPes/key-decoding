@@ -13,7 +13,7 @@ function Key(keyType, outline, show) {
     this.show = show;
     this.pins = [];
 
-    const pinCount = parseInt(outline[0], 10);
+    var pinCount = parseInt(outline[0], 10);
     if (show === "decode") {
         for (var i = 0; i < pinCount; i++) {
             this.pins.push(0);
@@ -24,10 +24,10 @@ function Key(keyType, outline, show) {
         }
     }
 
-    this.load = function() {
-        const savedData = storageRead("key_data");
+    this.load = function () {
+        var savedData = storageRead("key_data");
         if (savedData) {
-            const data = JSON.parse(savedData);
+            var data = JSON.parse(savedData);
             this.keyType = data.keyType;
             this.outline = data.outline;
             this.show = data.show;
@@ -35,8 +35,8 @@ function Key(keyType, outline, show) {
         }
     };
 
-    this.save = function() {
-        const data = {
+    this.save = function () {
+        var data = {
             keyType: this.keyType,
             outline: this.outline,
             show: this.show,
@@ -45,8 +45,8 @@ function Key(keyType, outline, show) {
         storageWrite("key_data", JSON.stringify(data));
     };
 
-    this.updatePins = function() {
-        const pinCount = parseInt(outline[0], 10);
+    this.updatePins = function () {
+        var pinCount = parseInt(outline[0], 10);
         this.pins = [];
         for (var i = 0; i < pinCount; i++) {
             this.pins.push(Math.floor(Math.random() * 10));
@@ -54,45 +54,73 @@ function Key(keyType, outline, show) {
         this.save();
     };
 
-    this.draw = function() {
+    this.draw = function () {
         fillScreen(bgColor);
-        display.drawRoundRect(1, 1, displayWidth-2, displayHeight-2, 4, priColor);
+        display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
         setTextSize(2);
         drawString(this.keyType + " - " + this.outline, 10, 10);
         drawPinsWithUnderline(this.pins, selectedPinIndex, this.show);
     };
 }
 
-const dipShapes = {
-    0: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    1: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
-    2: [1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 1],
-    3: [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
-    4: [1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 3, 2, 1],
-    5: [1, 2, 3, 4, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 4, 3, 2, 1],
-    6: [1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 5, 4, 3, 2, 1],
-    7: [1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 6, 5, 4, 3, 2, 1],
-    8: [1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 7, 6, 5, 4, 3, 2, 1],
-    9: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-};
+function generateDipShapes() {
+    var dipShapes = {};
+    var maxWidth = 32;
+    var flatWidth = 2;
+    var maxKeyCut = 8;
+
+    for (var cut = 0; cut <= maxKeyCut; cut++) {
+        var shape = [];
+        var centerIndex = Math.floor(maxWidth / 2);
+        var dipDepth = cut * 3 + 2;
+
+        for (var i = 0; i < maxWidth; i++) {
+            var distanceFromCenter = Math.abs(i - centerIndex);
+
+            if (distanceFromCenter <= flatWidth) {
+                // Flat bottom section
+                shape[i] = dipDepth;
+            } else {
+                // Calculate smooth slope to ensure no gaps
+                var slopeDistance = distanceFromCenter - flatWidth;
+                var maxSlope = (maxWidth / 2) - flatWidth;
+                var slopeRatio = slopeDistance / maxSlope;
+
+                // Lower the connecting point - don't go all the way to 0
+                var minConnectingHeight = Math.min(3, dipDepth * 0.2);
+                var depth = dipDepth * (1 - slopeRatio) + minConnectingHeight * slopeRatio;
+                shape[i] = Math.max(minConnectingHeight, Math.round(depth));
+            }
+        }
+
+        dipShapes[cut] = shape;
+    }
+
+    return dipShapes;
+}
+
+// Pin dip shapes for values 0-8
+const dipShapes = generateDipShapes();
 
 function drawKeyShape(x, y, width, height, color, pinCount, pins) {
-    const bodyHeight = height * 2;
-    const notchSpacing = width / (pinCount + 1);
-    const pinOffset = 3;
+    var notchSpacing = width / (pinCount + 1);
+
+    // Add a pinOffset to shift each pin's start position right
+    var pinOffset = 5; // adjust as needed
 
     for (var px = Math.round(x); px <= Math.round(x + width); px++) {
         var py = y;
         for (var i = 0; i < pinCount; i++) {
-            const pinValue = pins && pins[i];
-            const dipShape = dipShapes[pinValue];
+            var pinValue = pins && pins[i];
+            var dipShape = dipShapes[pinValue];
             if (dipShape) {
-                const dipWidth = dipShape.length;
-                const pinCenter = Math.round(x + (i + 1) * notchSpacing + pinOffset * i);
-                const dipStart = pinCenter - Math.floor(dipWidth / 2);
-                const dipEnd = pinCenter + Math.floor(dipWidth / 2);
+                var dipWidth = dipShape.length;
+                // Shift pinCenter right by pinOffset * i
+                var pinCenter = Math.round(x + (i + 1) * notchSpacing + pinOffset * i);
+                var dipStart = pinCenter - Math.floor(dipWidth / 2);
+                var dipEnd = pinCenter + Math.floor(dipWidth / 2);
                 if (px >= dipStart && px < dipEnd) {
-                    const dipIdx = px - dipStart;
+                    var dipIdx = px - dipStart;
                     py = y + dipShape[dipIdx];
                     break;
                 }
@@ -101,40 +129,48 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
         display.drawPixel(px, py, color);
     }
 
-    const bottomEdgeOffset = 10;
-    const rightX = x + width;
-    const topY = y;
-    const bottomY = y + bodyHeight + bottomEdgeOffset;
+    // Calculate end points for diagonals
+    var shiftX = 15; // increased shift amount to move further right
 
-    const diagLength = 21;
-    const diagTopX = rightX + diagLength;
-    const diagTopY = topY + diagLength;
-    const diagBottomX = rightX + diagLength;
-    const diagBottomY = bottomY - diagLength;
+    var rightX = x + width + shiftX;
+    var topY = y;
+    var bottomY = y + height;
 
-    display.drawLine(rightX, topY, diagTopX, diagTopY, color);
-    display.drawLine(rightX, bottomY, diagBottomX, diagBottomY, color);
-    display.drawLine(diagTopX, diagTopY, diagBottomX, diagBottomY, color);
+    var diagLength = 30;
+    var diagTopX = rightX + diagLength;
+    var diagTopY = topY + diagLength;
+    var diagBottomX = rightX + diagLength;
+    var diagBottomY = bottomY - diagLength;
+
+    // Draw diagonals
+    // display.drawLine(rightX, topY, diagTopX, diagTopY, color);       // top-right diagonal
+    display.drawLine(rightX, bottomY, diagBottomX, diagBottomY, color); // bottom-right diagonal
+
+    // Draw vertical connector
+    // display.drawLine(diagTopX, diagTopY, diagBottomX, diagBottomY, color);
+
+    // Draw straight bottom edge
     display.drawLine(x, bottomY, rightX, bottomY, color);
 }
 
 function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
-    const pinSpacing = 30;
-    const y = 55;
-    const underlineY = y + 15;
-    const totalWidth = pinSpacing * pins.length - pinSpacing / 2;
-    const startX = (displayWidth - totalWidth) / 2;
+    var pinSpacing = 25;
+    var y = 55;
+    var underlineY = y + 15;
+    var totalWidth = pinSpacing * pins.length - pinSpacing / 2;
+    var startX = (displayWidth - totalWidth) / 2; // Center pins
 
     for (var i = 0; i < pins.length; i++) {
-        const x = startX + i * pinSpacing;
+        var x = startX + i * pinSpacing;
         drawString(pins[i].toString(), x, y);
         if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
             display.drawRect(x - 1, underlineY, 12, 2, secColor);
         }
     }
 
-    const keyY = y + 30;
-    drawKeyShape(startX - 27, keyY, totalWidth + 40, 20, priColor, pins.length, pins);
+    // Draw the key shape under the pins
+    var keyY = y + 30;
+    drawKeyShape(startX - 27, keyY, totalWidth + 40, 66, priColor, pins.length, pins);
 }
 
 function refreshKeyDisplay(key) {
@@ -148,18 +184,18 @@ var key = null;
 var selectedPinIndex = 0;
 
 function chooseAndCreateKey() {
-    const keyType = dialogChoice({
+    var keyType = dialogChoice({
         ["Titan"]: "Titan",
         ["Best SFIC"]: "Best SFIC"
     });
 
-    const outline = dialogChoice({
+    var outline = dialogChoice({
         ["5 pins"]: "5 pins",
         ["6 pins"]: "6 pins",
         ["7 pins"]: "7 pins"
     });
 
-    const show = dialogChoice({
+    var show = dialogChoice({
         ["Decode"]: "decode",
         ["Random"]: "random"
     });
@@ -187,7 +223,7 @@ while (true) {
         if (key.show === "random") {
             refreshKeyDisplay(key);
         } else if (selectedPinIndex !== null) {
-            key.pins[selectedPinIndex] = Math.min(9, key.pins[selectedPinIndex] + 1);
+            key.pins[selectedPinIndex] = Math.min(8, key.pins[selectedPinIndex] + 1);
             key.save();
             key.draw();
         }
