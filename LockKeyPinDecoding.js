@@ -1,4 +1,5 @@
 const display = require('display');
+const dialog = require("dialog");
 
 const displayWidth = display.width();
 const displayHeight = display.height();
@@ -7,20 +8,24 @@ const bgColor = BRUCE_BGCOLOR;
 const priColor = BRUCE_PRICOLOR;
 const secColor = BRUCE_SECCOLOR;
 
-function Key(keyType, outline, show) {
-    this.keyType = keyType;
+function Key(type, outline, show) {
+    this.type = type;
     this.outline = outline;
     this.show = show;
     this.pins = [];
 
-    var pinCount = parseInt(outline[0], 10);
-    if (show === "decode") {
-        for (var i = 0; i < pinCount; i++) {
-            this.pins.push(0);
-        }
-    } else {
-        for (var i = 0; i < pinCount; i++) {
-            this.pins.push(Math.floor(Math.random() * 10));
+    if (typeof outline === "string" && typeof show === "string") {
+        var pinCount = parseInt(outline[0], 10);
+        if (!isNaN(pinCount)) {
+            if (show === "decode") {
+                for (var i = 0; i < pinCount; i++) {
+                    this.pins.push(0);
+                }
+            } else {
+                for (var i = 0; i < pinCount; i++) {
+                    this.pins.push(Math.floor(Math.random() * 9) + 1);
+                }
+            }
         }
     }
 
@@ -28,7 +33,7 @@ function Key(keyType, outline, show) {
         var savedData = storageRead("key_data");
         if (savedData) {
             var data = JSON.parse(savedData);
-            this.keyType = data.keyType;
+            this.type = data.type;
             this.outline = data.outline;
             this.show = data.show;
             this.pins = data.pins;
@@ -37,7 +42,7 @@ function Key(keyType, outline, show) {
 
     this.save = function () {
         var data = {
-            keyType: this.keyType,
+            type: this.type,
             outline: this.outline,
             show: this.show,
             pins: this.pins
@@ -58,7 +63,7 @@ function Key(keyType, outline, show) {
         fillScreen(bgColor);
         display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
         setTextSize(2);
-        drawString(this.keyType + " - " + this.outline, 10, 10);
+        drawString(this.type + " - " + this.outline, 10, 10);
         drawPinsWithUnderline(this.pins, selectedPinIndex, this.show);
     };
 }
@@ -174,25 +179,51 @@ var key = null;
 var selectedPinIndex = 0;
 
 function chooseAndCreateKey() {
-    var keyType = dialogChoice({
+    var type = dialog.choice({
         ["Titan"]: "Titan",
-        ["Best SFIC"]: "Best SFIC"
+        ["Kwikset"]: "Kwikset",
+        ["Master"]: "Master",
+        ["Schlage"]: "Schlage",
+        ["Yale"]: "Yale",
+        ["Best"]: "Best",
+        ["Exit"]: "Exit"
     });
 
-    var outline = dialogChoice({
-        ["5 pins"]: "5 pins",
-        ["6 pins"]: "6 pins",
-        ["7 pins"]: "7 pins"
-    });
+    if (type === "") {
+        type = "Exit";
+    }
 
-    var show = dialogChoice({
-        ["Decode"]: "decode",
-        ["Random"]: "random"
-    });
+    if (type !== "Exit") {
+        var outline = dialog.choice({
+            ["5 pins"]: "5 pins",
+            ["6 pins"]: "6 pins",
+            ["7 pins"]: "7 pins",
+            ["Cancel"]: "Cancel"
+        });
 
-    key = new Key(keyType, outline, show);
+        if (outline === "Cancel" || outline === "") {
+            chooseAndCreateKey();
+            return;
+        }
+
+        var show = dialog.choice({
+            ["Decode"]: "decode",
+            ["Random"]: "random",
+            ["Cancel"]: "Cancel"
+        });
+
+        if (show === "Cancel" || show === "") {
+            chooseAndCreateKey();
+            return;
+        }
+    }
+
+    key = new Key(type, outline, show);
     key.save();
-    refreshKeyDisplay(key);
+
+    if (type !== "Exit") {
+        refreshKeyDisplay(key);
+    }
 }
 
 if (!key) {
@@ -200,6 +231,10 @@ if (!key) {
 }
 
 while (true) {
+    if (key.type === "Exit") {
+        break;
+    }
+
     if (getSelPress()) {
         if (key.show === "random") {
             chooseAndCreateKey();
@@ -212,7 +247,7 @@ while (true) {
     if (getNextPress()) {
         if (key.show === "random") {
             refreshKeyDisplay(key);
-        } else if (selectedPinIndex !== null) {
+        } else if (selectedPinIndex !== null && key.show === "decode") {
             key.pins[selectedPinIndex] = Math.min(8, key.pins[selectedPinIndex] + 1);
             key.save();
             key.draw();
