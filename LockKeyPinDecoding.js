@@ -178,49 +178,56 @@ function refreshKeyDisplay(key) {
 var key = null;
 var selectedPinIndex = 0;
 
-function chooseAndCreateKey() {
-    var type = dialog.choice({
-        ["Titan"]: "Titan",
-        ["Kwikset"]: "Kwikset",
-        ["Master"]: "Master",
-        ["Schlage"]: "Schlage",
-        ["Yale"]: "Yale",
-        ["Best"]: "Best",
-        ["Exit"]: "Exit"
-    });
+var keys = {
+    Titan: ["5 pins", "6 pins"],
+    Kwikset: ["5 pins"],
+    Master: ["4 pins", "5 pins"],
+    Schlage: ["5 pins", "6 pins"],
+    Yale: ["5 pins"],
+    Best: ["7 pins"]
+};
 
-    if (type === "") {
-        type = "Exit";
+function chooseAndCreateKey() {
+    // Build a fresh choices object so we don't mutate keys
+    var keyTypeChoices = {};
+    var brandNames = Object.keys(keys);
+    for (var i = 0; i < brandNames.length; i++) {
+        var brand = brandNames[i];
+        keyTypeChoices[brand] = brand;
     }
+    keyTypeChoices.Exit = "Exit";
+
+    var type = dialog.choice(keyTypeChoices);
+    if (!type) type = "Exit";
+
+    var outline, show;
 
     if (type !== "Exit") {
-        var outline = dialog.choice({
-            ["5 pins"]: "5 pins",
-            ["6 pins"]: "6 pins",
-            ["7 pins"]: "7 pins",
-            ["Cancel"]: "Cancel"
-        });
+        var outlines = keys[String(type)] || [];
+        var outlineChoices = {};
+        for (var j = 0; j < outlines.length; j++) {
+            var o = outlines[j];
+            outlineChoices[o] = o;
+        }
+        outlineChoices.Cancel = "Cancel";
 
-        if (outline === "Cancel" || outline === "") {
-            chooseAndCreateKey();
-            return;
+        outline = dialog.choice(outlineChoices);
+        if (!outline || outline === "Cancel") {
+            return chooseAndCreateKey();
         }
 
-        var show = dialog.choice({
-            ["Decode"]: "decode",
-            ["Random"]: "random",
-            ["Cancel"]: "Cancel"
+        show = dialog.choice({
+            Decode: "decode",
+            Random: "random",
+            Cancel: "Cancel"
         });
-
-        if (show === "Cancel" || show === "") {
-            chooseAndCreateKey();
-            return;
+        if (!show || show === "Cancel") {
+            return chooseAndCreateKey();
         }
     }
 
     key = new Key(type, outline, show);
     key.save();
-
     if (type !== "Exit") {
         refreshKeyDisplay(key);
     }
@@ -263,6 +270,6 @@ while (true) {
     }
 
     if (getEscPress()) {
-        break;
+        chooseAndCreateKey();
     }
 }
