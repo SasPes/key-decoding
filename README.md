@@ -1,7 +1,5 @@
 # 🔑 Key Decoding
 
-
-
 > **Note:** Only tested on LILYGO T-Embed CC1101.  
 > For educational and red team use only. Don't be evil.
 
@@ -110,6 +108,7 @@ Keys are saved as JSON in `/keys/`:
 - [Bruce Interpreter](https://github.com/pr3y/Bruce/wiki/Interpreter)
 - [Deviant Ollam: Key-and-Pin-Decoding](https://github.com/deviantollam/Key-and-Pin-Decoding)
 - [Flipper Zero: KeyCopier](https://github.com/zinongli/KeyCopier)
+- [LILYGO T-Embed CC1101](https://lilygo.cc/products/t-embed-cc1101)
 
 ---
 
