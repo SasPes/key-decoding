@@ -1,5 +1,6 @@
 const display = require('display');
 const dialog = require("dialog");
+const storage = require("storage");
 
 const displayWidth = display.width();
 const displayHeight = display.height();
@@ -14,6 +15,7 @@ function Key(type, outline, show) {
     this.show = show;
     this.pins = [];
 
+    // Initialize pins
     if (typeof outline === "string" && typeof show === "string") {
         var pinCount = parseInt(outline[0], 10);
         if (!isNaN(pinCount)) {
@@ -30,7 +32,7 @@ function Key(type, outline, show) {
     }
 
     this.load = function () {
-        var savedData = storageRead("key_data");
+        var savedData = storage.read("key_data");
         if (savedData) {
             var data = JSON.parse(savedData);
             this.type = data.type;
@@ -47,14 +49,14 @@ function Key(type, outline, show) {
             show: this.show,
             pins: this.pins
         };
-        storageWrite("key_data", JSON.stringify(data));
+        storage.write("key_data", JSON.stringify(data));
     };
 
     this.updatePins = function () {
         var pinCount = parseInt(outline[0], 10);
         this.pins = [];
         for (var i = 0; i < pinCount; i++) {
-            this.pins.push(Math.floor(Math.random() * 10));
+            this.pins.push(Math.floor(Math.random() * 9));
         }
         this.save();
     };
