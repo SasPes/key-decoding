@@ -249,13 +249,6 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, key
     drawKeyShape(keyX, keyY, totalWidth, 66, priColor, pins.length, pins, keyType);
 }
 
-function refreshKeyDisplay(key) {
-    if (key.show === "random") {
-        key.updatePins();
-    }
-    key.draw();
-}
-
 var key = null;
 var selectedPinIndex = 0;
 
@@ -309,7 +302,7 @@ function chooseAndCreateKey() {
         key = new Key(type, outline, show);
     }
     if (type !== "Exit") {
-        refreshKeyDisplay(key);
+        key.draw();
     }
 }
 
@@ -333,18 +326,16 @@ while (true) {
 
     if (getNextPress()) {
         if (key.show === "random") {
-            refreshKeyDisplay(key);
+            key.updatePins();
         } else if (key.show === "decode" && selectedPinIndex !== null && selectedPinIndex < key.pins.length) {
             var maxKeyCut = (keys[key.type] && keys[key.type].maxKeyCut) || 9;
             key.pins[selectedPinIndex] = Math.min(maxKeyCut - 1, key.pins[selectedPinIndex] + 1);
-            key.draw();
         } else if (selectedPinIndex === key.pins.length) { // Save action
             key.save();
-            key.draw();
         } else if (selectedPinIndex === key.pins.length + 1) { // Load action
             key.load(storage.read(dialog.pickFile("/keys", {withFileTypes: true})))
-            key.draw();
         }
+        key.draw();
     }
 
     if (getPrevPress()) {
