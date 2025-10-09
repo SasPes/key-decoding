@@ -164,7 +164,7 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
 
     var numberSize = 12;
 
-    // Draw pin numbers
+    // Draw pins numbers
     for (var i = 0; i < pins.length; i++) {
         var pinNumberX = startX + numberSize + i * pinSpacing;
         display.drawString(pins[i].toString(), pinNumberX, startY);
@@ -200,7 +200,8 @@ var keys = {
 };
 
 function chooseAndCreateKey() {
-    // Build a fresh choices object so we don't mutate keys
+    selectedPinIndex = 0;
+
     var keyTypeChoices = {};
     var brandNames = Object.keys(keys);
     for (var i = 0; i < brandNames.length; i++) {
