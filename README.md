@@ -8,7 +8,7 @@ Decode and randomly generate key bitting patterns for a bunch of lock brands.
 Visualize the cuts, tweak the pins, and save/load your keys.  
 Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 
-## 🔒 Supported Keys
+## 🏴‍☠️ Supported Keys
 
 <table>
   <tr>
