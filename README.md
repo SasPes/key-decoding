@@ -3,26 +3,12 @@
 <img src="ss/ss5.png" width="250"/><img src="ss/ss4.png" width="250"/><img src="ss/ss3.png" width="250"/>
 <img src="ss/ss2.png" width="250"/><img src="ss/ss6.png" width="250"/><img src="ss/ss7.png" width="250"/>
 
-> **Note:** Only tested on LILYGO T-Embed CC1101.  
-> For educational and red team use only. Don't be evil.
-
-## 🏴‍☠️ What is this?
-
-A Bruce app for hackers, tinkerers, and lock nerds.  
-Decode, measure, and randomly generate key bitting patterns for a bunch of lock brands.  
-Visualize the cuts, tweak the pins, and save/load your combos.  
+A Bruce app for hackers, tinkerers and lock nerds.  
+Decode and randomly generate key bitting patterns for a bunch of lock brands.  
+Visualize the cuts, tweak the pins, and save/load your keys.  
 Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 
-## 🚀 Features
-
-- Brand Support: Titan, Kwikset, Master, Schlage, Yale, Best
-- Visual Key Display: See your key's bitting and cuts
-- Random Mode: Generate random bittings for practice or fun
-- Decode Mode: Manually set and tweak pin values
-- Save/Load: Store and recall your key configs as JSON
-- Button Navigation: Hack your way with device buttons
-
-## 🔒 Supported Brands
+## 🔒 Supported Keys
 
 <table>
   <tr>
@@ -96,13 +82,7 @@ Keys are saved as JSON in `/keys/`:
 {
   "type": "Titan",
   "outline": "5 pins",
-  "pins": [
-    3,
-    5,
-    2,
-    7,
-    4
-  ]
+  "pins": [ 3, 5, 2, 7, 4 ]
 }
 ```
 
@@ -115,5 +95,5 @@ Keys are saved as JSON in `/keys/`:
 
 ## ☠️ Disclaimer
 
-For educational, CTF, and red team use only.  
+For educational, CTF and red team use only.  
 Don't break the law. Don't be a jerk.
