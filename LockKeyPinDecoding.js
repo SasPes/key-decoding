@@ -1,6 +1,5 @@
 const display = require('display');
 const dialog = require("dialog");
-const storage = require("storage");
 
 const displayWidth = display.width();
 const displayHeight = display.height();
@@ -83,27 +82,6 @@ function Key(type, outline, show) {
         }
     }
 
-    this.load = function () {
-        var savedData = storage.read("key_data");
-        if (savedData) {
-            var data = JSON.parse(savedData);
-            this.type = data.type;
-            this.outline = data.outline;
-            this.show = data.show;
-            this.pins = data.pins;
-        }
-    };
-
-    this.save = function () {
-        var data = {
-            type: this.type,
-            outline: this.outline,
-            show: this.show,
-            pins: this.pins
-        };
-        storage.write("key_data", JSON.stringify(data));
-    };
-
     this.updatePins = function () {
         var pinCount = parseInt(outline[0], 10);
         this.pins = [];
@@ -111,7 +89,6 @@ function Key(type, outline, show) {
             var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
             this.pins.push(Math.floor(Math.random() * maxKeyCut - 1) + 1);
         }
-        this.save();
     };
 
     this.draw = function () {
@@ -278,7 +255,6 @@ function chooseAndCreateKey() {
     }
 
     key = new Key(type, outline, show);
-    key.save();
     if (type !== "Exit") {
         refreshKeyDisplay(key);
     }
@@ -308,7 +284,6 @@ while (true) {
         } else if (selectedPinIndex !== null && key.show === "decode") {
             var maxKeyCut = (keys[key.type] && keys[key.type].maxKeyCut) || 9;
             key.pins[selectedPinIndex] = Math.min(maxKeyCut - 1, key.pins[selectedPinIndex] + 1);
-            key.save();
             key.draw();
         }
     }
@@ -316,7 +291,6 @@ while (true) {
     if (getPrevPress()) {
         if (key.show !== "random" && selectedPinIndex !== null) {
             key.pins[selectedPinIndex] = Math.max(0, key.pins[selectedPinIndex] - 1);
-            key.save();
             key.draw();
         }
     }
