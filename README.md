@@ -21,9 +21,9 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 
 ## ⚡ Install
 
-1. Drop `KeyDecoding.js` onto your Bruce device.
-2. Fire up the Bruce Interpreter.
-3. Hack away.
+1. Drop `KeyDecoding.js` onto your Bruce device
+2. Fire up the Bruce Interpreter
+3. Have fun
 
 ## 🕹️ Usage
 
