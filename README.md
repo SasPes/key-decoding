@@ -3,15 +3,12 @@
 > **Note:** Only tested on LILYGO T-Embed CC1101.  
 > For educational and red team use only. Don't be evil.
 
----
-
 ## 🏴‍☠️ What is this?
 
 A Bruce app for hackers, tinkerers, and lock nerds.  
 Decode, measure, and randomly generate key bitting patterns for a bunch of lock brands.  
 Visualize the cuts, tweak the pins, and save/load your combos.  
 Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
-
 
 ## 🚀 Features
 
@@ -68,7 +65,6 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 2. Fire up the Bruce Interpreter.
 3. Hack away.
 
-
 ## 🕹️ Usage
 
 ### Navigation
@@ -89,7 +85,6 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 5. **Save:** SEL to "Save", then NEXT to write your key JSON
 6. **Load:** SEL to "Load", then NEXT to pick a saved key
 
-
 ## 📂 Key File Format
 
 Keys are saved as JSON in `/keys/`:
@@ -102,15 +97,12 @@ Keys are saved as JSON in `/keys/`:
 }
 ```
 
-
 ## 🔗 Links
 
 - [Bruce Interpreter](https://github.com/pr3y/Bruce/wiki/Interpreter)
 - [Deviant Ollam: Key-and-Pin-Decoding](https://github.com/deviantollam/Key-and-Pin-Decoding)
 - [Flipper Zero: KeyCopier](https://github.com/zinongli/KeyCopier)
 - [LILYGO T-Embed CC1101](https://lilygo.cc/products/t-embed-cc1101)
-
----
 
 ## ☠️ Disclaimer
 
