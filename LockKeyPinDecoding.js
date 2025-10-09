@@ -92,10 +92,27 @@ function Key(type, outline, show) {
     };
 
     this.draw = function () {
+        var numberOfActions = 2; // Save, Load
+        if (selectedPinIndex >= this.pins.length + numberOfActions) {
+            selectedPinIndex = 0;
+        }
+
         fillScreen(bgColor);
         display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
         setTextSize(2);
         display.drawString(this.type + " - " + this.outline, 10, 10);
+
+        if (this.show === "decode") {
+            display.drawRoundRect(displayWidth - 65, 3, 60, 8 + numberOfActions * 24, 4, priColor);
+            display.drawString("Save", displayWidth - 58, 12);
+            display.drawString("Load", displayWidth - 58, 36);
+
+            var selectedAction = selectedPinIndex - this.pins.length;
+            if (selectedPinIndex >= this.pins.length) {
+                display.drawRect(displayWidth - 60, 28 + selectedAction * 24, 50, 2, secColor);
+            }
+        }
+
         var pinSpacing = keys[this.type] ? keys[this.type].pinSpacing : 31;
         drawPinsWithUnderline(this.pins, selectedPinIndex, this.show, pinSpacing, this.type);
     };
@@ -273,7 +290,7 @@ while (true) {
         if (key.show === "random") {
             chooseAndCreateKey();
         } else {
-            selectedPinIndex = (selectedPinIndex + 1) % key.pins.length;
+            selectedPinIndex++;
             key.draw();
         }
     }
@@ -281,7 +298,7 @@ while (true) {
     if (getNextPress()) {
         if (key.show === "random") {
             refreshKeyDisplay(key);
-        } else if (selectedPinIndex !== null && key.show === "decode") {
+        } else if (key.show === "decode" && selectedPinIndex !== null && selectedPinIndex < key.pins.length) {
             var maxKeyCut = (keys[key.type] && keys[key.type].maxKeyCut) || 9;
             key.pins[selectedPinIndex] = Math.min(maxKeyCut - 1, key.pins[selectedPinIndex] + 1);
             key.draw();
@@ -289,7 +306,7 @@ while (true) {
     }
 
     if (getPrevPress()) {
-        if (key.show !== "random" && selectedPinIndex !== null) {
+        if (key.show === "decode" && selectedPinIndex !== null && selectedPinIndex < key.pins.length) {
             key.pins[selectedPinIndex] = Math.max(0, key.pins[selectedPinIndex] - 1);
             key.draw();
         }
