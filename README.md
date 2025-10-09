@@ -1,5 +1,12 @@
 # 🔑 Key Decoding
 
+<img src="ss/ss5.png" width="400"/>
+<img src="ss/ss4.png" width="400"/>
+<img src="ss/ss3.png" width="400"/>
+<img src="ss/ss2.png" width="400"/>
+<img src="ss/ss6.png" width="400"/>
+<img src="ss/ss7.png" width="400"/>
+
 > **Note:** Only tested on LILYGO T-Embed CC1101.  
 > For educational and red team use only. Don't be evil.
 
@@ -78,9 +85,9 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 
 1. **Pick a Brand:** Choose your target lock or load a saved key
 2. **Pin Count:** Select how many pins (brand-dependent)
-3. **Mode:**  
-   - **Random:** Get a random bitting (good for challenge keys)
-   - **Decode:** Set each pin yourself (for real-world decoding)
+3. **Mode:**
+    - **Random:** Get a random bitting (good for challenge keys)
+    - **Decode:** Set each pin yourself (for real-world decoding)
 4. **Tweak Pins:** Use NEXT/PREV to set each pin's depth
 5. **Save:** SEL to "Save", then NEXT to write your key JSON
 6. **Load:** SEL to "Load", then NEXT to pick a saved key
@@ -93,7 +100,13 @@ Keys are saved as JSON in `/keys/`:
 {
   "type": "Titan",
   "outline": "5 pins",
-  "pins": [3, 5, 2, 7, 4]
+  "pins": [
+    3,
+    5,
+    2,
+    7,
+    4
+  ]
 }
 ```
 
