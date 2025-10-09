@@ -9,6 +9,33 @@ const bgColor = BRUCE_BGCOLOR;
 const priColor = BRUCE_PRICOLOR;
 const secColor = BRUCE_SECCOLOR;
 
+var keys = {
+    Titan: {
+        outlines: ["5 pins", "6 pins"],
+        pinSpacing: 31
+    },
+    Kwikset: {
+        outlines: ["5 pins"],
+        pinSpacing: 28
+    },
+    Master: {
+        outlines: ["4 pins", "5 pins"],
+        pinSpacing: 30
+    },
+    Schlage: {
+        outlines: ["5 pins", "6 pins"],
+        pinSpacing: 29
+    },
+    Yale: {
+        outlines: ["5 pins"],
+        pinSpacing: 28
+    },
+    Best: {
+        outlines: ["7 pins"],
+        pinSpacing: 26
+    }
+};
+
 function Key(type, outline, show) {
     this.type = type;
     this.outline = outline;
@@ -66,7 +93,8 @@ function Key(type, outline, show) {
         display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
         setTextSize(2);
         display.drawString(this.type + " - " + this.outline, 10, 10);
-        drawPinsWithUnderline(this.pins, selectedPinIndex, this.show);
+        var pinSpacing = keys[this.type] ? keys[this.type].pinSpacing : 31;
+        drawPinsWithUnderline(this.pins, selectedPinIndex, this.show, pinSpacing);
     };
 }
 
@@ -155,8 +183,7 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
     display.drawLine(x, bottomY, rightX, bottomY, color);
 }
 
-function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
-    var pinSpacing = 31; // Titan
+function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing) {
     var startY = 55;
     var underlineY = startY + 15;
     var totalWidth = pinSpacing * pins.length;
@@ -190,15 +217,6 @@ function refreshKeyDisplay(key) {
 var key = null;
 var selectedPinIndex = 0;
 
-var keys = {
-    Titan: ["5 pins", "6 pins"],
-    Kwikset: ["5 pins"],
-    Master: ["4 pins", "5 pins"],
-    Schlage: ["5 pins", "6 pins"],
-    Yale: ["5 pins"],
-    Best: ["7 pins"]
-};
-
 function chooseAndCreateKey() {
     selectedPinIndex = 0;
 
@@ -216,7 +234,7 @@ function chooseAndCreateKey() {
     var outline, show;
 
     if (type !== "Exit") {
-        var outlines = keys[String(type)] || [];
+        var outlines = keys[String(type)].outlines || [];
         var outlineChoices = {};
         for (var j = 0; j < outlines.length; j++) {
             var o = outlines[j];
