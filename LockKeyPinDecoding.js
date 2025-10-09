@@ -14,37 +14,43 @@ var keys = {
         outlines: ["5 pins", "6 pins"],
         pinSpacing: 31,
         maxWidth: 31,
-        maxKeyCut: 9
+        maxKeyCut: 9,
+        flatSpotWidth: 5
     },
     Kwikset: {
         outlines: ["5 pins"],
-        pinSpacing: 28,
+        pinSpacing: 29,
         maxWidth: 28,
-        maxKeyCut: 7
+        maxKeyCut: 7,
+        flatSpotWidth: 15
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
         pinSpacing: 30,
         maxWidth: 30,
-        maxKeyCut: 7
+        maxKeyCut: 7,
+        flatSpotWidth: 5
     },
     Schlage: {
         outlines: ["5 pins", "6 pins"],
         pinSpacing: 29,
         maxWidth: 29,
-        maxKeyCut: 9
+        maxKeyCut: 9,
+        flatSpotWidth: 5
     },
     Yale: {
         outlines: ["5 pins"],
         pinSpacing: 28,
         maxWidth: 28,
-        maxKeyCut: 9
+        maxKeyCut: 9,
+        flatSpotWidth: 5
     },
     Best: {
         outlines: ["7 pins"],
         pinSpacing: 26,
         maxWidth: 26,
-        maxKeyCut: 8
+        maxKeyCut: 8,
+        flatSpotWidth: 5
     }
 };
 
@@ -112,9 +118,8 @@ function Key(type, outline, show) {
     };
 }
 
-function generateDipShapes(maxWidth, maxKeyCut) {
+function generateDipShapes(maxWidth, maxKeyCut, flatSpotWidth) {
     var dipShapes = {};
-    var flatSpotWidth = 5;
 
     for (var cut = 0; cut < maxKeyCut; cut++) {
         var shape = [];
@@ -157,7 +162,8 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
     var keyConfig = keys[keyType] || {};
     var maxWidth = keyConfig.maxWidth || 31;
     var maxKeyCut = keyConfig.maxKeyCut || 9;
-    var dipShapes = generateDipShapes(maxWidth, maxKeyCut);
+    var flatSpotWidth = keyConfig.flatSpotWidth || 5;
+    var dipShapes = generateDipShapes(maxWidth, maxKeyCut, flatSpotWidth);
 
     for (var px = Math.round(x); px <= Math.round(x + width + pinSpacing / 2); px++) {
         var py = y;
