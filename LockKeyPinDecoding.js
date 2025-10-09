@@ -12,27 +12,39 @@ const secColor = BRUCE_SECCOLOR;
 var keys = {
     Titan: {
         outlines: ["5 pins", "6 pins"],
-        pinSpacing: 31
+        pinSpacing: 31,
+        maxWidth: 31,
+        maxKeyCut: 9
     },
     Kwikset: {
         outlines: ["5 pins"],
-        pinSpacing: 28
+        pinSpacing: 28,
+        maxWidth: 28,
+        maxKeyCut: 7
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
-        pinSpacing: 30
+        pinSpacing: 30,
+        maxWidth: 30,
+        maxKeyCut: 7
     },
     Schlage: {
         outlines: ["5 pins", "6 pins"],
-        pinSpacing: 29
+        pinSpacing: 29,
+        maxWidth: 29,
+        maxKeyCut: 9
     },
     Yale: {
         outlines: ["5 pins"],
-        pinSpacing: 28
+        pinSpacing: 28,
+        maxWidth: 28,
+        maxKeyCut: 9
     },
     Best: {
         outlines: ["7 pins"],
-        pinSpacing: 26
+        pinSpacing: 26,
+        maxWidth: 26,
+        maxKeyCut: 8
     }
 };
 
@@ -52,7 +64,8 @@ function Key(type, outline, show) {
                 }
             } else {
                 for (var i = 0; i < pinCount; i++) {
-                    this.pins.push(Math.floor(Math.random() * 9) + 1);
+                    var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
+                    this.pins.push(Math.floor(Math.random() * maxKeyCut - 1) + 1);
                 }
             }
         }
@@ -83,7 +96,8 @@ function Key(type, outline, show) {
         var pinCount = parseInt(outline[0], 10);
         this.pins = [];
         for (var i = 0; i < pinCount; i++) {
-            this.pins.push(Math.floor(Math.random() * 9));
+            var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
+            this.pins.push(Math.floor(Math.random() * maxKeyCut - 1) + 1);
         }
         this.save();
     };
@@ -98,10 +112,8 @@ function Key(type, outline, show) {
     };
 }
 
-function generateDipShapes() {
+function generateDipShapes(maxWidth, maxKeyCut) {
     var dipShapes = {};
-    var maxWidth = 31;
-    var maxKeyCut = 9;
     var flatSpotWidth = 5;
 
     for (var cut = 0; cut < maxKeyCut; cut++) {
@@ -140,12 +152,12 @@ function generateDipShapes() {
     return dipShapes;
 }
 
-const dipShapes = generateDipShapes();
-
-function drawKeyShape(x, y, width, height, color, pinCount, pins) {
+function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
     var pinSpacing = width / pinCount;
-
-    // Add a pinOffset to shift each pin's start position right
+    var keyConfig = keys[keyType] || {};
+    var maxWidth = keyConfig.maxWidth || 31;
+    var maxKeyCut = keyConfig.maxKeyCut || 9;
+    var dipShapes = generateDipShapes(maxWidth, maxKeyCut);
 
     for (var px = Math.round(x); px <= Math.round(x + width + pinSpacing / 2); px++) {
         var py = y;
@@ -154,7 +166,6 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
             var dipShape = dipShapes[pinValue];
             if (dipShape) {
                 var dipWidth = dipShape.length;
-                // Shift pinCenter right by pinOffset * i
                 var pinCenter = Math.round(x + (i + 1) * pinSpacing);
                 var dipStart = pinCenter - Math.floor(dipWidth / 2);
                 var dipEnd = pinCenter + Math.floor(dipWidth / 2);
@@ -168,10 +179,8 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
         display.drawPixel(px, py, color);
     }
 
-    // Calculate end points for diagonals
     var rightX = x + width + pinSpacing / 2;
     var bottomY = y + height;
-
     var diagLength = 30;
     var diagBottomX = rightX + diagLength;
     var diagBottomY = bottomY - diagLength;
@@ -204,7 +213,7 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing) {
     // Draw the key shape under the pins
     var keyX = startX - pinSpacing / 2
     var keyY = startY + pinSpacing;
-    drawKeyShape(keyX, keyY, totalWidth, 66, priColor, pins.length, pins);
+    drawKeyShape(keyX, keyY, totalWidth, 66, priColor, pins.length, pins, this.type);
 }
 
 function refreshKeyDisplay(key) {
@@ -286,7 +295,8 @@ while (true) {
         if (key.show === "random") {
             refreshKeyDisplay(key);
         } else if (selectedPinIndex !== null && key.show === "decode") {
-            key.pins[selectedPinIndex] = Math.min(8, key.pins[selectedPinIndex] + 1);
+            var maxKeyCut = (keys[key.type] && keys[key.type].maxKeyCut) || 9;
+            key.pins[selectedPinIndex] = Math.min(maxKeyCut - 1, key.pins[selectedPinIndex] + 1);
             key.save();
             key.draw();
         }
