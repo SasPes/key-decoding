@@ -65,7 +65,7 @@ function Key(type, outline, show) {
         fillScreen(bgColor);
         display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
         setTextSize(2);
-        drawString(this.type + " - " + this.outline, 10, 10);
+        display.drawString(this.type + " - " + this.outline, 10, 10);
         drawPinsWithUnderline(this.pins, selectedPinIndex, this.show);
     };
 }
@@ -154,14 +154,16 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
     var pinSpacing = 25;
     var y = 55;
     var underlineY = y + 15;
-    var totalWidth = pinSpacing * pins.length - pinSpacing / 2;
-    var startX = (displayWidth - totalWidth) / 2; // Center pins
+    var totalWidth = pinSpacing * pins.length;
+    var startX = (displayWidth - totalWidth) / 2;
 
+    // Draw pin numbers
     for (var i = 0; i < pins.length; i++) {
-        var x = startX + i * pinSpacing;
-        drawString(pins[i].toString(), x, y);
+        var pinNumberX = startX - 3 + i * pinSpacing * 1.3;
+        display.drawString(pins[i].toString(), pinNumberX, y);
+
         if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
-            display.drawRect(x - 1, underlineY, 12, 2, secColor);
+            display.drawRect(pinNumberX - 1, underlineY, 12, 2, secColor);
         }
     }
 
