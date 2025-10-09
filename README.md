@@ -1,11 +1,11 @@
 # 🔑 Key Decoding
 
-<img src="ss/ss5.png" width="400"/>
-<img src="ss/ss4.png" width="400"/>
-<img src="ss/ss3.png" width="400"/>
-<img src="ss/ss2.png" width="400"/>
-<img src="ss/ss6.png" width="400"/>
-<img src="ss/ss7.png" width="400"/>
+<img src="ss/ss5.png" width="200"/>
+<img src="ss/ss4.png" width="200"/>
+<img src="ss/ss3.png" width="200"/>
+<img src="ss/ss2.png" width="200"/>
+<img src="ss/ss6.png" width="200"/>
+<img src="ss/ss7.png" width="200"/>
 
 > **Note:** Only tested on LILYGO T-Embed CC1101.  
 > For educational and red team use only. Don't be evil.
