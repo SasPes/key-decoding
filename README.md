@@ -10,43 +10,14 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 
 ## 🏴‍☠️ Supported Keys
 
-<table>
-  <tr>
-    <th style="text-align:center">Tested</th>
-    <th style="text-align:center">Brand</th>
-    <th style="text-align:center">Pin Options</th>
-  </tr>
-  <tr>
-    <td style="text-align:center">✔️</td>
-    <td style="text-align:center">Titan</td>
-    <td style="text-align:center">5, 6 pins</td>
-  </tr>
-  <tr>
-    <td style="text-align:center">✔️</td>
-    <td style="text-align:center">Kwikset</td>
-    <td style="text-align:center">5 pins</td>
-  </tr>
-  <tr>
-    <td style="text-align:center"></td>
-    <td style="text-align:center">Master</td>
-    <td style="text-align:center">4, 5 pins</td>
-  </tr>
-  <tr>
-    <td style="text-align:center"></td>
-    <td style="text-align:center">Schlage</td>
-    <td style="text-align:center">5, 6 pins</td>
-  </tr>
-  <tr>
-    <td style="text-align:center"></td>
-    <td style="text-align:center">Yale</td>
-    <td style="text-align:center">5 pins</td>
-  </tr>
-  <tr>
-    <td style="text-align:center"></td>
-    <td style="text-align:center">Best</td>
-    <td style="text-align:center">7 pins</td>
-  </tr>
-</table>
+| Tested | Brand    | Pin Options  |
+|:------:|:--------:|:------------|
+| ✔️     | Titan    | 5, 6 pins   |
+| ✔️     | Kwikset  | 5 pins      |
+|        | Master   | 4, 5 pins   |
+|        | Schlage  | 5, 6 pins   |
+|        | Yale     | 5 pins      |
+|        | Best     | 7 pins      |
 
 ## ⚡ Install
 
