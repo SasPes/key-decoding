@@ -13,42 +13,36 @@ var keys = {
     Titan: {
         outlines: ["5 pins", "6 pins"],
         pinSpacing: 31,
-        maxWidth: 31,
         maxKeyCut: 9,
         flatSpotWidth: 5
     },
     Kwikset: {
         outlines: ["5 pins"],
         pinSpacing: 30,
-        maxWidth: 28,
         maxKeyCut: 7,
         flatSpotWidth: 10
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
         pinSpacing: 30,
-        maxWidth: 30,
         maxKeyCut: 7,
         flatSpotWidth: 5
     },
     Schlage: {
         outlines: ["5 pins", "6 pins"],
         pinSpacing: 29,
-        maxWidth: 29,
         maxKeyCut: 9,
         flatSpotWidth: 5
     },
     Yale: {
         outlines: ["5 pins"],
         pinSpacing: 28,
-        maxWidth: 28,
         maxKeyCut: 9,
         flatSpotWidth: 5
     },
     Best: {
         outlines: ["7 pins"],
         pinSpacing: 26,
-        maxWidth: 26,
         maxKeyCut: 8,
         flatSpotWidth: 5
     }
@@ -118,20 +112,19 @@ function Key(type, outline, show) {
     };
 }
 
-function generateDipShapes(maxWidth, maxKeyCut, flatSpotWidth) {
+function generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth) {
     var dipShapes = {};
 
     for (var cut = 0; cut < maxKeyCut; cut++) {
         var shape = [];
-        var centerIndex = Math.floor(maxWidth / 2);
+        var centerIndex = Math.floor(pinSpacing / 2);
         var maxDepth = cut * 3 + 2;
         var flatHalfWidth = Math.floor(flatSpotWidth / 2);
 
-        for (var i = 0; i < maxWidth; i++) {
+        for (var i = 0; i < pinSpacing; i++) {
             var distanceFromCenter = Math.abs(i - centerIndex);
 
             if (cut === 0) {
-                // Special case for cut 0: only center flat spot has depth
                 if (distanceFromCenter <= flatSpotWidth) {
                     shape[i] = 2;
                 } else {
@@ -139,10 +132,8 @@ function generateDipShapes(maxWidth, maxKeyCut, flatSpotWidth) {
                 }
             } else {
                 if (distanceFromCenter <= flatHalfWidth) {
-                    // Flat spot at the bottom
                     shape[i] = maxDepth;
                 } else {
-                    // Linear slope from flat spot to edges
                     var slopeDistance = distanceFromCenter - flatHalfWidth;
                     var remainingDistance = centerIndex - flatHalfWidth;
                     var depth = maxDepth - Math.floor(slopeDistance * (maxDepth - 1) / remainingDistance);
@@ -158,12 +149,11 @@ function generateDipShapes(maxWidth, maxKeyCut, flatSpotWidth) {
 }
 
 function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
-    var pinSpacing = width / pinCount;
     var keyConfig = keys[keyType] || {};
-    var maxWidth = keyConfig.maxWidth || 31;
+    var pinSpacing = keyConfig.pinSpacing || 31;
     var maxKeyCut = keyConfig.maxKeyCut || 9;
     var flatSpotWidth = keyConfig.flatSpotWidth || 5;
-    var dipShapes = generateDipShapes(maxWidth, maxKeyCut, flatSpotWidth);
+    var dipShapes = generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth);
 
     for (var px = Math.round(x); px <= Math.round(x + width + pinSpacing / 2); px++) {
         var py = y;
