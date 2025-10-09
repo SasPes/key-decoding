@@ -14,37 +14,49 @@ var keys = {
         outlines: ["5 pins", "6 pins"],
         pinSpacing: 31,
         maxKeyCut: 9,
-        flatSpotWidth: 5
+        flatSpotWidth: 5,
+        edgeOffsetX: 0,
+        edgeOffsetY: 0
     },
     Kwikset: {
         outlines: ["5 pins"],
         pinSpacing: 30,
         maxKeyCut: 7,
-        flatSpotWidth: 10
+        flatSpotWidth: 10,
+        edgeOffsetX: 15,
+        edgeOffsetY: -3
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
         pinSpacing: 30,
         maxKeyCut: 7,
-        flatSpotWidth: 5
+        flatSpotWidth: 5,
+        edgeOffsetX: 0,
+        edgeOffsetY: 0
     },
     Schlage: {
         outlines: ["5 pins", "6 pins"],
         pinSpacing: 29,
         maxKeyCut: 9,
-        flatSpotWidth: 5
+        flatSpotWidth: 5,
+        edgeOffsetX: 0,
+        edgeOffsetY: 0
     },
     Yale: {
         outlines: ["5 pins"],
         pinSpacing: 28,
         maxKeyCut: 9,
-        flatSpotWidth: 5
+        flatSpotWidth: 5,
+        edgeOffsetX: 0,
+        edgeOffsetY: 0
     },
     Best: {
         outlines: ["7 pins"],
         pinSpacing: 26,
         maxKeyCut: 8,
-        flatSpotWidth: 5
+        flatSpotWidth: 5,
+        edgeOffsetX: 0,
+        edgeOffsetY: 0
     }
 };
 
@@ -153,7 +165,10 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
     var pinSpacing = keyConfig.pinSpacing || 31;
     var maxKeyCut = keyConfig.maxKeyCut || 9;
     var flatSpotWidth = keyConfig.flatSpotWidth || 5;
+    var edgeOffsetX = keyConfig.edgeOffsetX || 0;
+    var edgeOffsetY = keyConfig.edgeOffsetY || 0;
     var dipShapes = generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth);
+
 
     for (var px = Math.round(x); px <= Math.round(x + width + pinSpacing / 2); px++) {
         var py = y;
@@ -175,17 +190,17 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
         display.drawPixel(px, py, color);
     }
 
-    var rightX = x + width + pinSpacing / 2;
-    var bottomY = y + height;
+    var edgeX = x + width + pinSpacing / 2 + edgeOffsetX;
+    var edgeY = y + height + edgeOffsetY;
     var diagLength = 30;
-    var diagBottomX = rightX + diagLength;
-    var diagBottomY = bottomY - diagLength;
+    var diagBottomX = edgeX + diagLength;
+    var diagBottomY = edgeY - diagLength;
 
     // Draw diagonals
-    display.drawLine(rightX, bottomY, diagBottomX, diagBottomY, color); // bottom-right diagonal
+    display.drawLine(edgeX, edgeY, diagBottomX, diagBottomY, color); // bottom-right diagonal
 
     // Draw straight bottom edge
-    display.drawLine(x, bottomY, rightX, bottomY, color);
+    display.drawLine(x, edgeY, edgeX, edgeY, color);
 }
 
 function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType) {
