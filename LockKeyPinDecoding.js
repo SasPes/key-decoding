@@ -133,6 +133,17 @@ function Key(type, outline, show) {
         selectedPinIndex = 0;
         delay(2000);
     };
+
+    this.load = function (keyData) {
+        if (keyData) {
+            var data = JSON.parse(keyData);
+            this.type = data.type;
+            this.outline = data.outline;
+            this.show = "decode";
+            this.pins = data.pins;
+        }
+        fillScreen(bgColor);
+    };
 }
 
 function generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth) {
@@ -257,6 +268,7 @@ function chooseAndCreateKey() {
         var brand = brandNames[i];
         keyTypeChoices[brand] = brand;
     }
+    keyTypeChoices.Load = "Load";
     keyTypeChoices.Exit = "Exit";
 
     var type = dialog.choice(keyTypeChoices);
@@ -265,30 +277,37 @@ function chooseAndCreateKey() {
     var outline, show;
 
     if (type !== "Exit") {
-        var outlines = keys[String(type)].outlines || [];
-        var outlineChoices = {};
-        for (var j = 0; j < outlines.length; j++) {
-            var o = outlines[j];
-            outlineChoices[o] = o;
-        }
-        outlineChoices.Cancel = "Cancel";
+        if (type === "Load") {
+            key = new Key(type, "", "decode");
+            key.load(storage.read(dialog.pickFile("/keys", {withFileTypes: true})))
+        } else {
+            var outlines = keys[String(type)].outlines || [];
+            var outlineChoices = {};
+            for (var j = 0; j < outlines.length; j++) {
+                var o = outlines[j];
+                outlineChoices[o] = o;
+            }
+            outlineChoices.Cancel = "Cancel";
 
-        outline = dialog.choice(outlineChoices);
-        if (!outline || outline === "Cancel") {
-            return chooseAndCreateKey();
-        }
+            outline = dialog.choice(outlineChoices);
+            if (!outline || outline === "Cancel") {
+                return chooseAndCreateKey();
+            }
 
-        show = dialog.choice({
-            Decode: "decode",
-            Random: "random",
-            Cancel: "Cancel"
-        });
-        if (!show || show === "Cancel") {
-            return chooseAndCreateKey();
+            show = dialog.choice({
+                Decode: "decode",
+                Random: "random",
+                Cancel: "Cancel"
+            });
+            if (!show || show === "Cancel") {
+                return chooseAndCreateKey();
+            }
         }
     }
 
-    key = new Key(type, outline, show);
+    if (type !== "Load") {
+        key = new Key(type, outline, show);
+    }
     if (type !== "Exit") {
         refreshKeyDisplay(key);
     }
@@ -321,6 +340,9 @@ while (true) {
             key.draw();
         } else if (selectedPinIndex === key.pins.length) { // Save action
             key.save();
+            key.draw();
+        } else if (selectedPinIndex === key.pins.length + 1) { // Load action
+            key.load(storage.read(dialog.pickFile("/keys", {withFileTypes: true})))
             key.draw();
         }
     }
