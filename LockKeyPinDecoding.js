@@ -1,5 +1,6 @@
 const display = require('display');
 const dialog = require("dialog");
+const storage = require("storage");
 
 const displayWidth = display.width();
 const displayHeight = display.height();
@@ -115,6 +116,22 @@ function Key(type, outline, show) {
 
         var pinSpacing = keys[this.type] ? keys[this.type].pinSpacing : 31;
         drawPinsWithUnderline(this.pins, selectedPinIndex, this.show, pinSpacing, this.type);
+    };
+
+    this.save = function () {
+        var data = {
+            type: this.type,
+            outline: this.outline,
+            pins: this.pins
+        };
+        var fileName = "/keys/key_" + this.type + "_" + this.pins.join('') + "_" + Date.now() + ".json";
+        const success = storage.write(fileName, JSON.stringify(data));
+        if (success) {
+            dialog.success("     Key saved successfully!     " + fileName);
+        }
+        setTextColor(priColor);
+        selectedPinIndex = 0;
+        delay(2000);
     };
 }
 
@@ -301,6 +318,9 @@ while (true) {
         } else if (key.show === "decode" && selectedPinIndex !== null && selectedPinIndex < key.pins.length) {
             var maxKeyCut = (keys[key.type] && keys[key.type].maxKeyCut) || 9;
             key.pins[selectedPinIndex] = Math.min(maxKeyCut - 1, key.pins[selectedPinIndex] + 1);
+            key.draw();
+        } else if (selectedPinIndex === key.pins.length) { // Save action
+            key.save();
             key.draw();
         }
     }
