@@ -73,10 +73,10 @@ function Key(type, outline, show) {
 function generateDipShapes() {
     var dipShapes = {};
     var maxWidth = 31;
-    var maxKeyCut = 8;
+    var maxKeyCut = 9;
     var flatSpotWidth = 5;
 
-    for (var cut = 0; cut <= maxKeyCut; cut++) {
+    for (var cut = 0; cut < maxKeyCut; cut++) {
         var shape = [];
         var centerIndex = Math.floor(maxWidth / 2);
         var maxDepth = cut * 3 + 2;
@@ -85,15 +85,24 @@ function generateDipShapes() {
         for (var i = 0; i < maxWidth; i++) {
             var distanceFromCenter = Math.abs(i - centerIndex);
 
-            if (distanceFromCenter <= flatHalfWidth) {
-                // Flat spot at the bottom
-                shape[i] = maxDepth;
+            if (cut === 0) {
+                // Special case for cut 0: only center flat spot has depth
+                if (distanceFromCenter <= flatSpotWidth) {
+                    shape[i] = 2;
+                } else {
+                    shape[i] = 0;
+                }
             } else {
-                // Linear slope from flat spot to edges
-                var slopeDistance = distanceFromCenter - flatHalfWidth;
-                var remainingDistance = centerIndex - flatHalfWidth;
-                var depth = maxDepth - Math.floor(slopeDistance * (maxDepth - 1) / remainingDistance);
-                shape[i] = Math.max(1, depth);
+                if (distanceFromCenter <= flatHalfWidth) {
+                    // Flat spot at the bottom
+                    shape[i] = maxDepth;
+                } else {
+                    // Linear slope from flat spot to edges
+                    var slopeDistance = distanceFromCenter - flatHalfWidth;
+                    var remainingDistance = centerIndex - flatHalfWidth;
+                    var depth = maxDepth - Math.floor(slopeDistance * (maxDepth - 1) / remainingDistance);
+                    shape[i] = Math.max(1, depth);
+                }
             }
         }
 
@@ -103,16 +112,14 @@ function generateDipShapes() {
     return dipShapes;
 }
 
-// Pin dip shapes for values 0-8
 const dipShapes = generateDipShapes();
 
 function drawKeyShape(x, y, width, height, color, pinCount, pins) {
-    var notchSpacing = width / (pinCount + 1);
+    var pinSpacing = width / pinCount;
 
     // Add a pinOffset to shift each pin's start position right
-    var pinOffset = 5; // adjust as needed
 
-    for (var px = Math.round(x); px <= Math.round(x + width); px++) {
+    for (var px = Math.round(x); px <= Math.round(x + width + pinSpacing / 2); px++) {
         var py = y;
         for (var i = 0; i < pinCount; i++) {
             var pinValue = pins && pins[i];
@@ -120,7 +127,7 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
             if (dipShape) {
                 var dipWidth = dipShape.length;
                 // Shift pinCenter right by pinOffset * i
-                var pinCenter = Math.round(x + (i + 1) * notchSpacing + pinOffset * i);
+                var pinCenter = Math.round(x + (i + 1) * pinSpacing);
                 var dipStart = pinCenter - Math.floor(dipWidth / 2);
                 var dipEnd = pinCenter + Math.floor(dipWidth / 2);
                 if (px >= dipStart && px < dipEnd) {
@@ -134,9 +141,7 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
     }
 
     // Calculate end points for diagonals
-    var shiftX = 15; // increased shift amount to move further right
-
-    var rightX = x + width + shiftX;
+    var rightX = x + width + pinSpacing / 2;
     var bottomY = y + height;
 
     var diagLength = 30;
@@ -151,16 +156,18 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins) {
 }
 
 function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
-    var pinSpacing = 25;
-    var y = 55;
-    var underlineY = y + 15;
+    var pinSpacing = 31; // Titan
+    var startY = 55;
+    var underlineY = startY + 15;
     var totalWidth = pinSpacing * pins.length;
     var startX = (displayWidth - totalWidth) / 2;
 
+    var numberSize = 12;
+
     // Draw pin numbers
     for (var i = 0; i < pins.length; i++) {
-        var pinNumberX = startX - 3 + i * pinSpacing * 1.3;
-        display.drawString(pins[i].toString(), pinNumberX, y);
+        var pinNumberX = startX + numberSize + i * pinSpacing;
+        display.drawString(pins[i].toString(), pinNumberX, startY);
 
         if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
             display.drawRect(pinNumberX - 1, underlineY, 12, 2, secColor);
@@ -168,8 +175,9 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode) {
     }
 
     // Draw the key shape under the pins
-    var keyY = y + 30;
-    drawKeyShape(startX - 25, keyY, totalWidth + 40, 66, priColor, pins.length, pins);
+    var keyX = startX - pinSpacing / 2
+    var keyY = startY + pinSpacing;
+    drawKeyShape(keyX, keyY, totalWidth, 66, priColor, pins.length, pins);
 }
 
 function refreshKeyDisplay(key) {
