@@ -19,10 +19,10 @@ var keys = {
     },
     Kwikset: {
         outlines: ["5 pins"],
-        pinSpacing: 29,
+        pinSpacing: 30,
         maxWidth: 28,
         maxKeyCut: 7,
-        flatSpotWidth: 15
+        flatSpotWidth: 10
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
@@ -114,7 +114,7 @@ function Key(type, outline, show) {
         setTextSize(2);
         display.drawString(this.type + " - " + this.outline, 10, 10);
         var pinSpacing = keys[this.type] ? keys[this.type].pinSpacing : 31;
-        drawPinsWithUnderline(this.pins, selectedPinIndex, this.show, pinSpacing);
+        drawPinsWithUnderline(this.pins, selectedPinIndex, this.show, pinSpacing, this.type);
     };
 }
 
@@ -198,7 +198,7 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
     display.drawLine(x, bottomY, rightX, bottomY, color);
 }
 
-function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing) {
+function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType) {
     var startY = 55;
     var underlineY = startY + 15;
     var totalWidth = pinSpacing * pins.length;
@@ -217,9 +217,9 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing) {
     }
 
     // Draw the key shape under the pins
-    var keyX = startX - pinSpacing / 2
+    var keyX = startX - pinSpacing / 2;
     var keyY = startY + pinSpacing;
-    drawKeyShape(keyX, keyY, totalWidth, 66, priColor, pins.length, pins, this.type);
+    drawKeyShape(keyX, keyY, totalWidth, 66, priColor, pins.length, pins, keyType);
 }
 
 function refreshKeyDisplay(key) {
