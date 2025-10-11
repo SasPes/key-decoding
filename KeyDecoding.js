@@ -15,8 +15,9 @@ var keys = {
         pinSpacing: 31,
         maxKeyCut: 9,
         flatSpotWidth: 5,
-        cutDepthOffset: 5,
-        edgeOffsetX: 0,
+        cutDepthOffset: 4,
+        zeroCutOffset: 2,
+        edgeOffsetX: 5,
         edgeOffsetY: 0,
         pinsStartAtZero: false
     },
@@ -26,8 +27,9 @@ var keys = {
         maxKeyCut: 7,
         flatSpotWidth: 10,
         cutDepthOffset: 5,
+        zeroCutOffset: 0,
         edgeOffsetX: 15,
-        edgeOffsetY: -3,
+        edgeOffsetY: 0,
         pinsStartAtZero: false
     },
     Master: {
@@ -36,6 +38,7 @@ var keys = {
         maxKeyCut: 7,
         flatSpotWidth: 5,
         cutDepthOffset: 5,
+        zeroCutOffset: 2,
         edgeOffsetX: 0,
         edgeOffsetY: 0,
         pinsStartAtZero: false
@@ -46,6 +49,7 @@ var keys = {
         maxKeyCut: 9,
         flatSpotWidth: 5,
         cutDepthOffset: 5,
+        zeroCutOffset: 0,
         edgeOffsetX: 0,
         edgeOffsetY: 0,
         pinsStartAtZero: false
@@ -56,6 +60,7 @@ var keys = {
         maxKeyCut: 9,
         flatSpotWidth: 5,
         cutDepthOffset: 5,
+        zeroCutOffset: 1,
         edgeOffsetX: 0,
         edgeOffsetY: 0,
         pinsStartAtZero: false
@@ -66,6 +71,7 @@ var keys = {
         maxKeyCut: 8,
         flatSpotWidth: 5,
         cutDepthOffset: 5,
+        zeroCutOffset: 1,
         edgeOffsetX: 0,
         edgeOffsetY: 0,
         pinsStartAtZero: true
@@ -158,13 +164,13 @@ function Key(type, outline, show) {
     };
 }
 
-function generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth, cutDepthOffset) {
+function generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth, cutDepthOffset, zeroCutOffset) {
     var dipShapes = {};
 
     for (var cut = 0; cut < maxKeyCut; cut++) {
         var shape = [];
         var centerIndex = Math.floor(pinSpacing / 2);
-        var cutDepth = cut * 3 + cutDepthOffset;
+        var cutDepth = cut * cutDepthOffset;
         var flatHalfWidth = Math.floor(flatSpotWidth / 2);
 
         for (var i = 0; i < pinSpacing; i++) {
@@ -172,7 +178,7 @@ function generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth, cutDepthOffset)
 
             if (cut === 0) {
                 if (distanceFromCenter <= flatSpotWidth) {
-                    shape[i] = 2;
+                    shape[i] = zeroCutOffset;
                 } else {
                     shape[i] = 0;
                 }
@@ -196,13 +202,16 @@ function generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth, cutDepthOffset)
 
 function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
     var keyConfig = keys[keyType] || {};
+
     var pinSpacing = keyConfig.pinSpacing || 31;
     var maxKeyCut = keyConfig.maxKeyCut || 9;
     var flatSpotWidth = keyConfig.flatSpotWidth || 5;
     var cutDepthOffset = keyConfig.cutDepthOffset || 5;
+    var zeroCutOffset = keyConfig.zeroCutOffset || 0;
+    var dipShapes = generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth, cutDepthOffset, zeroCutOffset);
+
     var edgeOffsetX = keyConfig.edgeOffsetX || 0;
     var edgeOffsetY = keyConfig.edgeOffsetY || 0;
-    var dipShapes = generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth, cutDepthOffset);
 
     for (var px = Math.round(x); px <= Math.round(x + width + pinSpacing / 2); px++) {
         var py = y;
