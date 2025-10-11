@@ -19,7 +19,8 @@ var keys = {
         zeroCutOffset: 2,
         edgeOffsetX: 5,
         edgeOffsetY: 0,
-        pinsStartAtZero: false
+        pinsStartAtZero: false,
+        pinNumbersOffset: 0
     },
     Kwikset: {
         outlines: ["5 pins"],
@@ -30,7 +31,8 @@ var keys = {
         zeroCutOffset: 0,
         edgeOffsetX: 15,
         edgeOffsetY: 0,
-        pinsStartAtZero: false
+        pinsStartAtZero: false,
+        pinNumbersOffset: 0
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
@@ -41,7 +43,8 @@ var keys = {
         zeroCutOffset: 0,
         edgeOffsetX: -5,
         edgeOffsetY: -10,
-        pinsStartAtZero: true
+        pinsStartAtZero: true,
+        pinNumbersOffset: -4
     },
     Schlage: {
         outlines: ["5 pins", "6 pins"],
@@ -52,7 +55,8 @@ var keys = {
         zeroCutOffset: 0,
         edgeOffsetX: 0,
         edgeOffsetY: 0,
-        pinsStartAtZero: false
+        pinsStartAtZero: false,
+        pinNumbersOffset: 0
     },
     Yale: {
         outlines: ["5 pins"],
@@ -63,7 +67,8 @@ var keys = {
         zeroCutOffset: 1,
         edgeOffsetX: 0,
         edgeOffsetY: 0,
-        pinsStartAtZero: false
+        pinsStartAtZero: false,
+        pinNumbersOffset: 0
     },
     Best: {
         outlines: ["7 pins"],
@@ -74,7 +79,8 @@ var keys = {
         zeroCutOffset: 1,
         edgeOffsetX: 0,
         edgeOffsetY: 0,
-        pinsStartAtZero: true
+        pinsStartAtZero: true,
+        pinNumbersOffset: 0
     }
 };
 
@@ -255,10 +261,11 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, key
     var numberSize = 12;
     var keyConfig = keys[keyType] || {};
     var pinsStartCount = keyConfig.pinsStartAtZero === true;
+    var pinNumbersOffset = keyConfig.pinNumbersOffset || 0;
 
     // Draw pins numbers
     for (var i = 0; i < pins.length; i++) {
-        var pinNumberX = startX + numberSize + i * pinSpacing;
+        var pinNumberX = startX + numberSize + i * pinSpacing + pinNumbersOffset;
         var displayNumber = pinsStartCount ? pins[i] : (pins[i] + 1);
         display.drawString(displayNumber.toString(), pinNumberX, startY);
 
