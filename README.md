@@ -57,6 +57,23 @@ Keys are saved as JSON in `/keys/`:
 }
 ```
 
+## Key Configuration
+
+```js
+KeyExample: {
+    outlines: ["5 pins", "6 pins"], // number of pins
+    pinSpacing: 31,                 // distance between pins (default 31)
+    maxKeyCut: 9,                   // number of cuts (default 9)
+    flatSpotWidth: 5,               // width of flat spot of the cut (default 5)
+    cutDepthOffset: 5,              // depth offset of each cut (default 5)
+    zeroCutOffset: 0,               // depth offset of zero cut (default 0)
+    edgeOffsetX: 0,                 // x offset of the bottom-right diagonal (default 0)
+    edgeOffsetY: 0,                 // y offset of the bottom line (default 0)
+    pinsStartAtZero: false,         // whether pin numbers start at 0 or 1 (default false)
+    pinNumbersOffset: 0             // x offset for pin numbers with underline (default 0)
+}
+```
+
 ## 🔗 Links
 
 - [Bruce Interpreter](https://github.com/pr3y/Bruce/wiki/Interpreter)
