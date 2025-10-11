@@ -14,7 +14,7 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 |:------:|:--------:|:------------|
 | ✔️     | Titan    | 5, 6 pins   |
 | ✔️     | Kwikset  | 5 pins      |
-|        | Master   | 4, 5 pins   |
+| ✔️     | Master   | 4, 5 pins   |
 |        | Schlage  | 5, 6 pins   |
 |        | Yale     | 5 pins      |
 |        | Best     | 7 pins      |

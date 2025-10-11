@@ -34,14 +34,14 @@ var keys = {
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
-        pinSpacing: 30,
-        maxKeyCut: 7,
-        flatSpotWidth: 5,
-        cutDepthOffset: 5,
-        zeroCutOffset: 2,
-        edgeOffsetX: 0,
-        edgeOffsetY: 0,
-        pinsStartAtZero: false
+        pinSpacing: 24,
+        maxKeyCut: 8,
+        flatSpotWidth: 8,
+        cutDepthOffset: 3,
+        zeroCutOffset: 0,
+        edgeOffsetX: -5,
+        edgeOffsetY: -10,
+        pinsStartAtZero: true
     },
     Schlage: {
         outlines: ["5 pins", "6 pins"],
