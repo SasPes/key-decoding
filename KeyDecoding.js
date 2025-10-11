@@ -9,30 +9,37 @@ const bgColor = BRUCE_BGCOLOR;
 const priColor = BRUCE_PRICOLOR;
 const secColor = BRUCE_SECCOLOR;
 
+/*
+    KeyExample: {
+        outlines: ["5 pins", "6 pins"], // number of pins
+        pinSpacing: 31,                 // distance between pins (default 31)
+        maxKeyCut: 9,                   // number of cuts (default 9)
+        flatSpotWidth: 5,               // width of flat spot of the cut (default 5)
+        cutDepthOffset: 5,              // depth offset of each cut (default 5)
+        zeroCutOffset: 0,               // depth offset of zero cut (default 0)
+        edgeOffsetX: 0,                 // x offset of the bottom-right diagonal (default 0)
+        edgeOffsetY: 0,                 // y offset of the bottom line (default 0)
+        pinsStartAtZero: false,         // whether pin numbers start at 0 or 1 (default false)
+        pinNumbersOffset: 0             // x offset for pin numbers with underline (default 0)
+    }
+ */
+
 var keys = {
     Titan: {
-        outlines: ["5 pins", "6 pins"],
-        pinSpacing: 31,
+        outlines: ["5 pins"],
+        pinSpacing: 30,
         maxKeyCut: 9,
-        flatSpotWidth: 5,
         cutDepthOffset: 4,
         zeroCutOffset: 2,
         edgeOffsetX: 5,
-        edgeOffsetY: 0,
-        pinsStartAtZero: false,
-        pinNumbersOffset: 0
+        edgeOffsetY: 1
     },
     Kwikset: {
         outlines: ["5 pins"],
         pinSpacing: 30,
         maxKeyCut: 7,
         flatSpotWidth: 10,
-        cutDepthOffset: 5,
-        zeroCutOffset: 0,
-        edgeOffsetX: 15,
-        edgeOffsetY: 0,
-        pinsStartAtZero: false,
-        pinNumbersOffset: 0
+        edgeOffsetX: 15
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
@@ -40,7 +47,6 @@ var keys = {
         maxKeyCut: 8,
         flatSpotWidth: 8,
         cutDepthOffset: 3,
-        zeroCutOffset: 0,
         edgeOffsetX: -5,
         edgeOffsetY: -10,
         pinsStartAtZero: true,
@@ -49,38 +55,17 @@ var keys = {
     Schlage: {
         outlines: ["5 pins", "6 pins"],
         pinSpacing: 29,
-        maxKeyCut: 9,
-        flatSpotWidth: 5,
-        cutDepthOffset: 5,
-        zeroCutOffset: 0,
-        edgeOffsetX: 0,
-        edgeOffsetY: 0,
-        pinsStartAtZero: false,
-        pinNumbersOffset: 0
+        maxKeyCut: 8
     },
     Yale: {
         outlines: ["5 pins"],
         pinSpacing: 28,
-        maxKeyCut: 9,
-        flatSpotWidth: 5,
-        cutDepthOffset: 5,
-        zeroCutOffset: 1,
-        edgeOffsetX: 0,
-        edgeOffsetY: 0,
-        pinsStartAtZero: false,
-        pinNumbersOffset: 0
+        maxKeyCut: 8
     },
     Best: {
         outlines: ["7 pins"],
         pinSpacing: 26,
-        maxKeyCut: 8,
-        flatSpotWidth: 5,
-        cutDepthOffset: 5,
-        zeroCutOffset: 1,
-        edgeOffsetX: 0,
-        edgeOffsetY: 0,
-        pinsStartAtZero: true,
-        pinNumbersOffset: 0
+        maxKeyCut: 8
     }
 };
 
