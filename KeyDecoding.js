@@ -17,7 +17,8 @@ var keys = {
         flatSpotWidth: 5,
         cutDepthOffset: 5,
         edgeOffsetX: 0,
-        edgeOffsetY: 0
+        edgeOffsetY: 0,
+        pinsStartAtZero: false
     },
     Kwikset: {
         outlines: ["5 pins"],
@@ -26,7 +27,8 @@ var keys = {
         flatSpotWidth: 10,
         cutDepthOffset: 5,
         edgeOffsetX: 15,
-        edgeOffsetY: -3
+        edgeOffsetY: -3,
+        pinsStartAtZero: false
     },
     Master: {
         outlines: ["4 pins", "5 pins"],
@@ -35,7 +37,8 @@ var keys = {
         flatSpotWidth: 5,
         cutDepthOffset: 5,
         edgeOffsetX: 0,
-        edgeOffsetY: 0
+        edgeOffsetY: 0,
+        pinsStartAtZero: false
     },
     Schlage: {
         outlines: ["5 pins", "6 pins"],
@@ -44,7 +47,8 @@ var keys = {
         flatSpotWidth: 5,
         cutDepthOffset: 5,
         edgeOffsetX: 0,
-        edgeOffsetY: 0
+        edgeOffsetY: 0,
+        pinsStartAtZero: false
     },
     Yale: {
         outlines: ["5 pins"],
@@ -53,7 +57,8 @@ var keys = {
         flatSpotWidth: 5,
         cutDepthOffset: 5,
         edgeOffsetX: 0,
-        edgeOffsetY: 0
+        edgeOffsetY: 0,
+        pinsStartAtZero: false
     },
     Best: {
         outlines: ["7 pins"],
@@ -62,7 +67,8 @@ var keys = {
         flatSpotWidth: 5,
         cutDepthOffset: 5,
         edgeOffsetX: 0,
-        edgeOffsetY: 0
+        edgeOffsetY: 0,
+        pinsStartAtZero: true
     }
 };
 
@@ -238,11 +244,14 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, key
     var startX = (displayWidth - totalWidth) / 2;
 
     var numberSize = 12;
+    var keyConfig = keys[keyType] || {};
+    var pinsStartCount = keyConfig.pinsStartAtZero === true;
 
     // Draw pins numbers
     for (var i = 0; i < pins.length; i++) {
         var pinNumberX = startX + numberSize + i * pinSpacing;
-        display.drawString(pins[i].toString(), pinNumberX, startY);
+        var displayNumber = pinsStartCount ? pins[i] : (pins[i] + 1);
+        display.drawString(displayNumber.toString(), pinNumberX, startY);
 
         if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
             display.drawRect(pinNumberX - 1, underlineY, 12, 2, secColor);
