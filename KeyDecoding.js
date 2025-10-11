@@ -42,7 +42,7 @@ var keys = {
         edgeOffsetX: 15
     },
     Master: {
-        outlines: ["4 pins", "5 pins"],
+        outlines: ["4 pins", "5 pins", "6 pins"],
         pinSpacing: 24,
         maxKeyCut: 8,
         flatSpotWidth: 8,
@@ -272,7 +272,7 @@ function chooseAndCreateKey() {
     selectedPinIndex = 0;
 
     var keyTypeChoices = {};
-    var brandNames = Object.keys(keys);
+    var brandNames = Object.keys(keys).sort();
     for (var i = 0; i < brandNames.length; i++) {
         var brand = brandNames[i];
         keyTypeChoices[brand] = brand;
