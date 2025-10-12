@@ -1,3 +1,5 @@
+// Key Decoding App for LILYGO T-Embed CC1101 by SasPes
+
 const display = require('display');
 const dialog = require("dialog");
 const storage = require("storage");
@@ -92,6 +94,92 @@ var keys = {
     }
 };
 
+function showControlsHelp() {
+    var currentPage = 0;
+    var totalPages = 2;
+    var needsRedraw = true;
+    var textX = 25;
+
+    while (true) {
+        if (needsRedraw) {
+            fillScreen(bgColor);
+            display.drawRoundRect(5, 5, displayWidth - 10, displayHeight - 10, 4, priColor);
+
+            setTextSize(2);
+            display.drawString("Controls Help", 15, 15);
+            display.drawString("(" + (currentPage + 1) + "/" + totalPages + ")", displayWidth - 70, 15);
+
+            setTextSize(1);
+            var yPos = 40;
+
+            if (currentPage === 0) {
+                display.drawString("# MENU MODE", textX, yPos);
+                yPos += 15;
+                display.drawString("Select brand and configuration", textX, yPos);
+                yPos += 12;
+                display.drawString("Choose Decode or Random mode", textX, yPos);
+                yPos += 20;
+
+                display.drawString("# RANDOM MODE", textX, yPos);
+                yPos += 15;
+                display.drawString("Next: Generate new random key", textX, yPos);
+                yPos += 12;
+                display.drawString("Select: Back to menu", textX, yPos);
+                yPos += 20;
+
+                display.drawString("Esc: Back to menu", textX, yPos);
+            } else if (currentPage === 1) {
+                yPos += 10;
+                display.drawString("# DECODE MODE", textX, yPos);
+                yPos += 15;
+                display.drawString("Prev/Next: Adjust pin depth", textX, yPos);
+                yPos += 12;
+                display.drawString("Select: Move to next pin/action", textX, yPos);
+                yPos += 20;
+                display.drawString("Save selected -> Next: Store key", textX, yPos);
+                yPos += 12;
+                display.drawString("Load selected -> Next: Open key", textX, yPos);
+                yPos += 20;
+                display.drawString("Esc: Back to menu", textX, yPos);
+            }
+
+            var bottomY = displayHeight - 15;
+            if (currentPage < totalPages - 1) {
+                display.drawString("Next -> More pages", 10, bottomY);
+            }
+            if (currentPage > 0) {
+                display.drawString("Prev <- Previous page", 10, bottomY);
+            }
+            display.drawString("Select/Esc -> Exit", displayWidth - 120, bottomY);
+
+            needsRedraw = false;
+        }
+
+        // Handle input
+        if (getSelPress() || getEscPress()) {
+            break;
+        }
+        if (getNextPress() && currentPage < totalPages - 1) {
+            currentPage++;
+            needsRedraw = true;
+            delay(200);
+        }
+        if (getPrevPress() && currentPage > 0) {
+            currentPage--;
+            needsRedraw = true;
+            delay(200);
+        }
+
+        delay(50);
+    }
+
+    if (key) {
+        key.draw();
+    } else {
+        chooseAndCreateKey();
+    }
+}
+
 function Key(type, outline, show) {
     this.type = type;
     this.outline = outline;
@@ -159,7 +247,7 @@ function Key(type, outline, show) {
         var fileName = "/keys/key_" + this.type + "_" + this.pins.join('') + "_" + Date.now() + ".json";
         const success = storage.write(fileName, JSON.stringify(data));
         if (success) {
-            dialog.success("     Key saved successfully!     " + fileName);
+            dialog.success("        Key saved successfully!        " + fileName);
         }
         setTextColor(priColor);
         selectedPinIndex = 0;
@@ -275,6 +363,7 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, key
     for (var i = 0; i < pins.length; i++) {
         var pinNumberX = startX + numberSize + i * pinSpacing + pinNumbersOffset;
         var displayNumber = pinsStartCount ? pins[i] : (pins[i] + 1);
+        setTextSize(2);
         display.drawString(displayNumber.toString(), pinNumberX, startY);
 
         if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
@@ -290,6 +379,7 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, key
 
 var key = null;
 var selectedPinIndex = 0;
+var needsRedraw = true;
 
 function chooseAndCreateKey() {
     selectedPinIndex = 0;
@@ -301,10 +391,16 @@ function chooseAndCreateKey() {
         keyTypeChoices[brand] = brand;
     }
     keyTypeChoices.Load = "Load";
+    keyTypeChoices.Help = "Help";
     keyTypeChoices.Exit = "Exit";
 
     var type = dialog.choice(keyTypeChoices);
     if (!type) type = "Exit";
+
+    if (type === "Help") {
+        showControlsHelp();
+        return;
+    }
 
     var outline, show;
 
@@ -341,26 +437,20 @@ function chooseAndCreateKey() {
         key = new Key(type, outline, show);
     }
     if (type !== "Exit") {
-        key.draw();
+        needsRedraw = true;
     }
 }
 
-if (!key) {
-    chooseAndCreateKey();
-}
-
-while (true) {
-    if (key.type === "Exit") {
-        break;
-    }
+function handleInput() {
+    var inputHandled = false;
 
     if (getSelPress()) {
         if (key.show === "random") {
             chooseAndCreateKey();
         } else {
             selectedPinIndex++;
-            key.draw();
         }
+        inputHandled = true;
     }
 
     if (getNextPress()) {
@@ -372,19 +462,43 @@ while (true) {
         } else if (selectedPinIndex === key.pins.length) { // Save action
             key.save();
         } else if (selectedPinIndex === key.pins.length + 1) { // Load action
-            key.load(storage.read(dialog.pickFile("/keys", {withFileTypes: true})))
+            key.load(storage.read(dialog.pickFile("/keys", {withFileTypes: true})));
         }
-        key.draw();
+        inputHandled = true;
     }
 
     if (getPrevPress()) {
         if (key.show === "decode" && selectedPinIndex !== null && selectedPinIndex < key.pins.length) {
             key.pins[selectedPinIndex] = Math.max(0, key.pins[selectedPinIndex] - 1);
-            key.draw();
+            inputHandled = true;
         }
     }
 
     if (getEscPress()) {
         chooseAndCreateKey();
+        return false; // Exit main loop
     }
+
+    if (inputHandled) {
+        needsRedraw = true;
+    }
+
+    return true; // Continue main loop
+}
+
+if (!key) {
+    chooseAndCreateKey();
+}
+
+while (key && key.type !== "Exit") {
+    if (needsRedraw) {
+        key.draw();
+        needsRedraw = false;
+    }
+
+    if (!handleInput()) {
+        break;
+    }
+
+    delay(50);
 }
