@@ -52,6 +52,16 @@ var keys = {
         pinsStartAtZero: true,
         pinNumbersOffset: -4
     },
+    American: {
+        outlines: ["5 pins", "6 pins"],
+        pinSpacing: 24,
+        maxKeyCut: 8,
+        flatSpotWidth: 8,
+        cutDepthOffset: 3,
+        edgeOffsetX: -5,
+        edgeOffsetY: -10,
+        pinNumbersOffset: -4
+    },
     Best: {
         outlines: ["7 pins"],
         pinSpacing: 29,
