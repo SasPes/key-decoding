@@ -52,6 +52,16 @@ var keys = {
         pinsStartAtZero: true,
         pinNumbersOffset: -4
     },
+    Best: {
+        outlines: ["7 pins"],
+        pinSpacing: 29,
+        maxKeyCut: 10,
+        flatSpotWidth: 6,
+        cutDepthOffset: 3,
+        edgeOffsetX: -5,
+        edgeOffsetY: 1,
+        pinsStartAtZero: true
+    },
     Schlage: {
         outlines: ["5 pins", "6 pins"],
         pinSpacing: 29,
@@ -60,11 +70,6 @@ var keys = {
     Yale: {
         outlines: ["5 pins"],
         pinSpacing: 28,
-        maxKeyCut: 8
-    },
-    Best: {
-        outlines: ["7 pins"],
-        pinSpacing: 26,
         maxKeyCut: 8
     }
 };
