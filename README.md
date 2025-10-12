@@ -81,6 +81,7 @@ KeyExample: {
 - [Deviant Ollam: Key-and-Pin-Decoding](https://github.com/deviantollam/Key-and-Pin-Decoding)
 - [Flipper Zero: KeyCopier](https://github.com/zinongli/KeyCopier)
 - [LILYGO T-Embed CC1101](https://lilygo.cc/products/t-embed-cc1101)
+- [ASSA Mow](https://assamow.com/specs/)
 
 ## ☠️ Disclaimer
 
