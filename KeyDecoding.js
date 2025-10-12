@@ -69,8 +69,16 @@ var keys = {
         flatSpotWidth: 6,
         cutDepthOffset: 3,
         edgeOffsetX: -5,
-        edgeOffsetY: 1,
         pinsStartAtZero: true
+    },
+    ASSA: {
+        outlines: ["5 pins", "6 pins", "7 pins"],
+        pinSpacing: 30,
+        maxKeyCut: 9,
+        flatSpotWidth: 2,
+        cutDepthOffset: 4,
+        zeroCutOffset: 1,
+        edgeOffsetX: 7
     },
     Schlage: {
         outlines: ["5 pins", "6 pins"],

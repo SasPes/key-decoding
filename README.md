@@ -10,15 +10,16 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 
 ## 🏴‍☠️ Supported Keys
 
-| Tested |  Brand  | Pin Options  |
-|:------:|:-------:|:------------|
-| ✔️     |American| 5, 6 pins   |
-| ✔️     |  Best   | 7 pins      |
-| ✔️     | Kwikset | 5 pins      |
-| ✔️     | Master  | 4, 5 pins   |
-| ❌     | Schlage | 5, 6 pins   |
-| ✔️     |  Titan  | 5, 6 pins   |
-| ❌     |  Yale   | 5 pins      |
+| Tested |  Brand   | Pin Options  |
+|:------:|:--------:|:-------------|
+| ✔️     |   ASSA   | 5, 6, 7 pins |
+| ✔️     | American | 5, 6 pins    |
+| ✔️     |   Best   | 7 pins       |
+| ✔️     | Kwikset  | 5 pins       |
+| ✔️     |  Master  | 4, 5 pins    |
+| ❌     | Schlage  | 5, 6 pins    |
+| ✔️     |  Titan   | 5, 6 pins    |
+| ❌     |   Yale   | 5 pins       |
 
 ## ⚡ Install
 
