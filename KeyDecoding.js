@@ -150,6 +150,15 @@ function Key(type, outline, show) {
             var selectedAction = selectedPinIndex - this.pins.length;
             if (selectedPinIndex >= this.pins.length) {
                 display.drawRect(displayWidth - 60, 28 + selectedAction * 24, 50, 2, secColor);
+
+                // Add help text
+                setTextSize(1);
+                if (selectedAction === 0) {
+                    display.drawString("Next: Save key", displayWidth - 90, displayHeight - 11);
+                } else if (selectedAction === 1) {
+                    display.drawString("Next: Load key", displayWidth - 90, displayHeight - 11);
+                }
+                setTextSize(2);
             }
         }
 
