@@ -64,6 +64,7 @@ Keys are saved as JSON in `/keys/`:
 
 ```js
 KeyExample: {
+    isDiskDetainer: false,          // whether the key is a disk detainer type (default false)
     outlines: ["5 pins", "6 pins"], // number of pins
     pinSpacing: 31,                 // distance between pins (default 31)
     maxKeyCut: 9,                   // number of cuts (default 9)
