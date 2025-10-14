@@ -93,7 +93,7 @@ var keys = {
     },
     Abloy: {
         isDiskDetainer: true,
-        outlines: ["7 disks", "11 disks"],
+        outlines: ["7 disks", "9 disks", "11 disks"],
         pinSpacing: 16,
         maxKeyCut: 6
     }
