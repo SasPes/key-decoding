@@ -13,6 +13,7 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 | Tested |  Brand   | Pin Options  |
 |:------:|:--------:|:-------------|
 | ✔️     |   ASSA   | 5, 6, 7 pins |
+| ✔️     |   Abloy  | 7, 11 disks  |
 | ✔️     | American | 5, 6 pins    |
 | ✔️     |   Best   | 7 pins       |
 | ✔️     | Kwikset  | 5 pins       |

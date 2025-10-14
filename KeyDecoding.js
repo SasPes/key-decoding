@@ -11,6 +11,7 @@ const secColor = BRUCE_SECCOLOR;
 
 /*
     KeyExample: {
+        isDiskDetainer: false,          // whether the key is a disk detainer type (default false)
         outlines: ["5 pins", "6 pins"], // number of pins
         pinSpacing: 31,                 // distance between pins (default 31)
         maxKeyCut: 9,                   // number of cuts (default 9)
@@ -89,6 +90,12 @@ var keys = {
         outlines: ["5 pins"],
         pinSpacing: 28,
         maxKeyCut: 8
+    },
+    Abloy: {
+        isDiskDetainer: true,
+        outlines: ["7 disks", "11 disks"],
+        pinSpacing: 16,
+        maxKeyCut: 6
     }
 };
 
@@ -100,7 +107,7 @@ function Key(type, outline, show) {
 
     // Initialize pins
     if (typeof outline === "string" && typeof show === "string") {
-        var pinCount = parseInt(outline[0], 10);
+        var pinCount = parseInt(outline.substring(0, 2), 10);
         if (!isNaN(pinCount)) {
             if (show === "decode") {
                 for (var i = 0; i < pinCount; i++) {
@@ -116,7 +123,7 @@ function Key(type, outline, show) {
     }
 
     this.updatePins = function () {
-        var pinCount = parseInt(outline[0], 10);
+        var pinCount = parseInt(outline.substring(0, 2), 10);
         this.pins = [];
         for (var i = 0; i < pinCount; i++) {
             var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
@@ -261,6 +268,11 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
 }
 
 function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType) {
+    if (keys[keyType].isDiskDetainer) {
+        drawDisksWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType);
+        return;
+    }
+
     var startY = 55;
     var underlineY = startY + 15;
     var totalWidth = pinSpacing * pins.length;
@@ -286,6 +298,81 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, key
     var keyX = startX - pinSpacing / 2;
     var keyY = startY + pinSpacing;
     drawKeyShape(keyX, keyY, totalWidth, 66, priColor, pins.length, pins, keyType);
+}
+
+function drawDiskKeyShape(x, y, width, height, color, diskCount, disks, keyType) {
+    var keyConfig = keys[keyType] || {};
+    var pinSpacing = keyConfig.pinSpacing || 32;
+    var bladeHeight = 45;
+    var bladeY = y + (height - bladeHeight) / 2;
+    var bladeBottom = bladeY + bladeHeight;
+
+    var diskCutDepths = [0, 2, 4, 8, 14, 21];
+
+    var entryX = x;
+    var entryY = bladeY;
+    var keyStartOffset = 20;
+    var keyStartX = entryX + keyStartOffset;
+
+    var currX = keyStartX;
+    var prevCutDepth = diskCutDepths[disks[0]] || 0;
+
+    // Connect left side: vertical from bottom to first cut
+    display.drawLine(currX, bladeBottom, currX, bladeBottom - prevCutDepth, color);
+
+    // Draw the first horizontal segment
+    display.drawLine(currX, bladeBottom - prevCutDepth, currX + pinSpacing, bladeBottom - prevCutDepth, color);
+
+    for (var i = 1; i < diskCount; i++) {
+        var cutIdx = disks[i] || 0;
+        var cutDepth = diskCutDepths[cutIdx] || 0;
+        var nextX = currX + pinSpacing;
+
+        // Draw vertical line connecting previous cut to current cut
+        display.drawLine(nextX, bladeBottom - prevCutDepth, nextX, bladeBottom - cutDepth, color);
+
+        // Draw horizontal line for current cut
+        display.drawLine(nextX, bladeBottom - cutDepth, nextX + pinSpacing, bladeBottom - cutDepth, color);
+
+        currX = nextX;
+        prevCutDepth = cutDepth;
+    }
+
+    // Draw end vertical (right side)
+    display.drawLine(currX + pinSpacing + 2, bladeBottom - prevCutDepth, currX + pinSpacing + 2, bladeY, color);
+
+    // Draw bottom edge (from entry to start of key)
+    display.drawLine(entryX, bladeBottom, entryX + keyStartOffset, bladeBottom, color);
+
+    // Draw top edge (from entry to start of key)
+    display.drawLine(entryX, entryY, currX + pinSpacing, bladeY, color);
+
+    // Diagonal from top-left to key start (top edge)
+    display.drawLine(30, bladeY - 10, entryX, bladeY, color);
+
+    // Diagonal from bottom-left to key start (bottom edge)
+    display.drawLine(30, bladeBottom + 10, entryX, bladeBottom, color);
+}
+
+function drawDisksWithUnderline(disks, selectedDiskIndex, showMode, pinSpacing, keyType) {
+    var startY = 55;
+    var underlineY = startY + 15;
+    var totalWidth = pinSpacing * disks.length;
+    var startX = (displayWidth - totalWidth) / 2;
+    var numberSize = 12;
+
+    for (var i = 0; i < disks.length; i++) {
+        var diskNumberX = startX + numberSize + i * pinSpacing;
+        display.drawString((disks[i] + 1).toString(), diskNumberX, startY);
+        if (showMode !== "random" && typeof selectedDiskIndex !== "undefined" && i === selectedDiskIndex) {
+            display.drawRect(diskNumberX - 1, underlineY, 12, 2, secColor);
+        }
+    }
+
+    // Draw the disk detainer key shape under the disks
+    var keyX = startX - pinSpacing / 2;
+    var keyY = startY + pinSpacing;
+    drawDiskKeyShape(keyX, keyY, totalWidth, 66, priColor, disks.length, disks, keyType);
 }
 
 var key = null;
