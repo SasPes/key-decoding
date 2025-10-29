@@ -3,6 +3,8 @@
 <img src="ss/ss5.png" width="250"/><img src="ss/ss4.png" width="250"/><img src="ss/ss3.png" width="250"/>
 <img src="ss/ss2.png" width="250"/><img src="ss/ss6.png" width="250"/><img src="ss/ss7.png" width="250"/>
 
+▶️ [Key Decoding 📟 LILYGO T-Embed CC1101 🦈 Bruce Firmware](https://www.youtube.com/watch?v=NysOI3OZwJ4)
+
 A Bruce app for hackers, tinkerers and lock nerds.  
 Decode and randomly generate key bitting patterns for a bunch of lock brands.  
 Visualize the cuts, tweak the pins, and save/load your keys.  
