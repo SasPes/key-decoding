@@ -69,6 +69,7 @@ Keys are saved as JSON in `/keys/`:
 KeyExample: {
     displayName: "Key Example",     // display name shown in menu
     isDiskDetainer: false,          // whether the key is a disk detainer type (default false)
+    bladeHeight: 45,                // blade height for disk detainer keys (default 45)
     outlines: ["5 pins", "6 pins"], // number of pins
     pinSpacing: 31,                 // distance between pins (default 31)
     maxKeyCut: 9,                   // number of cuts (default 9)

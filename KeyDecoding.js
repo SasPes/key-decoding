@@ -29,6 +29,7 @@ delay(500);
     KeyExample: {
         displayName: "Key Example",     // display name shown in menu
         isDiskDetainer: false,          // whether the key is a disk detainer type (default false)
+        bladeHeight: 45,                // blade height for disk detainer keys (default 45)
         outlines: ["5 pins", "6 pins"], // number of pins
         pinSpacing: 31,                 // distance between pins (default 31)
         maxKeyCut: 9,                   // number of cuts (default 9)
@@ -120,7 +121,8 @@ var keys = {
         isDiskDetainer: true,
         outlines: ["7 disks", "9 disks", "11 disks"],
         pinSpacing: 16,
-        maxKeyCut: 6
+        maxKeyCut: 6,
+        bladeHeight: 57
     }
 };
 
@@ -335,7 +337,7 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, key
 function drawDiskKeyShape(x, y, width, height, color, diskCount, disks, keyType) {
     var keyConfig = keys[keyType] || {};
     var pinSpacing = keyConfig.pinSpacing || 32;
-    var bladeHeight = 45;
+    var bladeHeight = keyConfig.bladeHeight || 45;
     var bladeY = y + (height - bladeHeight) / 2;
     var bladeBottom = bladeY + bladeHeight;
 
