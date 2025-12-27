@@ -24,7 +24,6 @@ display.setTextSize(3);
 display.drawString("Key Decoding", (displayWidth - 18 * 12) / 2, displayHeight - 40);
 delay(500);
 
-
 /*
     KeyExample: {
         displayName: "Key Example",     // display name shown in menu
@@ -167,7 +166,14 @@ function Key(type, outline, show) {
         display.fill(bgColor);
         display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
         display.setTextSize(2);
-        display.drawString(this.type + " - " + this.outline, 10, 10);
+
+        var displayName = keys[this.type] && keys[this.type].displayName || this.type;
+        if (displayName.length > 12) {
+            display.drawString(displayName, 10, 10);
+            display.drawString(this.outline, 10, 28);
+        } else {
+            display.drawString(displayName + " - " + this.outline, 10, 10);
+        }
 
         if (this.show === "decode") {
             display.drawRoundRect(displayWidth - 65, 3, 60, 8 + numberOfActions * 24, 4, priColor);
