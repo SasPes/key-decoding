@@ -27,6 +27,7 @@ delay(500);
 
 /*
     KeyExample: {
+        displayName: "Key Example",     // display name shown in menu
         isDiskDetainer: false,          // whether the key is a disk detainer type (default false)
         outlines: ["5 pins", "6 pins"], // number of pins
         pinSpacing: 31,                 // distance between pins (default 31)
@@ -107,7 +108,15 @@ var keys = {
         pinSpacing: 28,
         maxKeyCut: 8
     },
-    Abloy: {
+    AbloyClassic: {
+        displayName: "Abloy Classic",
+        isDiskDetainer: true,
+        outlines: ["7 disks", "9 disks", "11 disks"],
+        pinSpacing: 16,
+        maxKeyCut: 6
+    },
+    AbloyHighProfile: {
+        displayName: "Abloy High Profile",
         isDiskDetainer: true,
         outlines: ["7 disks", "9 disks", "11 disks"],
         pinSpacing: 16,
@@ -408,7 +417,8 @@ function chooseAndCreateKey() {
     var brandNames = Object.keys(keys).sort();
     for (var i = 0; i < brandNames.length; i++) {
         var brand = brandNames[i];
-        keyTypeChoices[brand] = brand;
+        var displayName = keys[brand].displayName || brand;
+        keyTypeChoices[displayName] = brand;
     }
     keyTypeChoices.Load = "Load";
     keyTypeChoices.Exit = "Exit";
