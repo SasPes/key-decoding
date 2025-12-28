@@ -148,6 +148,10 @@ function Key(type, outline, show) {
                     var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
                     this.pins.push(Math.floor(Math.random() * maxKeyCut - 1) + 1);
                 }
+                // Ensure last disk shows as 1 for disk detainer (internal index 0)
+                if (keys[this.type] && keys[this.type].isDiskDetainer && pinCount > 0) {
+                    this.pins[pinCount - 1] = 0;
+                }
             }
         }
     }
@@ -158,6 +162,10 @@ function Key(type, outline, show) {
         for (var i = 0; i < pinCount; i++) {
             var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
             this.pins.push(Math.floor(Math.random() * maxKeyCut - 1) + 1);
+        }
+        // Ensure last disk shows as 1 for disk detainer (internal index 0)
+        if (keys[this.type] && keys[this.type].isDiskDetainer && pinCount > 0) {
+            this.pins[pinCount - 1] = 0;
         }
     };
 
