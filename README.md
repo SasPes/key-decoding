@@ -23,7 +23,7 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 | ✔️     |       Master         | 4, 5 pins      |
 | ❌     |      Schlage         | 5, 6 pins      |
 | ✔️     |        Titan         | 5, 6 pins      |
-| ❌     |        Yale          | 5 pins         |
+| ✔     |        Yale          | 5 pins         |
 
 ## ⚡ Install
 
