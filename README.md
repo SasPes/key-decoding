@@ -12,18 +12,18 @@ Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
 
 ## 🏴‍☠️ Supported Keys
 
-| Tested |        Brand         | Pin Options    |
-|:------:|:--------------------:|:---------------|
-| ✔️     |        ASSA          | 5, 6, 7 pins   |
-| ✔️     |   Abloy Classic      | 7, 9, 11 disks |
-| ✔️     | Abloy High Profile   | 7, 9, 11 disks |
-| ✔️     |      American        | 5, 6 pins      |
-| ✔️     |        Best          | 7 pins         |
-| ✔️     |      Kwikset         | 5 pins         |
-| ✔️     |       Master         | 4, 5 pins      |
-| ❌     |      Schlage         | 5, 6 pins      |
-| ✔️     |        Titan         | 5, 6 pins      |
-| ✔️     |        Yale          | 5 pins         |
+| Tested |        Brand         | Pin Options             |
+|:------:|:--------------------:|:------------------------|
+| ✔️     |        ASSA          | 5, 6, 7 pins            |
+| ✔️     |   Abloy Classic      | 7, 9, 11 disks          |
+| ✔️     | Abloy High Profile   | 7, 9, 11 disks          |
+| ✔️     |      American        | 5, 6 pins               |
+| ✔️     |        Best          | 7 pins                  |
+| ✔️     |      Kwikset         | 5 pins                  |
+| ✔️     |       Master         | 4, 5 pins               |
+| ✔️     |      Schlage         | 5 pins/SC1, 6 pins/SC4  |
+| ✔️     |        Titan         | 5, 6 pins               |
+| ✔️     |        Yale          | 5 pins                  |
 
 ## ⚡ Install
 

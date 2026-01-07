@@ -99,9 +99,13 @@ var keys = {
         edgeOffsetX: 7
     },
     Schlage: {
-        outlines: ["5 pins", "6 pins"],
-        pinSpacing: 29,
-        maxKeyCut: 8
+        outlines: ["5 pins/SC1", "6 pins/SC4"],
+        pinSpacing: 30,
+        maxKeyCut: 10,
+        cutDepthOffset: 3,
+        pinsStartAtZero: true,
+        flatSpotWidth: 10,
+        edgeOffsetY: 1
     },
     Yale: {
         outlines: ["5 pins"],
