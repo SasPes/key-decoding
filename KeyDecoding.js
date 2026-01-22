@@ -531,4 +531,5 @@ while (true) {
     if (keyboard.getEscPress()) {
         chooseAndCreateKey();
     }
+    delay(10);
 }
