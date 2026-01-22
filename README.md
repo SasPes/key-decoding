@@ -8,7 +8,14 @@
 A Bruce app for hackers, tinkerers and lock nerds.  
 Decode and randomly generate key bitting patterns for a bunch of lock brands.  
 Visualize the cuts, tweak the pins, and save/load your keys.  
-Works on Bruce interpreter devices like the LILYGO T-Embed CC1101.
+
+## 📟 Supported Devices
+
+This app is designed for Bruce Interpreter compatible devices with screen 170x320:
+
+- [LILYGO T-Embed CC1101](https://lilygo.cc/products/t-embed-cc1101)
+- [LILYGO T-Embed CC1101 Plus](https://lilygo.cc/products/t-embed-cc1101-plus)
+- [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
 
 ## 🏴‍☠️ Supported Keys
 
@@ -90,6 +97,12 @@ KeyExample: {
 - [Flipper Zero: KeyCopier](https://github.com/zinongli/KeyCopier)
 - [LILYGO T-Embed CC1101](https://lilygo.cc/products/t-embed-cc1101)
 - [ASSA Mow](https://assamow.com/specs/)
+
+
+## ⭐ Contributors
+
+- [@Phred_Phlintstoner](https://www.youtube.com/@Phred_Phlintstoner) for testing the [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
+- [@argtime](https://github.com/argtime) for PR [Add delay to KeyDecoding.js loop](https://github.com/SasPes/key-decoding/pull/2)
 
 ## ☠️ Disclaimer
 
