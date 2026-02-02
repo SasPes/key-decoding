@@ -41,8 +41,8 @@ display.drawString(version, displayWidth - 10 - 6 * 5, 10);
 display.setTextSize(3);
 display.drawString("Key Decoding", (displayWidth - 18 * 12) / 2, displayHeight - 40);
 
-// display.renderBitmap() is not working in Bruce Release 1.14
-// display.renderBitmap((displayWidth - 100) / 2, 20, logo, 100, 100, priColor, bgColor);
+// display.drawXBitmap() is not working in Bruce Release 1.14
+// display.drawXBitmap((displayWidth - 100) / 2, 20, logo, 100, 100, priColor, bgColor);
 renderBitmap((displayWidth - 100) / 2, 20, logo, 100, 100, priColor, bgColor);
 
 delay(500);
