@@ -36,6 +36,15 @@ This app is designed for Bruce Interpreter compatible devices with screen 170x32
 
 ## ⚡ Install
 
+## ⚡ Install
+
+### Option 1: Bruce App Store
+1. Open Bruce App Store via **JS Interpreter → Tools → App Store**
+   - if App Store is not present, go to **Config → Install App Store**
+2. Navigate to **Tools**
+3. Download and install **Key Decoding**
+
+### Option 2: Manual Install
 1. Drop `KeyDecoding.js` onto your Bruce device
 2. Fire up the Bruce Interpreter
 3. Have fun
