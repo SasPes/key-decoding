@@ -3,14 +3,12 @@
 <img src="ss/ss5.png" width="250"/><img src="ss/ss4.png" width="250"/><img src="ss/ss3.png" width="250"/>
 <img src="ss/ss2.png" width="250"/><img src="ss/ss6.png" width="250"/><img src="ss/ss7.png" width="250"/>
 
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-
-| [![Key Decoding LILYGO T-Embed CC1101 Bruce Firmware](ss/yt1.jpg)](https://www.youtube.com/watch?v=NysOI3OZwJ4) | [![Key Decoding - Update LILYGO T-Embed CC1101 Bruce Firmware](ss/yt2.jpg)](https://www.youtube.com/watch?v=Y-vgaZMATa0) |
-| :--: | :--: |
+<table style="border: none; border-collapse: collapse;">
+<tr style="border: none;">
+<td style="border: none;" align="center"><a href="https://www.youtube.com/watch?v=NysOI3OZwJ4" target="_blank"><img src="ss/yt1.jpg" alt="Key Decoding LILYGO T-Embed CC1101 Bruce Firmware" border="0" style="border: none;"/></a></td>
+<td style="border: none;" align="center"><a href="https://www.youtube.com/watch?v=Y-vgaZMATa0" target="_blank"><img src="ss/yt2.jpg" alt="Key Decoding - Update LILYGO T-Embed CC1101 Bruce Firmware" border="0" style="border: none;"/></a></td>
+</tr>
+</table>
 
 A Bruce app for hackers, tinkerers and lock nerds.  
 Decode and randomly generate key bitting patterns for a bunch of lock brands.  
