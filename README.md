@@ -3,10 +3,10 @@
 <img src="ss/ss5.png" width="250"/><img src="ss/ss4.png" width="250"/><img src="ss/ss3.png" width="250"/>
 <img src="ss/ss2.png" width="250"/><img src="ss/ss6.png" width="250"/><img src="ss/ss7.png" width="250"/>
 
-<table border="0">
-<tr>
-<td align="center"><a href="https://www.youtube.com/watch?v=NysOI3OZwJ4"><img src="ss/yt1.jpg" alt="Key Decoding LILYGO T-Embed CC1101 Bruce Firmware" border="0"/></a></td>
-<td align="center"><a href="https://www.youtube.com/watch?v=Y-vgaZMATa0"><img src="ss/yt2.jpg" alt="Key Decoding - Update LILYGO T-Embed CC1101 Bruce Firmware" border="0"/></a></td>
+<table style="border: none; border-collapse: collapse;">
+<tr style="border: none;">
+<td style="border: none;" align="center"><a href="https://www.youtube.com/watch?v=NysOI3OZwJ4" target="_blank"><img src="ss/yt1.jpg" alt="Key Decoding LILYGO T-Embed CC1101 Bruce Firmware" border="0" style="border: none;"/></a></td>
+<td style="border: none;" align="center"><a href="https://www.youtube.com/watch?v=Y-vgaZMATa0" target="_blank"><img src="ss/yt2.jpg" alt="Key Decoding - Update LILYGO T-Embed CC1101 Bruce Firmware" border="0" style="border: none;"/></a></td>
 </tr>
 </table>
 
