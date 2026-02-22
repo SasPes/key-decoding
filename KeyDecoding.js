@@ -153,6 +153,17 @@ var keys = {
         pinSpacing: 16,
         maxKeyCut: 6,
         bladeHeight: 57
+    },
+    CorbinRusswin:{
+        displayName: "Corbin Russwin",
+        outlines: ["6 pins/CX6A"],
+        pinSpacing: 30,
+        maxKeyCut: 6,
+        cutDepthOffset: 5,
+        pinsStartAtZero: false,
+        flatSpotWidth: 10,
+        edgeOffsetX: -3,
+        edgeOffsetY: 1
     }
 };
 

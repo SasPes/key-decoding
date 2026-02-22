@@ -26,6 +26,7 @@ This app is designed for Bruce Interpreter compatible devices with screen 170x32
 | ✔️     | Abloy High Profile   | 7, 9, 11 disks          |
 | ✔️     |      American        | 5, 6 pins               |
 | ✔️     |        Best          | 7 pins                  |
+| ✔️     |   Corbin Russwin     | 6 pins/CX6A             |
 | ✔️     |      Kwikset         | 5 pins                  |
 | ✔️     |       Master         | 4, 5 pins               |
 | ✔️     |      Schlage         | 5 pins/SC1, 6 pins/SC4  |
