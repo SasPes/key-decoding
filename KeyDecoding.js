@@ -347,7 +347,7 @@ function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
 }
 
 function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType) {
-    if (keys[keyType].isDiskDetainer) {
+    if (keys[keyType] && keys[keyType].isDiskDetainer) {
         drawDisksWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType);
         return;
     }
@@ -478,7 +478,15 @@ function chooseAndCreateKey() {
     if (type !== "Exit") {
         if (type === "Load") {
             key = new Key(type, "", "decode");
-            key.load(storage.read(dialog.pickFile("/keys", {withFileTypes: true})))
+            var filePath = dialog.pickFile("/keys", {withFileTypes: true});
+            if (!filePath) {
+                return chooseAndCreateKey();
+            }
+            var fileContent = storage.read(filePath);
+            if (!fileContent) {
+                return chooseAndCreateKey();
+            }
+            key.load(fileContent);
         } else {
             var outlines = keys[String(type)].outlines || [];
             var outlineChoices = {};
