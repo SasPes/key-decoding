@@ -136,7 +136,7 @@ var keys = {
         maxKeyCut: 10,
         cutDepthOffset: 3,
         edgeOffsetX: 17,
-        edgeOffsetY: -3,
+        edgeOffsetY: -5,
         pinsStartAtZero: true,
     },
     YaleSmall: {
