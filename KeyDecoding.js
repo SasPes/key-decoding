@@ -139,6 +139,18 @@ var keys = {
         edgeOffsetY: -3,
         pinsStartAtZero: true,
     },
+    YaleSmall: {
+        displayName: "Yale Small",
+        outlines: ["4 pins", "5 pins"],
+        pinSpacing: 24,
+        maxKeyCut: 6,
+        flatSpotWidth: 6,
+        cutDepth: 5,
+        edgeOffsetX: 6,
+        edgeOffsetY: -9,
+        pinNumbersOffset: -4,
+        pinsStartAtZero: true
+    },
     AbloyClassic: {
         displayName: "Abloy Classic",
         isDiskDetainer: true,

@@ -20,21 +20,20 @@ This app is designed for Bruce Interpreter compatible devices with screen 170x32
 
 ## 🏴‍☠️ Supported Keys
 
-| Tested |        Brand         | Pin Options             |
-|:------:|:--------------------:|:------------------------|
-| ✔️     |        ASSA          | 5, 6, 7 pins            |
-| ✔️     |   Abloy Classic      | 7, 9, 11 disks          |
-| ✔️     | Abloy High Profile   | 7, 9, 11 disks          |
-| ✔️     |      American        | 5, 6 pins               |
-| ✔️     |        Best          | 7 pins                  |
-| ✔️     |   Corbin Russwin     | 6 pins/CX6A             |
-| ✔️     |      Kwikset         | 5 pins                  |
-| ✔️     |       Master         | 4, 5 pins               |
-| ✔️     |      Schlage         | 5 pins/SC1, 6 pins/SC4  |
-| ✔️     |        Titan         | 5, 6 pins               |
-| ✔️     |        Yale          | 5 pins                  |
-
-## ⚡ Install
+| Tested |       Brand        | Pin Options            |
+|:------:|:------------------:|:-----------------------|
+| ✔️     |        ASSA        | 5, 6, 7 pins           |
+| ✔️     |   Abloy Classic    | 7, 9, 11 disks         |
+| ✔️     | Abloy High Profile | 7, 9, 11 disks         |
+| ✔️     |      American      | 5, 6 pins              |
+| ✔️     |        Best        | 7 pins                 |
+| ✔️     |   Corbin Russwin   | 6 pins/CX6A            |
+| ✔️     |      Kwikset       | 5 pins                 |
+| ✔️     |       Master       | 4, 5 pins              |
+| ✔️     |      Schlage       | 5 pins/SC1, 6 pins/SC4 |
+| ✔️     |       Titan        | 5, 6 pins              |
+| ✔️     |        Yale        | 5 pins                 |
+| ✔️     |     Yale Small     | 4, 5 pins              |
 
 ## ⚡ Install
 
