@@ -176,7 +176,18 @@ var keys = {
         flatSpotWidth: 10,
         edgeOffsetX: -3,
         edgeOffsetY: 1
-    }
+    },
+    MedecoBiaxial: {
+        displayName: "Medeco Biaxial",
+        outlines: ["6 pins"],
+        pinSpacing: 33,
+        maxKeyCut: 6,
+        flatSpotWidth: 2,
+        cutDepthOffset: 6,
+        zeroCutOffset: 2,
+        edgeOffsetX: 9,
+        edgeOffsetY: -7
+    },
 };
 
 function Key(type, outline, show) {

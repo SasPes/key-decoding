@@ -30,6 +30,7 @@ This app is designed for Bruce Interpreter compatible devices with screen 170x32
 | ✔️     |   Corbin Russwin   | 5 pins/RU45, 6 pins/CX6A |
 | ✔️     |      Kwikset       | 5 pins                   |
 | ✔️     |       Master       | 4, 5 pins                |
+| ✔️     |   Medeco Biaxial   | 6 pins                   |
 | ✔️     |      Schlage       | 5 pins/SC1, 6 pins/SC4   |
 | ✔️     |       Titan        | 5, 6 pins                |
 | ✔️     |        Yale        | 5 pins                   |
