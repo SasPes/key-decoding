@@ -114,8 +114,12 @@ KeyExample: {
 
 - [@Phred_Phlintstoner](https://www.youtube.com/@Phred_Phlintstoner) for testing the [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
 - [@argtime](https://github.com/argtime) for PR [Add delay to KeyDecoding.js loop](https://github.com/SasPes/key-decoding/pull/2)
+- [Tyler J. Thomas](https://securityengineeringconsultants.com/) for [Key Bitting Specifications Edition 1, 2025](https://lsamichigan.org/Tech/KeyBittingSpecifications-TylerJThomas.pdf)
+- [Greg Bryant](https://www.sopl.us/uploads/1/3/0/1/1301029/high_security_specs_from_greg_bryant.pdf) for sidewinder key bitting
+- [@ellygaytor](https://github.com/ellygaytor) for DSD aliasing, icons, and help menu
 
 ## ☠️ Disclaimer
 
 For educational, CTF and red team use only.  
 Don't break the law. Don't be a jerk.
+Accuracy of non-verified options may be poor.
