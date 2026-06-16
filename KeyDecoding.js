@@ -487,7 +487,7 @@ function Key(type, outline, show) {
 
     /** Regenerate a fresh random bitting for a "random" key. */
     this.updatePins = function () {
-        var pinCount = parseInt(outline.substring(0, 2), 10);
+        var pinCount = parseInt(this.outline.substring(0, 2), 10);
         this.pins = [];
         for (var i = 0; i < pinCount; i++) {
             var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
