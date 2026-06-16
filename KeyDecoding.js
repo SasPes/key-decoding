@@ -44,18 +44,31 @@ var ICON_CHECK = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x30,0x00,0x18,0x00,0x
  */
 function renderBitmap(x, y, bitmap, width, height, color, bgColor) {
     var data = new Uint8Array(bitmap);
-    var byteWidth = Math.floor((width + 7) / 8);
+    var byteWidth = (width + 7) >> 3;
+    var hasBg = bgColor !== undefined;
 
     for (var j = 0; j < height; j++) {
-        for (var i = 0; i < width; i++) {
-            var byteIndex = j * byteWidth + Math.floor(i / 8);
-            var bitIndex = i % 8;
-            var pixel = (data[byteIndex] >> bitIndex) & 1;
-
+        var rowStart = j * byteWidth;
+        var i = 0;
+        while (i < width) {
+            var pixel = (data[rowStart + (i >> 3)] >> (i & 7)) & 1;
+            var runStart = i;
+            i++;
+            while (i < width && ((data[rowStart + (i >> 3)] >> (i & 7)) & 1) === pixel) {
+                i++;
+            }
             if (pixel) {
-                display.drawPixel(x + i, y + j, color);
-            } else if (bgColor !== undefined) {
-                display.drawPixel(x + i, y + j, bgColor);
+                if (i - runStart === 1) {
+                    display.drawPixel(x + runStart, y + j, color);
+                } else {
+                    display.drawLine(x + runStart, y + j, x + i - 1, y + j, color);
+                }
+            } else if (hasBg) {
+                if (i - runStart === 1) {
+                    display.drawPixel(x + runStart, y + j, bgColor);
+                } else {
+                    display.drawLine(x + runStart, y + j, x + i - 1, y + j, bgColor);
+                }
             }
         }
     }
