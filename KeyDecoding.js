@@ -294,12 +294,17 @@ var keys = {
     },
     Subaru: {
         displayName: "Subaru DSD435",
-        outlines: ["10 cuts/TOY48P"],
+        outlines: ["9 cuts/TOY48P"],
         isInternalCut: true,
-        pinSpacing: 22,        
-        maxKeyCut: 3,          
-        cutDepthOffset: 4,     
-        flatSpotWidth: 3       
+        pinSpacing: 22,
+        maxKeyCut: 3,
+        cutDepthOffset: 4,
+        flatSpotWidth: 3,
+        // DSD 435 is asymmetric: 4 cuts on the top track, 5 on the bottom,
+        // with the top cuts staggered by half a position so they sit between
+        // the bottom cuts (units of pinSpacing).
+        topCutCount: 4,
+        topCutOffset: 0.5
     },
 
     Suzuki: {
@@ -860,23 +865,41 @@ function drawDisksWithUnderline(disks, selectedDiskIndex, showMode, pinSpacing, 
  * @param {string} keyType - Brand key into `keys`.
  */
 function drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType) {
-    var half = Math.floor(pins.length / 2);
     var keyConfig = keys[keyType] || {};
     var cutDepthOffset = keyConfig.cutDepthOffset || 3;
     var maxKeyCut = keyConfig.maxKeyCut || 4;
     var flatSpotWidth = keyConfig.flatSpotWidth || 4;
     var pinsStartCount = keyConfig.pinsStartAtZero === true;
 
+    // Top track may have fewer cuts than the bottom (e.g. Subaru DSD 435 is 4+5).
+    // Default to an even split when topCutCount isn't specified.
+    var topCount = (typeof keyConfig.topCutCount === "number")
+        ? keyConfig.topCutCount
+        : Math.floor(pins.length / 2);
+    var botCount = pins.length - topCount;
+
+    // Optional half-position stagger between the two tracks (units of pinSpacing).
+    // Subaru DSD 435 uses 0.5 so the 4 top cuts sit between the 5 bottom cuts.
+    var topCutOffsetUnits = (typeof keyConfig.topCutOffset === "number")
+        ? keyConfig.topCutOffset
+        : 0;
+    var topCutOffsetPx = Math.round(topCutOffsetUnits * pinSpacing);
+
     // Blade dimensions at ~7.5 px/mm (see CLAUDE.md "Pixel scale"):
-    //   leadingGroove 90 px  ~= 12 mm shoulder-to-first-cut runout
-    //   trailingMargin 30 px ~= 4 mm past the last cut to the tip
-    //   bladeHeight 56 px    ~= 7.5 mm blade height
+    //   leadingGroove 90 px ~= 12 mm shoulder-to-first-cut runout
+    //   bladeHeight 56 px   ~= 7.5 mm blade height
+    //   trailingMargin      = room past the last cut for the 45-degree run
+    //                         from the last cut's depth out to the outer edge.
     var bladeX = 6;
     var leadingGroove = 90;
-    var trailingMargin = 30;
     var bladeHeight = 56;
-    var firstCutX = bladeX + leadingGroove;
-    var lastCutX = firstCutX + pinSpacing * (half - 1);
+    var maxDepth = (maxKeyCut - 1) * cutDepthOffset;
+    var trailingMargin = Math.floor(bladeHeight / 4) + maxDepth + 6;
+    var botFirstCutX = bladeX + leadingGroove;
+    var topFirstCutX = botFirstCutX + topCutOffsetPx;
+    var topLastCutX = topFirstCutX + pinSpacing * (topCount - 1);
+    var botLastCutX = botFirstCutX + pinSpacing * (botCount - 1);
+    var lastCutX = topLastCutX > botLastCutX ? topLastCutX : botLastCutX;
     var bladeRight = lastCutX + trailingMargin;
     var bladeWidth = bladeRight - bladeX;
 
@@ -884,16 +907,18 @@ function drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinS
     var topUnderlineY = topNumY + 15;
     var bladeY = topNumY + 22;
     var bladeBot = bladeY + bladeHeight;
-    var bladeTop = bladeY - bladeHeight;
     var botNumY = bladeBot + 6;
     var botUnderlineY = botNumY + 15;
 
-    var maxDepth = (maxKeyCut - 1) * cutDepthOffset;
     var flatHalfWidth = Math.floor(flatSpotWidth / 2);
+    // Slope rate for the rise/fall between the milled channel and each cut.
+    // 1 = 45 deg; lower = gentler/longer slope. The trailing diagonal past
+    // the last cut still uses 1 (45 deg) per the spec sheet geometry.
+    var channelSlope = 0.5;
 
     // Top-track numbers row, each centred over its cut column.
-    for (var i = 0; i < half; i++) {
-        var cutX = firstCutX + i * pinSpacing;
+    for (var i = 0; i < topCount; i++) {
+        var cutX = topFirstCutX + i * pinSpacing;
         var topNumX = cutX - 6;
         var topDisplay = pinsStartCount ? pins[i] : (pins[i] + 1);
         display.drawString(topDisplay.toString(), topNumX, topNumY);
@@ -910,10 +935,16 @@ function drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinS
 
     var topBaseY = bladeY + Math.floor(bladeHeight / 4);
     var botBaseY = bladeY + Math.floor(3 * bladeHeight / 4);
+    // Depth at which each track meets its outer blade edge (negative = away
+    // from the centreline, toward the outer surface).
+    var topOuterDepth = -(topBaseY - bladeY);
+    var botOuterDepth = -(bladeBot - botBaseY);
 
-    // Render two milled tracks column-by-column. In the leading groove and
-    // after the last cut, both tracks sit at max depth (closest to centre);
-    // between firstCutX and lastCutX, depth comes from the per-cut profile.
+    // Render two milled tracks column-by-column. In the leading groove each
+    // track sits at max depth (closest to centre); between its own first and
+    // last cut, depth comes from the per-cut profile. The tracks are
+    // evaluated independently because they may have different cut counts
+    // and may be staggered relative to one another.
     var prevTopY = topBaseY + maxDepth;
     var prevBotY = botBaseY - maxDepth;
 
@@ -921,38 +952,69 @@ function drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinS
         var colX = bladeX + col;
         var topDepth, botDepth;
 
-        if (colX < firstCutX) {
-            topDepth = maxDepth;
-            botDepth = maxDepth;
-        } else if (colX > lastCutX) { 
-            topDepth = -3*cutDepthOffset;
-            botDepth = -3*cutDepthOffset;
+        if (colX > topLastCutX) {
+            // After the last cut, slope outward at 45 degrees from the last
+            // cut's depth until the track reaches the outer blade edge, then
+            // run flat along the edge.
+            var topLastDepth = maxDepth - (pins[topCount - 1] || 0) * cutDepthOffset;
+            topDepth = topLastDepth - (colX - topLastCutX);
+            if (topDepth < topOuterDepth) topDepth = topOuterDepth;
         } else {
-            topDepth = 0;
-            botDepth = 0;
-            for (var ci = 0; ci < half; ci++) {
-                var cutCenter = firstCutX + ci * pinSpacing;
-                var dist = Math.abs(colX - cutCenter);
-
-                var topPinDepth = (pins[ci] || 0) * cutDepthOffset;
+            // Default everywhere is the milled channel at maxDepth. Each cut
+            // pulls the track outward (smaller depth) by pinValue * cutDepthOffset,
+            // with a gentle channelSlope ramp on each side of its flat.
+            topDepth = maxDepth;
+            for (var ti = 0; ti < topCount; ti++) {
+                var topCutCenter = topFirstCutX + ti * pinSpacing;
+                var topPinDepth = maxDepth - (pins[ti] || 0) * cutDepthOffset;
+                // Extend the flat shoulder when adjacent cuts share the same
+                // depth, so equal neighbours read as one continuous flat.
+                var topFlatLeft = topCutCenter - flatHalfWidth;
+                var topFlatRight = topCutCenter + flatHalfWidth;
+                if (ti > 0 && pins[ti - 1] === pins[ti]) {
+                    topFlatLeft = topCutCenter - Math.floor(pinSpacing / 2);
+                }
+                if (ti < topCount - 1 && pins[ti + 1] === pins[ti]) {
+                    topFlatRight = topCutCenter + Math.floor(pinSpacing / 2);
+                }
                 var topHere;
-                if (dist <= flatHalfWidth) {
+                if (colX >= topFlatLeft && colX <= topFlatRight) {
                     topHere = topPinDepth;
                 } else {
-                    topHere = topPinDepth - (dist - flatHalfWidth);
-                    if (topHere < 0) { topHere = 0; }
+                    var topDist = (colX < topFlatLeft) ? (topFlatLeft - colX) : (colX - topFlatRight);
+                    topHere = topPinDepth + topDist * channelSlope;
+                    if (topHere > maxDepth) topHere = maxDepth;
                 }
-                if (topHere > topDepth) { topDepth = topHere; }
+                if (topHere < topDepth) topDepth = topHere;
+            }
+        }
 
-                var botPinDepth = (pins[half + ci] || 0) * cutDepthOffset;
+        if (colX > botLastCutX) {
+            var botLastDepth = maxDepth - (pins[topCount + botCount - 1] || 0) * cutDepthOffset;
+            botDepth = botLastDepth - (colX - botLastCutX);
+            if (botDepth < botOuterDepth) botDepth = botOuterDepth;
+        } else {
+            botDepth = maxDepth;
+            for (var bi = 0; bi < botCount; bi++) {
+                var botCutCenter = botFirstCutX + bi * pinSpacing;
+                var botPinDepth = maxDepth - (pins[topCount + bi] || 0) * cutDepthOffset;
+                var botFlatLeft = botCutCenter - flatHalfWidth;
+                var botFlatRight = botCutCenter + flatHalfWidth;
+                if (bi > 0 && pins[topCount + bi - 1] === pins[topCount + bi]) {
+                    botFlatLeft = botCutCenter - Math.floor(pinSpacing / 2);
+                }
+                if (bi < botCount - 1 && pins[topCount + bi + 1] === pins[topCount + bi]) {
+                    botFlatRight = botCutCenter + Math.floor(pinSpacing / 2);
+                }
                 var botHere;
-                if (dist <= flatHalfWidth) {
+                if (colX >= botFlatLeft && colX <= botFlatRight) {
                     botHere = botPinDepth;
                 } else {
-                    botHere = botPinDepth - (dist - flatHalfWidth);
-                    if (botHere < 0) { botHere = 0; }
+                    var botDist = (colX < botFlatLeft) ? (botFlatLeft - colX) : (colX - botFlatRight);
+                    botHere = botPinDepth + botDist * channelSlope;
+                    if (botHere > maxDepth) botHere = maxDepth;
                 }
-                if (botHere > botDepth) { botDepth = botHere; }
+                if (botHere < botDepth) botDepth = botHere;
             }
         }
 
@@ -974,12 +1036,12 @@ function drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinS
     }
 
     // Bottom-track numbers row.
-    for (var j = 0; j < half; j++) {
-        var cutX2 = firstCutX + j * pinSpacing;
+    for (var j = 0; j < botCount; j++) {
+        var cutX2 = botFirstCutX + j * pinSpacing;
         var botNumX = cutX2 - 6;
-        var botDisplay = pinsStartCount ? pins[half + j] : (pins[half + j] + 1);
+        var botDisplay = pinsStartCount ? pins[topCount + j] : (pins[topCount + j] + 1);
         display.drawString(botDisplay.toString(), botNumX, botNumY);
-        if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && (half + j) === selectedPinIndex) {
+        if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && (topCount + j) === selectedPinIndex) {
             display.drawRect(botNumX - 1, botUnderlineY, 12, 2, secColor);
         }
     }
