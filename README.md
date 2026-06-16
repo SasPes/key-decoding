@@ -20,21 +20,299 @@ This app is designed for Bruce Interpreter compatible devices with screen 170x32
 
 ## 🏴‍☠️ Supported Keys
 
-| Tested |       Brand        | Pin Options              |
-|:------:|:------------------:|:-------------------------|
-| ✔️     |        ASSA        | 5, 6, 7 pins             |
-| ✔️     |   Abloy Classic    | 7, 9, 11 disks           |
-| ✔️     | Abloy High Profile | 7, 9, 11 disks           |
-| ✔️     |      American      | 5, 6 pins                |
-| ✔️     |        Best        | 7 pins                   |
-| ✔️     |   Corbin Russwin   | 5 pins/RU45, 6 pins/CX6A |
-| ✔️     |      Kwikset       | 5 pins                   |
-| ✔️     |       Master       | 4, 5 pins                |
-| ✔️     |   Medeco Biaxial   | 6 pins                   |
-| ✔️     |      Schlage       | 5 pins/SC1, 6 pins/SC4   |
-| ✔️     |       Titan        | 5, 6 pins                |
-| ✔️     |        Yale        | 5 pins                   |
-| ✔️     |     Yale Small     | 4, 5 pins                |
+A ✔️ marks a brand + outline combination that has been verified against a real key. Other rows are selectable in the menu but unverified, so accuracy may be poor.
+
+### Abloy Classic
+
+| Tested | Outline   |
+|:------:|:----------|
+| ✔️     | 7 disks   |
+| ✔️     | 9 disks   |
+| ✔️     | 11 disks  |
+
+### Abloy High Profile
+
+| Tested | Outline   |
+|:------:|:----------|
+| ✔️     | 7 disks   |
+| ✔️     | 9 disks   |
+| ✔️     | 11 disks  |
+
+### American
+
+| Tested | Outline |
+|:------:|:--------|
+| ✔️     | 5 pins  |
+| ✔️     | 6 pins  |
+
+### Arrow
+
+Shares DSD with Best (A2 small-format interchangeable core).
+
+| Tested | Outline    |
+|:------:|:-----------|
+|        | 6 pins/A   |
+|        | 7 pins/A   |
+
+### ASSA
+
+| Tested | Outline |
+|:------:|:--------|
+| ✔️     | 5 pins  |
+| ✔️     | 6 pins  |
+| ✔️     | 7 pins  |
+
+### Best
+
+| Tested | Outline     |
+|:------:|:------------|
+|        | 6 pins/A2   |
+| ✔️     | 7 pins/A2   |
+
+### Buick
+
+Shares DSD with Chevy B102.
+
+| Tested | Outline       |
+|:------:|:--------------|
+|        | 10 cuts/B102  |
+
+### Chevy 
+
+| Tested | Outline       |
+|:------:|:--------------|
+|        | 10 cuts/B102  |
+
+### Chrysler
+
+Shares DSD with Dodge Y159.
+
+| Tested | Outline      |
+|:------:|:-------------|
+|        | 8 cuts/Y159  |
+
+### Corbin Russwin
+
+| Tested | Outline       |
+|:------:|:--------------|
+| ✔️     | 5 pins/RU45   |
+| ✔️     | 6 pins/CX6A   |
+
+### Dodge 
+
+| Tested | Outline      |
+|:------:|:-------------|
+|        | 8 cuts/Y159  |
+
+### Eagle
+
+Shares DSD with Best (A2 small-format interchangeable core).
+
+| Tested | Outline    |
+|:------:|:-----------|
+|        | 6 pins/A   |
+|        | 7 pins/A   |
+
+### Falcon
+
+Shares DSD with Best (A2 small-format interchangeable core).
+
+| Tested | Outline    |
+|:------:|:-----------|
+|        | 6 pins/A   |
+|        | 7 pins/A   |
+
+### Ford 
+
+| Tested | Outline     |
+|:------:|:------------|
+|        | 8 cuts/H75  |
+
+### GMC
+
+Shares DSD with Chevy B102.
+
+| Tested | Outline       |
+|:------:|:--------------|
+|        | 10 cuts/B102  |
+
+### GMS
+
+Shares DSD with Best (A2 small-format interchangeable core).
+
+| Tested | Outline    |
+|:------:|:-----------|
+|        | 6 pins/A   |
+|        | 7 pins/A   |
+
+### Jeep
+
+Shares DSD with Dodge Y159.
+
+| Tested | Outline      |
+|:------:|:-------------|
+|        | 8 cuts/Y159  |
+
+### Kawasaki 
+
+| Tested | Outline      |
+|:------:|:-------------|
+|        | 6 cuts/KA14  |
+
+### KSP
+
+Shares DSD with Best (A2 small-format interchangeable core).
+
+| Tested | Outline    |
+|:------:|:-----------|
+|        | 6 pins/A   |
+|        | 7 pins/A   |
+
+### Kwikset
+
+| Tested | Outline |
+|:------:|:--------|
+| ✔️     | 5 pins  |
+
+### Lincoln
+
+Shares DSD with Ford H75.
+
+| Tested | Outline     |
+|:------:|:------------|
+|        | 8 cuts/H75  |
+
+### Lockwood
+
+| Tested | Outline      |
+|:------:|:-------------|
+|        | 5 pins/LW4   |
+|        | 6 pins/LW5   |
+
+### Master
+
+| Tested | Outline |
+|:------:|:--------|
+| ✔️     | 4 pins  |
+| ✔️     | 5 pins  |
+|        | 6 pins  |
+
+### Medeco Biaxial
+
+| Tested | Outline |
+|:------:|:--------|
+| ✔️     | 6 pins  |
+
+### Mercury
+
+Shares DSD with Ford H75.
+
+| Tested | Outline     |
+|:------:|:------------|
+|        | 8 cuts/H75  |
+
+### National
+
+| Tested | Outline        |
+|:------:|:---------------|
+|        | 5 pins/D8775   |
+
+### Oldsmobile
+
+Shares DSD with Chevy B102.
+
+| Tested | Outline       |
+|:------:|:--------------|
+|        | 10 cuts/B102  |
+
+### Plymouth
+
+Shares DSD with Dodge Y159.
+
+| Tested | Outline      |
+|:------:|:-------------|
+|        | 8 cuts/Y159  |
+
+### Pontiac
+
+Shares DSD with Chevy B102.
+
+| Tested | Outline       |
+|:------:|:--------------|
+|        | 10 cuts/B102  |
+
+### RV
+
+| Tested | Outline |
+|:------:|:--------|
+|        | 5 cuts  |
+
+### Sargent
+
+| Tested | Outline     |
+|:------:|:------------|
+|        | 5 pins/LA   |
+|        | 6 pins/LA   |
+
+### Schlage
+
+| Tested | Outline      |
+|:------:|:-------------|
+| ✔️     | 5 pins/SC1   |
+| ✔️     | 6 pins/SC4   |
+
+### Subaru 
+
+| Tested | Outline         |
+|:------:|:----------------|
+|        | 9 cuts/DSD435   |
+
+### Suzuki 
+
+| Tested | Outline       |
+|:------:|:--------------|
+|        | 7 cuts/SUZ18  |
+
+### Titan
+
+Shares DSD with Kwikset.
+
+| Tested | Outline       |
+|:------:|:--------------|
+| ✔️     | 5 pins/KW10   |
+
+### Weiser
+
+| Tested | Outline      |
+|:------:|:-------------|
+|        | 5 pins/WR5   |
+|        | 6 pins/WR3   |
+
+### Weslock
+
+| Tested | Outline |
+|:------:|:--------|
+|        | 5 pins  |
+
+### Yale
+
+| Tested | Outline     |
+|:------:|:------------|
+| ✔️     | 5 pins/Y1   |
+|        | 6 pins/Y2   |
+
+### Yale Small
+
+| Tested | Outline |
+|:------:|:--------|
+| ✔️     | 4 pins  |
+| ✔️     | 5 pins  |
+
+### Yamaha 
+
+| Tested | Outline      |
+|:------:|:-------------|
+|        | 7 cuts/YM63  |
 
 ## ⚡ Install
 

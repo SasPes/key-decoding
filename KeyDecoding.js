@@ -270,7 +270,7 @@ var keys = {
     // For some of these the displayed bitting is taken as symmetric and renders 
     // the same depth on the top and bottom faces at each position.
     Ford: {
-        displayName: "Ford H75",
+        displayName: "Ford",
         outlines: ["8 cuts/H75"],
         isDoubleSided: true,
         pinSpacing: 22,
@@ -279,7 +279,7 @@ var keys = {
         flatSpotWidth: 4
     },
     Chevrolet: {
-        displayName: "Chevy B102",
+        displayName: "Chevy",
         outlines: ["10 cuts/B102"],
         isDoubleSided: true,
         pinSpacing: 20,
@@ -288,7 +288,7 @@ var keys = {
         flatSpotWidth: 4
     },
     Dodge: {
-        displayName: "Dodge Y159",
+        displayName: "Dodge",
         outlines: ["8 cuts/Y159"],
         isDoubleSided: true,
         pinSpacing: 22,
@@ -297,7 +297,7 @@ var keys = {
         flatSpotWidth: 4
     },
     Kawasaki: {
-        displayName: "Kawasaki KA14",
+        displayName: "Kawasaki",
         outlines: ["6 cuts/KA14"],
         isDoubleSided: true,
         pinSpacing: 26,
@@ -306,8 +306,8 @@ var keys = {
         flatSpotWidth: 4
     },
     Subaru: {
-        displayName: "Subaru DSD435",
-        outlines: ["9 cuts/TOY48P"],
+        displayName: "Subaru",
+        outlines: ["9 cuts/DSD435"],
         isInternalCut: true,
         pinSpacing: 22,
         maxKeyCut: 3,
@@ -321,7 +321,7 @@ var keys = {
     },
 
     Suzuki: {
-        displayName: "Suzuki SUZ18",
+        displayName: "Suzuki",
         outlines: ["7 cuts/SUZ18"],
         isDoubleSided: true,
         pinSpacing: 24,
@@ -330,7 +330,7 @@ var keys = {
         flatSpotWidth: 4
     },
     Yamaha: {
-        displayName: "Yamaha YM63",
+        displayName: "Yamaha",
         outlines: ["7 cuts/YM63"],
         isDoubleSided: true,
         pinSpacing: 24,
