@@ -1354,7 +1354,13 @@ while (true) {
         } else if (selectedPinIndex === key.pins.length) { // Save action
             key.save();
         } else if (selectedPinIndex === key.pins.length + 1) { // Load action
-            key.load(storage.read(dialog.pickFile("/keys", {withFileTypes: true})))
+            var filePath = dialog.pickFile("/keys", {withFileTypes: true});
+            if (filePath) {
+                var fileContent = storage.read(filePath);
+                if (fileContent) {
+                    key.load(fileContent);
+                }
+            }
         }
         key.draw();
     }
