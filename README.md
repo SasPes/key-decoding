@@ -10,15 +10,15 @@ A Bruce app for hackers, tinkerers and lock nerds.
 Decode and randomly generate key bitting patterns for a bunch of lock brands.  
 Visualize the cuts, tweak the pins, and save/load your keys.  
 
-## 📟 Supported Devices
+## Supported Devices
 
-This app is designed for Bruce Interpreter compatible devices with screen 170x320:
+This app is designed for Bruce Interpreter compatible devices with screen 170x320. Devices of other sizes will render the key incorrectly.
 
 - [LILYGO T-Embed CC1101](https://lilygo.cc/products/t-embed-cc1101)
 - [LILYGO T-Embed CC1101 Plus](https://lilygo.cc/products/t-embed-cc1101-plus)
 - [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
 
-## 🏴‍☠️ Supported Keys
+## Supported Keys
 
 A ✔️ marks a brand + outline combination that has been verified against a real key. Other rows are selectable in the menu but unverified, so accuracy may be poor.
 
@@ -314,20 +314,12 @@ Shares DSD with Kwikset.
 |:------:|:-------------|
 |        | 7 cuts/YM63  |
 
-## ⚡ Install
-
-### Option 1: Bruce App Store
-1. Open Bruce App Store via **JS Interpreter → Tools → App Store**
-   - if App Store is not present, go to **Config → Install App Store**
-2. Navigate to **Tools**
-3. Download and install **Key Decoding**
-
-### Option 2: Manual Install
+## Installation
 1. Drop `KeyDecoding.js` onto your Bruce device
 2. Fire up the Bruce Interpreter
 3. Have fun
 
-## 🕹️ Usage
+## Usage
 
 ### Navigation
 
@@ -336,7 +328,7 @@ Shares DSD with Kwikset.
 - **PREV:** Decrease pin depth
 - **ESC:** Back to main menu
 
-### ⚙️ Workflow
+### Workflow
 
 1. **Pick a Brand:** Choose your target lock or load a saved key
 2. **Pin Count:** Select how many pins (brand-dependent)
@@ -347,7 +339,7 @@ Shares DSD with Kwikset.
 5. **Save:** SEL to "Save", then NEXT to write your key JSON
 6. **Load:** SEL to "Load", then NEXT to pick a saved key
 
-## 📂 Key File Format
+## Key File Format
 
 Keys are saved as JSON in `/keys/`:
 
@@ -379,7 +371,7 @@ KeyExample: {
 }
 ```
 
-## 🔗 Links
+## Links
 
 - [Bruce Interpreter](https://github.com/pr3y/Bruce/wiki/Interpreter)
 - [Deviant Ollam: Key-and-Pin-Decoding](https://github.com/deviantollam/Key-and-Pin-Decoding)
@@ -388,7 +380,7 @@ KeyExample: {
 - [ASSA Mow](https://assamow.com/specs/)
 
 
-## ⭐ Contributors
+## Contributors
 
 - [@Phred_Phlintstoner](https://www.youtube.com/@Phred_Phlintstoner) for testing the [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
 - [@argtime](https://github.com/argtime) for PR [Add delay to KeyDecoding.js loop](https://github.com/SasPes/key-decoding/pull/2)
@@ -396,7 +388,7 @@ KeyExample: {
 - [Greg Bryant](https://www.sopl.us/uploads/1/3/0/1/1301029/high_security_specs_from_greg_bryant.pdf) for sidewinder key bitting
 - [@ellygaytor](https://github.com/ellygaytor) for DSD aliasing, icons, and help menu
 
-## ☠️ Disclaimer
+## Disclaimer
 
 For educational, CTF and red team use only.  
 Don't break the law. Don't be a jerk.
