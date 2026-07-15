@@ -525,11 +525,12 @@ function Key(type, outline, show) {
         display.setTextSize(2);
 
         var displayName = keys[this.type] && keys[this.type].displayName || this.type;
-        if (displayName.length > 12) {
+        var titleLine = displayName + " - " + this.outline;
+        if (titleLine.length > 12) {
             display.drawString(displayName, 10, 10);
             display.drawString(this.outline, 10, 28);
         } else {
-            display.drawString(displayName + " - " + this.outline, 10, 10);
+            display.drawString(titleLine, 10, 10);
         }
 
         if (this.show === "decode") {
