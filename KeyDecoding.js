@@ -1143,7 +1143,7 @@ function drawMenu(title, entries, sel, top, visible) {
         var e = entries[idx];
 
         if (idx === sel) {
-            display.drawRoundRect(8, y - 2, displayWidth - 16, MENU_ROW_H - 2, 3, secColor);
+            display.drawRoundRect(8, y - 2, displayWidth - 16, MENU_ROW_H, 3, secColor);
         }
         if (e.icon) {
             renderBitmap(14, y + 1, e.icon, ICON_W, ICON_H, priColor);
