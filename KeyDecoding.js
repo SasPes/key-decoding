@@ -1114,11 +1114,11 @@ function isVerifiedOutline(name, outline) {
 // Scrolling menu with an icon per row. entries: [{ label, value, icon }].
 // Returns the chosen value, or null if the user backs out.
 var MENU_LIST_TOP = 36;
-var MENU_ROW_H = 26;
+var MENU_ROW_H = 24;
 
 /**
  * Render one frame of the icon menu: title, divider, the visible window of
- * rows (icon + label) with the selected row boxed, and a footer hint.
+ * rows (icon + label) with the selected row boxed.
  * @param {string} title - Header text.
  * @param {{label:string,value:*,icon:ArrayBuffer}[]} entries - All rows.
  * @param {number} sel - Index of the selected row.
@@ -1155,9 +1155,6 @@ function drawMenu(title, entries, sel, top, visible) {
                 ICON_CHECK, ICON_CHECK_W, ICON_CHECK_H, secColor);
         }
     }
-
-    display.setTextSize(1);
-    display.drawString("Press Select to choose.", 12, displayHeight - 12);
 }
 
 /**
@@ -1170,7 +1167,7 @@ function drawMenu(title, entries, sel, top, visible) {
 function selectFromMenu(title, entries) {
     var sel = 0;
     var top = 0;
-    var visible = Math.floor((displayHeight - MENU_LIST_TOP - 16) / MENU_ROW_H);
+    var visible = Math.floor((displayHeight - MENU_LIST_TOP) / MENU_ROW_H);
     if (visible < 1) {
         visible = 1;
     }
