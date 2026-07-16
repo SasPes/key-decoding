@@ -1065,6 +1065,7 @@ function drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinS
 
 var key = null;
 var selectedPinIndex = 0;
+var lastBrandMenuSelection = 0;
 
 /**
  * Pick a generic category glyph for a brand: padlock, SFIC core, disc, angled
@@ -1178,10 +1179,14 @@ function drawMenu(title, entries, sel, top, visible, leftHeaderText) {
  * @param {{label:string,value:*,icon:ArrayBuffer}[]} entries - Selectable rows.
  * @param {function(number, Array): string} [keyCountTextFn] - Optional key-count
  * text generator called as (sel, entries), e.g. "3/40".
+ * @param {number} [initialSelection=0] - Initial highlighted row index.
  * @returns {*} The chosen entry's `value`, or null if the user backed out (Esc).
  */
-function selectFromMenu(title, entries, keyCountTextFn) {
-    var sel = 0;
+function selectFromMenu(title, entries, keyCountTextFn, initialSelection) {
+    var sel = (typeof initialSelection === "number") ? initialSelection : 0;
+    if (sel < 0 || sel >= entries.length) {
+        sel = 0;
+    }
     var top = 0;
     var visible = Math.floor((displayHeight - MENU_LIST_TOP) / MENU_ROW_H);
     if (visible < 1) {
@@ -1298,8 +1303,12 @@ function chooseAndCreateKey() {
             return "";
         }
         return (sel + 1) + "/" + total;
-    });
+    }, lastBrandMenuSelection);
     if (!type) type = "Exit";
+    var selectedBrandIndex = brandNames.indexOf(type);
+    if (selectedBrandIndex >= 0) {
+        lastBrandMenuSelection = selectedBrandIndex;
+    }
 
     if (type === "Instructions") {
         showInstructions();
