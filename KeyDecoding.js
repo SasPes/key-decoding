@@ -10,24 +10,65 @@ const bgColor = BRUCE_BGCOLOR;
 const priColor = BRUCE_PRICOLOR;
 const secColor = BRUCE_SECCOLOR;
 
-const version = "1.14.1";
+const version = "1.15.0";
 
 var logo = new Uint8Array([0x00,0x00,0x00,0x00,0xf0,0x03,0x00,0xfc,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xf8,0x07,0x00,0xfe,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3c,0x0f,0x00,0xcf,0x03,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x1c,0x0e,0x00,0x87,0x03,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x1c,0x0c,0x00,0x83,0x03,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x1c,0x0e,0x00,0x87,0x03,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3c,0x0e,0x00,0xc7,0x03,0x00,0x00,0x00,0x00,0x00,0x00,0x78,0x00,0xf8,0x07,0x00,0xfe,0x01,0xe0,0x01,0x00,0x00,0x00,0x00,0xfc,0x01,0xf0,0x03,0x00,0xfc,0x00,0xf8,0x03,0x00,0x00,0x00,0x00,0xfe,0x03,0xe0,0x07,0x00,0x7e,0x00,0xfc,0x07,0x00,0x00,0x00,0x00,0x87,0x03,0x00,0x0e,0x00,0x07,0x00,0x1c,0x0e,0x00,0x00,0x00,0x00,0x07,0x03,0x00,0x1c,0x80,0x03,0x00,0x0c,0x0e,0x00,0x00,0x00,0x00,0x07,0x03,0x00,0x38,0xc0,0x01,0x00,0x0c,0x0e,0x00,0x00,0x00,0x00,0x87,0x03,0x00,0x70,0xe0,0x00,0x00,0x1c,0x0e,0x00,0x00,0x00,0x00,0xfe,0x03,0x00,0x70,0xe0,0x00,0x00,0xfc,0x07,0x00,0x00,0x00,0x00,0xfc,0x03,0x00,0x70,0xe0,0x00,0x00,0xfc,0x03,0x00,0x00,0x00,0x00,0xf8,0x07,0x00,0x70,0xe0,0x00,0x00,0xfe,0x01,0x00,0x00,0x00,0x00,0x00,0x0e,0x00,0x70,0xe0,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x00,0x00,0x0c,0x00,0x70,0xe0,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x00,0x00,0x18,0x00,0x70,0xe0,0x00,0x80,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x38,0x00,0x70,0xe0,0x00,0xc0,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x70,0x00,0x70,0xe0,0x00,0xe0,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xe0,0x00,0x70,0xe0,0x00,0x70,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xc0,0x01,0x70,0xe0,0x00,0x38,0x00,0x00,0x00,0x00,0x00,0x3e,0x00,0x80,0x03,0x70,0xe0,0x00,0x1c,0x00,0xc0,0x07,0x00,0x00,0x7f,0x00,0x00,0x07,0x70,0xe0,0x00,0x0e,0x00,0xe0,0x0f,0x00,0x00,0xe7,0x00,0x00,0x06,0x70,0xe0,0x00,0x06,0x00,0x70,0x0e,0x00,0x80,0xc3,0x01,0x00,0x0c,0x70,0xe0,0x00,0x03,0x00,0x38,0x1c,0x00,0x80,0xc3,0xff,0x0f,0x1c,0x70,0xe0,0x80,0x03,0xff,0x3f,0x1c,0x00,0x80,0xc3,0xff,0x1f,0x38,0x70,0xe0,0xc0,0x81,0xff,0x3f,0x1c,0x00,0x80,0xc3,0x01,0x38,0x30,0x70,0xe0,0xc0,0xc0,0x01,0x38,0x1c,0x00,0x00,0xff,0x00,0x70,0x60,0x70,0xe0,0x60,0xe0,0x00,0xf0,0x0f,0x00,0x00,0x7e,0x00,0xe0,0xe0,0x70,0xe0,0x70,0x70,0x00,0xe0,0x07,0x00,0x00,0x3c,0x00,0xc0,0xc1,0x70,0xe0,0x30,0x38,0x00,0xc0,0x03,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc3,0x70,0xe0,0x30,0x1c,0x00,0x00,0x00,0x00,0xf8,0x03,0x00,0x80,0xc3,0xfc,0xff,0x33,0x1c,0x00,0x00,0xfc,0x01,0xfc,0x03,0x00,0x80,0xc3,0xff,0xff,0x3f,0x1c,0x00,0x00,0xfc,0x03,0x1c,0x07,0x00,0x80,0xc3,0x1f,0x80,0x3f,0x1c,0x00,0x00,0x8e,0x03,0x0e,0x07,0x00,0x80,0xf3,0x03,0x00,0xfc,0x1c,0x00,0x00,0x0e,0x07,0x0e,0x0f,0x00,0x80,0x7b,0x00,0x00,0xe0,0x1d,0x00,0x00,0x0f,0x07,0x0e,0x07,0x00,0x80,0x3f,0x00,0x00,0xc0,0x1f,0x00,0x00,0x0e,0x07,0x1c,0x07,0x00,0x80,0x1f,0xc0,0x3f,0x80,0x1f,0x00,0x00,0x8e,0x03,0xfc,0x03,0x00,0x80,0x07,0xf0,0xff,0x00,0x1e,0x00,0x00,0xfc,0x03,0xf8,0x01,0x00,0xc0,0x03,0xf8,0xff,0x01,0x3c,0x00,0x00,0xf8,0x01,0xf0,0x00,0x00,0xc0,0x01,0xfc,0xff,0x03,0x38,0x00,0x00,0xf0,0x00,0x60,0x00,0x00,0xe0,0x00,0xfe,0xff,0x07,0x70,0x00,0x00,0x60,0x00,0x60,0x00,0x00,0x70,0x00,0xfe,0xff,0x07,0xe0,0x00,0x00,0x60,0x00,0x60,0x00,0x00,0x70,0x00,0x7f,0xe0,0x0f,0xe0,0x00,0x00,0x60,0x00,0x60,0x00,0x00,0x38,0x00,0x3f,0xc0,0x0f,0xc0,0x01,0x00,0x60,0x00,0x60,0x00,0x00,0x3c,0x00,0x3f,0xc0,0x0f,0xc0,0x03,0x00,0x60,0x00,0x60,0x00,0x00,0x1c,0x00,0x3f,0xc0,0x0f,0x80,0x03,0x00,0x60,0x00,0x60,0x00,0x00,0x1c,0x80,0x1f,0x80,0x1f,0x80,0x03,0x00,0x60,0x00,0x60,0x00,0x00,0x0c,0x80,0x1f,0x80,0x1f,0x00,0x03,0x00,0x60,0x00,0x60,0x00,0x00,0x0e,0x80,0x1f,0x80,0x1f,0x00,0x07,0x00,0x60,0x00,0x60,0x00,0x00,0x0e,0x80,0x1f,0x80,0x1f,0x00,0x07,0x00,0x60,0x00,0x60,0x00,0x00,0x0e,0xf0,0xff,0xff,0xff,0x00,0x07,0x00,0x60,0x00,0x60,0x00,0x00,0x0f,0xf8,0xff,0xff,0xff,0x01,0x0f,0x00,0x60,0x00,0xe0,0xff,0xff,0x07,0xf8,0xff,0xff,0xff,0x01,0xfe,0xff,0x7f,0x00,0xe0,0xff,0xff,0x07,0xf8,0xff,0xff,0xff,0x01,0xfe,0xff,0x7f,0x00,0x00,0x00,0x00,0x07,0xf8,0xff,0xff,0xff,0x01,0x0e,0x00,0x00,0x00,0x00,0x00,0x00,0x07,0xf8,0xff,0xff,0xff,0x01,0x0e,0x00,0x00,0x00,0xc0,0xff,0xff,0x07,0xc0,0xff,0xf9,0x3f,0x00,0xfe,0xff,0x3f,0x00,0xe0,0xff,0xff,0x07,0xf8,0xff,0xf0,0xff,0x01,0xfe,0xff,0x7f,0x00,0xe0,0xff,0xff,0x0f,0xf8,0xff,0xf0,0xff,0x01,0xff,0xff,0x7f,0x00,0x60,0x00,0x00,0x0e,0xf8,0xff,0xf0,0xff,0x01,0x07,0x00,0x60,0x00,0x60,0x00,0x00,0x0e,0xf8,0xff,0xf0,0xff,0x01,0x07,0x00,0x60,0x00,0x60,0x00,0x00,0x0e,0xc0,0xff,0xf9,0x3f,0x00,0x07,0x00,0x60,0x00,0x60,0x00,0x00,0x0c,0xf8,0xff,0xf0,0xff,0x01,0x03,0x00,0x60,0x00,0x60,0x00,0x00,0x1c,0xf8,0xff,0xf0,0xff,0x81,0x03,0x00,0x60,0x00,0x60,0x00,0x00,0x1c,0xf8,0xff,0xf0,0xff,0x81,0x03,0x00,0x60,0x00,0x60,0x00,0x00,0x3c,0xf0,0xff,0xf0,0xff,0xc0,0x03,0x00,0x60,0x00,0xf8,0x01,0x00,0x38,0xf8,0xff,0xff,0xff,0xc1,0x01,0x00,0xf8,0x01,0xfc,0x03,0x00,0x70,0xf8,0xff,0xff,0xff,0xe1,0x00,0x00,0xfc,0x03,0x9c,0x07,0x00,0x70,0xf8,0xff,0xff,0xff,0xe1,0x00,0x00,0x9e,0x03,0x0e,0x07,0x00,0xe0,0xf8,0xff,0xff,0xff,0x71,0x00,0x00,0x0e,0x07,0x0e,0x07,0x00,0xc0,0xf9,0xff,0xff,0xff,0x39,0x00,0x00,0x0e,0x07,0x0e,0x07,0x00,0xc0,0xf3,0xff,0xff,0xff,0x3c,0x00,0x00,0x0e,0x07,0x0e,0x07,0x00,0x80,0x07,0x00,0x00,0x00,0x1e,0x00,0x00,0x0e,0x07,0xfc,0x03,0x00,0x00,0x1f,0x00,0x00,0x80,0x0f,0x00,0x00,0xfc,0x03,0xf8,0x01,0x00,0x00,0x3e,0x00,0x00,0xc0,0x07,0x00,0x00,0xf8,0x01,0xf0,0x00,0x00,0x00,0x78,0x00,0x00,0xe0,0x01,0x00,0x00,0xf0,0x00,0x00,0x00,0x00,0x00,0xf0,0x03,0x00,0xfc,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xc0,0x1f,0x80,0x3f,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xff,0xff,0x0f,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xfc,0xff,0x03,0x00,0x00,0x00,0x00,0x00]).buffer;
 
+// --- Menu icons (20x20, 1-bit, same bit order as the logo / renderBitmap) ---
+var ICON_W = 20, ICON_H = 20;
+var ICON_KEY = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x70,0x00,0x00,0xfc,0x01,0x00,0xfc,0x01,0x00,0xde,0xff,0x07,0x8e,0xff,0x07,0xde,0xff,0x07,0xfc,0xb1,0x01,0xfc,0xb1,0x01,0x70,0xb0,0x01,0x00,0x80,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]).buffer;
+var ICON_PADLOCK = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x1f,0x00,0x80,0x20,0x00,0x40,0x40,0x00,0x20,0x80,0x00,0x20,0x80,0x00,0x20,0x80,0x00,0x20,0x80,0x00,0xf8,0xff,0x03,0xf8,0xff,0x03,0xf8,0xfb,0x03,0xf8,0xf1,0x03,0xf8,0xf1,0x03,0xf8,0xf1,0x03,0xf8,0xf1,0x03,0xf8,0xf1,0x03,0xf8,0xff,0x03,0xf8,0xff,0x03,0x00,0x00,0x00]).buffer;
+var ICON_CORE = new Uint8Array([0x00,0x00,0x00,0x00,0x1f,0x00,0x80,0x20,0x00,0x40,0x40,0x00,0x20,0x8e,0x00,0x20,0x9f,0x00,0x20,0x9f,0x00,0x20,0x9f,0x00,0x20,0x8e,0x00,0x40,0x5f,0x00,0x80,0x20,0x00,0x40,0x40,0x00,0x20,0x8e,0x00,0x20,0x9f,0x00,0x20,0x9f,0x00,0x20,0x9f,0x00,0x20,0x8e,0x00,0x40,0x40,0x00,0x80,0x20,0x00,0x00,0x1f,0x00]).buffer;
+var ICON_DISC = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x1f,0x00,0xc0,0x60,0x00,0x20,0x80,0x00,0x10,0x1f,0x01,0x88,0x2e,0x02,0x48,0x4e,0x02,0x24,0x8e,0x04,0x24,0x8e,0x04,0x24,0x8e,0x04,0x24,0x8e,0x04,0x24,0x8e,0x04,0x48,0x4e,0x02,0x88,0x2e,0x02,0x10,0x1f,0x01,0x20,0x80,0x00,0xc0,0x60,0x00,0x00,0x1f,0x00,0x00,0x00,0x00]).buffer;
+var ICON_ANGLE = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x20,0x80,0x00,0x40,0x40,0x00,0x80,0x31,0x00,0x00,0x0a,0x00,0x00,0x04,0x00,0x20,0x80,0x00,0x40,0x40,0x00,0x80,0x31,0x00,0x00,0x0a,0x00,0x00,0x04,0x00,0x20,0x80,0x00,0x40,0x40,0x00,0x80,0x31,0x00,0x00,0x0a,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00]).buffer;
+var ICON_INFO = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x1f,0x00,0xc0,0x60,0x00,0x20,0x80,0x00,0x10,0x0e,0x01,0x08,0x0e,0x02,0x08,0x0e,0x02,0x04,0x00,0x04,0x04,0x0e,0x04,0x04,0x0e,0x04,0x04,0x0e,0x04,0x04,0x0e,0x04,0x08,0x0e,0x02,0x08,0x0e,0x02,0x10,0x0e,0x01,0x20,0x80,0x00,0xc0,0x60,0x00,0x00,0x1f,0x00,0x00,0x00,0x00]).buffer;
+var ICON_LOAD = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x04,0x00,0x00,0x04,0x00,0x00,0x04,0x00,0x00,0x04,0x00,0x00,0x04,0x00,0x40,0x44,0x00,0x80,0x24,0x00,0x00,0x15,0x00,0x00,0x0e,0x00,0x08,0x04,0x02,0x08,0x00,0x02,0x08,0x00,0x02,0x08,0x00,0x02,0x08,0x00,0x02,0xf8,0xff,0x03,0x00,0x00,0x00,0x00,0x00,0x00]).buffer;
+var ICON_EXIT = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0xf8,0x03,0x00,0x08,0x02,0x00,0x08,0x02,0x00,0x08,0x02,0x00,0x08,0x22,0x00,0x08,0x42,0x00,0x08,0x82,0x00,0x08,0x02,0x01,0x88,0xff,0x03,0x08,0x02,0x01,0x08,0x82,0x00,0x08,0x42,0x00,0x08,0x22,0x00,0x08,0x02,0x00,0x08,0x02,0x00,0x08,0x02,0x00,0xf8,0x03,0x00,0x00,0x00,0x00]).buffer;
+var ICON_DECODE = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0xe0,0x03,0x00,0x10,0x04,0x00,0xc8,0x09,0x00,0x24,0x12,0x00,0x14,0x14,0x00,0x14,0x14,0x00,0x14,0x14,0x00,0x24,0x12,0x00,0xc8,0x09,0x00,0x10,0x1c,0x00,0xe0,0x3b,0x00,0x00,0x70,0x00,0x00,0xe0,0x00,0x00,0xc0,0x01,0x00,0x80,0x03,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x00,0x00]).buffer;
+var ICON_RANDOM = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xf8,0xff,0x01,0x08,0x00,0x01,0x48,0x20,0x01,0xe8,0x70,0x01,0x48,0x20,0x01,0x08,0x02,0x01,0x08,0x07,0x01,0x08,0x02,0x01,0x08,0x00,0x01,0x48,0x20,0x01,0xe8,0x70,0x01,0x48,0x20,0x01,0x08,0x00,0x01,0xf8,0xff,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]).buffer;
+var ICON_BACK = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x03,0x00,0x80,0x01,0x00,0xc0,0x00,0x00,0x20,0x00,0x00,0xf0,0xff,0x01,0xf0,0xff,0x01,0x20,0x00,0x00,0xc0,0x00,0x00,0x80,0x01,0x00,0x00,0x03,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]).buffer;
+
+// Verified-key badge: 14x14 checkmark.
+var ICON_CHECK_W = 14, ICON_CHECK_H = 14;
+var ICON_CHECK = new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x30,0x00,0x18,0x00,0x0c,0x00,0x06,0x03,0x03,0x86,0x01,0xcc,0x00,0x78,0x00,0x30,0x00,0x00,0x00,0x00,0x00,0x00,0x00]).buffer;
+
+/**
+ * Draw a 1-bit bitmap (XBM / LSB-first byte order) pixel by pixel.
+ * @param {number} x - Left position on screen.
+ * @param {number} y - Top position on screen.
+ * @param {ArrayBuffer} bitmap - Packed 1-bpp data, row-major, LSB-first.
+ * @param {number} width - Bitmap width in pixels.
+ * @param {number} height - Bitmap height in pixels.
+ * @param {number} color - Colour for set (1) pixels.
+ * @param {number} [bgColor] - Optional colour for unset (0) pixels; if omitted, unset pixels are skipped (transparent).
+ */
 function renderBitmap(x, y, bitmap, width, height, color, bgColor) {
     var data = new Uint8Array(bitmap);
-    var byteWidth = Math.floor((width + 7) / 8);
+    var byteWidth = (width + 7) >> 3;
+    var hasBg = bgColor !== undefined;
 
     for (var j = 0; j < height; j++) {
-        for (var i = 0; i < width; i++) {
-            var byteIndex = j * byteWidth + Math.floor(i / 8);
-            var bitIndex = i % 8;
-            var pixel = (data[byteIndex] >> bitIndex) & 1;
-
+        var rowStart = j * byteWidth;
+        var i = 0;
+        while (i < width) {
+            var pixel = (data[rowStart + (i >> 3)] >> (i & 7)) & 1;
+            var runStart = i;
+            i++;
+            while (i < width && ((data[rowStart + (i >> 3)] >> (i & 7)) & 1) === pixel) {
+                i++;
+            }
             if (pixel) {
-                display.drawPixel(x + i, y + j, color);
-            } else if (bgColor !== undefined) {
-                display.drawPixel(x + i, y + j, bgColor);
+                if (i - runStart === 1) {
+                    display.drawPixel(x + runStart, y + j, color);
+                } else {
+                    display.drawLine(x + runStart, y + j, x + i - 1, y + j, color);
+                }
+            } else if (hasBg) {
+                if (i - runStart === 1) {
+                    display.drawPixel(x + runStart, y + j, bgColor);
+                } else {
+                    display.drawLine(x + runStart, y + j, x + i - 1, y + j, bgColor);
+                }
             }
         }
     }
@@ -37,12 +78,10 @@ display.fill(bgColor);
 display.setTextColor(priColor);
 display.setTextSize(1);
 display.drawString("SasPes", 10, 10);
-display.drawString(version, displayWidth - 10 - 6 * 5, 10);
+display.drawString(version, displayWidth - 10 - version.length * 6, 10);
 display.setTextSize(3);
 display.drawString("Key Decoding", (displayWidth - 18 * 12) / 2, displayHeight - 40);
 
-// display.drawXBitmap() is not working in Bruce Release 1.14
-// display.drawXBitmap((displayWidth - 100) / 2, 20, logo, 100, 100, priColor, bgColor);
 renderBitmap((displayWidth - 100) / 2, 20, logo, 100, 100, priColor, bgColor);
 
 delay(500);
@@ -104,7 +143,7 @@ var keys = {
         pinNumbersOffset: -4
     },
     Best: {
-        outlines: ["7 pins"],
+        outlines: ["6 pins/A2", "7 pins/A2"],
         pinSpacing: 29,
         maxKeyCut: 10,
         flatSpotWidth: 6,
@@ -131,7 +170,8 @@ var keys = {
         edgeOffsetY: 1
     },
     Yale: {
-        outlines: ["5 pins"],
+        // Yale Y1 (5 pins) / Y2 (6 pins). Same DSD: depths 0-9, .165" spacing.
+        outlines: ["5 pins/Y1", "6 pins/Y2"],
         pinSpacing: 31,
         maxKeyCut: 10,
         cutDepthOffset: 3,
@@ -188,8 +228,250 @@ var keys = {
         edgeOffsetX: 9,
         edgeOffsetY: -7
     },
+    Weiser: {
+        outlines: ["5 pins/WR5", "6 pins/WR3"],
+        pinSpacing: 30,
+        maxKeyCut: 10,
+        cutDepthOffset: 3,
+        flatSpotWidth: 10,
+        edgeOffsetX: 15,
+        pinsStartAtZero: true
+    },
+    Weslock: {
+        outlines: ["5 pins"],
+        pinSpacing: 30,
+        maxKeyCut: 10,
+        cutDepthOffset: 3,
+        flatSpotWidth: 10,
+        edgeOffsetX: 15,
+        pinsStartAtZero: true
+    },
+    Sargent: {
+        outlines: ["5 pins/LA", "6 pins/LA"],
+        pinSpacing: 32,
+        maxKeyCut: 10,
+        cutDepthOffset: 3,
+        flatSpotWidth: 8,
+        edgeOffsetX: 5,
+        pinNumbersOffset: -3
+    },
+    National: {
+        outlines: ["5 pins/D8775"],
+        pinSpacing: 30,
+        maxKeyCut: 10,
+        cutDepthOffset: 3,
+        flatSpotWidth: 8,
+        edgeOffsetX: 5,
+        pinsStartAtZero: true
+    },
+    Lockwood: {
+        outlines: ["5 pins/LW4", "6 pins/LW5"],
+        pinSpacing: 30,
+        maxKeyCut: 10,
+        cutDepthOffset: 3,
+        flatSpotWidth: 10,
+        edgeOffsetX: 10,
+        pinsStartAtZero: true
+    },
+    // --- Automotive / power-sport 2-sided keys (sourced from KeyCopier) ---
+    // For some of these the displayed bitting is taken as symmetric and renders 
+    // the same depth on the top and bottom faces at each position.
+    Ford: {
+        displayName: "Ford",
+        outlines: ["8 cuts/H75"],
+        isDoubleSided: true,
+        pinSpacing: 22,
+        maxKeyCut: 5,
+        cutDepthOffset: 3,
+        flatSpotWidth: 4
+    },
+    Chevrolet: {
+        displayName: "Chevy",
+        outlines: ["10 cuts/B102"],
+        isDoubleSided: true,
+        pinSpacing: 20,
+        maxKeyCut: 4,
+        cutDepthOffset: 3,
+        flatSpotWidth: 4
+    },
+    Dodge: {
+        displayName: "Dodge",
+        outlines: ["8 cuts/Y159"],
+        isDoubleSided: true,
+        pinSpacing: 22,
+        maxKeyCut: 4,
+        cutDepthOffset: 3,
+        flatSpotWidth: 4
+    },
+    Kawasaki: {
+        displayName: "Kawasaki",
+        outlines: ["6 cuts/KA14"],
+        isDoubleSided: true,
+        pinSpacing: 26,
+        maxKeyCut: 4,
+        cutDepthOffset: 3,
+        flatSpotWidth: 4
+    },
+    Subaru: {
+        displayName: "Subaru",
+        outlines: ["9 cuts/DSD435"],
+        isInternalCut: true,
+        pinSpacing: 22,
+        maxKeyCut: 3,
+        cutDepthOffset: 4,
+        flatSpotWidth: 3,
+        // DSD 435 is asymmetric: 4 cuts on the top track, 5 on the bottom,
+        // with the top cuts staggered by half a position so they sit between
+        // the bottom cuts (units of pinSpacing).
+        topCutCount: 4,
+        topCutOffset: 0.5
+    },
+
+    Suzuki: {
+        displayName: "Suzuki",
+        outlines: ["7 cuts/SUZ18"],
+        isDoubleSided: true,
+        pinSpacing: 24,
+        maxKeyCut: 4,
+        cutDepthOffset: 3,
+        flatSpotWidth: 4
+    },
+    Yamaha: {
+        displayName: "Yamaha",
+        outlines: ["7 cuts/YM63"],
+        isDoubleSided: true,
+        pinSpacing: 24,
+        maxKeyCut: 4,
+        cutDepthOffset: 3,
+        flatSpotWidth: 4
+    },
+    RV: {
+        displayName: "RV",
+        outlines: ["5 cuts"],
+        isDoubleSided: true,
+        pinSpacing: 28,
+        maxKeyCut: 3,
+        cutDepthOffset: 4,
+        flatSpotWidth: 5
+    }
 };
 
+/*
+    Interchangeable keys.
+
+    Some lock brands share identical Depth-and-Spacing Data (DSD) with a brand
+    already defined in `keys` above, with the same cut positions and depth
+    increments. 
+
+    An alias names a `base` (any key in `keys`) and inherits every cut parameter
+    from it; you normally override only `displayName` and `outlines`. 
+*/
+var interchangeable = {
+    Lincoln: {
+        base: "Ford",
+        displayName: "Lincoln"
+    },
+    Mercury: {
+        base: "Ford",
+        displayName: "Mercury"
+    },
+
+    Buick: {
+        base: "Chevrolet",
+        displayName: "Buick"
+    },
+    Pontiac: {
+        base: "Chevrolet",
+        displayName: "Pontiac"
+    },
+    Oldsmobile: {
+        base: "Chevrolet",
+        displayName: "Oldsmobile"
+    },
+    GMC: {
+        base: "Chevrolet",
+        displayName: "GMC"
+    },
+
+    Chrysler: {
+        base: "Dodge",
+        displayName: "Chrysler"
+    },
+    Plymouth: {
+        base: "Dodge",
+        displayName: "Plymouth"
+    },
+    Jeep: {
+        base: "Dodge",
+        displayName: "Jeep"
+    },
+
+
+    // --- Best A2 small-format interchangeable core group (base: Best) ---
+    Falcon: {
+        base: "Best",
+        displayName: "Falcon",
+        outlines: ["6 pins/A", "7 pins/A"]
+    },
+    Arrow: {
+        base: "Best",
+        displayName: "Arrow",
+        outlines: ["6 pins/A", "7 pins/A"]
+    },
+    Eagle: {
+        base: "Best",
+        displayName: "Eagle",
+        outlines: ["6 pins/A", "7 pins/A"]
+    },
+    KSP: {
+        base: "Best",
+        displayName: "KSP",
+        outlines: ["6 pins/A", "7 pins/A"]
+    },
+    GMS: {
+        base: "Best",
+        displayName: "GMS",
+        outlines: ["6 pins/A", "7 pins/A"]
+    }
+};
+
+// Resolve each interchangeable key into a full entry by copying its base
+// spec and applying overrides. After this runs, the rest of the script treats
+// these brands exactly like any natively-defined key.
+(function () {
+    var names = Object.keys(interchangeable);
+    for (var i = 0; i < names.length; i++) {
+        var name = names[i];
+        var def = interchangeable[name];
+        var base = keys[def.base];
+        if (base) {
+            var merged = {};
+
+            var baseProps = Object.keys(base);
+            for (var b = 0; b < baseProps.length; b++) {
+                merged[baseProps[b]] = base[baseProps[b]];
+            }
+
+            var defProps = Object.keys(def);
+            for (var d = 0; d < defProps.length; d++) {
+                if (defProps[d] !== "base") {
+                    merged[defProps[d]] = def[defProps[d]];
+                }
+            }
+
+            keys[name] = merged;
+        }
+    }
+})();
+
+/**
+ * A selected key being decoded or randomized. Holds the per-cut depth array
+ * and the draw/save/load behaviour. Geometry comes from keys[type].
+ * @constructor
+ * @param {string} type - Brand key into the `keys` table (e.g. "Schlage"), or "Load"/"Exit".
+ * @param {string} outline - Chosen outline string (e.g. "5 pins/SC1"); leading digits give the cut count.
+ * @param {string} show - "decode" (user edits cuts) or "random" (generated practice key).
+ */
 function Key(type, outline, show) {
     this.type = type;
     this.outline = outline;
@@ -207,7 +489,7 @@ function Key(type, outline, show) {
             } else {
                 for (var i = 0; i < pinCount; i++) {
                     var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
-                    this.pins.push(Math.floor(Math.random() * maxKeyCut - 1) + 1);
+                    this.pins.push(Math.floor(Math.random() * maxKeyCut));
                 }
                 // Ensure last disk shows as 1 for disk detainer (internal index 0)
                 if (keys[this.type] && keys[this.type].isDiskDetainer && pinCount > 0) {
@@ -217,12 +499,13 @@ function Key(type, outline, show) {
         }
     }
 
+    /** Regenerate a fresh random bitting for a "random" key. */
     this.updatePins = function () {
-        var pinCount = parseInt(outline.substring(0, 2), 10);
+        var pinCount = parseInt(this.outline.substring(0, 2), 10);
         this.pins = [];
         for (var i = 0; i < pinCount; i++) {
             var maxKeyCut = (keys[this.type] && keys[this.type].maxKeyCut) || 9;
-            this.pins.push(Math.floor(Math.random() * maxKeyCut - 1) + 1);
+            this.pins.push(Math.floor(Math.random() * maxKeyCut));
         }
         // Ensure last disk shows as 1 for disk detainer (internal index 0)
         if (keys[this.type] && keys[this.type].isDiskDetainer && pinCount > 0) {
@@ -230,6 +513,7 @@ function Key(type, outline, show) {
         }
     };
 
+    /** Redraw the full decode screen: title, Save/Load actions, numbers and blade. */
     this.draw = function () {
         var numberOfActions = 2; // Save, Load
         if (selectedPinIndex >= this.pins.length + numberOfActions) {
@@ -241,11 +525,12 @@ function Key(type, outline, show) {
         display.setTextSize(2);
 
         var displayName = keys[this.type] && keys[this.type].displayName || this.type;
-        if (displayName.length > 12) {
+        var titleLine = displayName + " - " + this.outline;
+        if (titleLine.length > 12) {
             display.drawString(displayName, 10, 10);
             display.drawString(this.outline, 10, 28);
         } else {
-            display.drawString(displayName + " - " + this.outline, 10, 10);
+            display.drawString(titleLine, 10, 10);
         }
 
         if (this.show === "decode") {
@@ -271,6 +556,7 @@ function Key(type, outline, show) {
         drawPinsWithUnderline(this.pins, selectedPinIndex, this.show, pinSpacing, this.type);
     };
 
+    /** Serialise this key to /keys/key_<type>_<bitting>_<ts>.json via storage.write. */
     this.save = function () {
         var data = {
             type: this.type,
@@ -286,6 +572,10 @@ function Key(type, outline, show) {
         selectedPinIndex = 0;
     };
 
+    /**
+     * Load a key from a saved JSON string and switch to decode mode.
+     * @param {string} keyData - JSON produced by save().
+     */
     this.load = function (keyData) {
         if (keyData) {
             var data = JSON.parse(keyData);
@@ -298,91 +588,151 @@ function Key(type, outline, show) {
     };
 }
 
-function generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth, cutDepthOffset, zeroCutOffset) {
-    var dipShapes = {};
+/**
+ * Compute the blade's bottom edge as a per-column depth array by sweeping
+ * every cut and taking the deepest contribution at each x. A real cutter
+ * wheel moves through the metal at a fixed angle, so adjacent deep cuts share
+ * one continuous valley between them instead of springing back up to the
+ * blade top -- which is what removes the spiky look produced by per-cut Vs
+ * for bittings like "99461".
+ * @param {number} startX - Blade left edge (pixels).
+ * @param {number} totalLength - Number of columns to compute.
+ * @param {number} pinSpacing - Horizontal pixels between cut centres.
+ * @param {number} pinCount - Number of cut positions.
+ * @param {number[]} pins - Depth index per cut position.
+ * @param {number} flatSpotWidth - Pixels of flat at the bottom of each cut.
+ * @param {number} cutDepthOffset - Pixels of depth per depth step (cut > 0).
+ * @param {number} zeroCutOffset - Depth (px) applied to cut index 0.
+ * @returns {number[]} profile[c] = pixels below blade top at column startX + c.
+ */
+function generateBladeProfile(startX, totalLength, pinSpacing, pinCount, pins, flatSpotWidth, cutDepthOffset, zeroCutOffset) {
+    var flatHalfWidth = Math.floor(flatSpotWidth / 2);
+    // ~45-degree cutter (90-degree included angle): 1 px of depth per 1 px of
+    // horizontal travel. A constant slope makes two equal-depth neighbours
+    // share one flat-bottomed valley instead of forming two adjacent Vs.
+    var slope = 1;
 
-    for (var cut = 0; cut < maxKeyCut; cut++) {
-        var shape = [];
-        var centerIndex = Math.floor(pinSpacing / 2);
-        var cutDepth = cut * cutDepthOffset;
-        var flatHalfWidth = Math.floor(flatSpotWidth / 2);
+    var profile = [];
+    for (var col = 0; col < totalLength; col++) {
+        var maxDepth = 0;
+        var px = startX + col;
+        for (var i = 0; i < pinCount; i++) {
+            var pinValue = pins[i] || 0;
+            var depthAtCenter = (pinValue === 0) ? zeroCutOffset : pinValue * cutDepthOffset;
+            if (depthAtCenter <= 0) continue;
 
-        for (var i = 0; i < pinSpacing; i++) {
-            var distanceFromCenter = Math.abs(i - centerIndex);
-
-            if (cut === 0) {
-                if (distanceFromCenter <= flatSpotWidth) {
-                    shape[i] = zeroCutOffset;
-                } else {
-                    shape[i] = 0;
-                }
+            var pinCenter = startX + (i + 1) * pinSpacing;
+            var distance = Math.abs(px - pinCenter);
+            var here;
+            if (distance <= flatHalfWidth) {
+                here = depthAtCenter;
             } else {
-                if (distanceFromCenter <= flatHalfWidth) {
-                    shape[i] = cutDepth;
-                } else {
-                    var slopeDistance = distanceFromCenter - flatHalfWidth;
-                    var remainingDistance = centerIndex - flatHalfWidth;
-                    var depth = cutDepth - Math.floor(slopeDistance * (cutDepth - 1) / remainingDistance);
-                    shape[i] = Math.max(1, depth);
-                }
+                here = depthAtCenter - (distance - flatHalfWidth) * slope;
+            }
+            if (here > maxDepth) {
+                maxDepth = here;
             }
         }
-
-        dipShapes[cut] = shape;
+        profile[col] = maxDepth;
     }
 
-    return dipShapes;
+    return profile;
 }
 
+/**
+ * Draw the blade silhouette of a pin-tumbler key (the cut bottom edge plus the
+ * tip diagonal and bottom edge) for the given bitting.
+ * @param {number} x - Left of the blade.
+ * @param {number} y - Top (uncut) edge of the blade.
+ * @param {number} width - Blade width in px (pinSpacing * pin count).
+ * @param {number} height - Blade height in px.
+ * @param {number} color - Line colour.
+ * @param {number} pinCount - Number of cut positions.
+ * @param {number[]} pins - Depth index per position.
+ * @param {string} keyType - Brand key into `keys` for geometry.
+ */
 function drawKeyShape(x, y, width, height, color, pinCount, pins, keyType) {
     var keyConfig = keys[keyType] || {};
 
     var pinSpacing = keyConfig.pinSpacing || 31;
-    var maxKeyCut = keyConfig.maxKeyCut || 9;
     var flatSpotWidth = keyConfig.flatSpotWidth || 5;
     var cutDepthOffset = keyConfig.cutDepthOffset || 5;
     var zeroCutOffset = keyConfig.zeroCutOffset || 0;
-    var dipShapes = generateDipShapes(pinSpacing, maxKeyCut, flatSpotWidth, cutDepthOffset, zeroCutOffset);
 
     var edgeOffsetX = keyConfig.edgeOffsetX || 0;
     var edgeOffsetY = keyConfig.edgeOffsetY || 0;
+    var isDoubleSided = !!keyConfig.isDoubleSided;
 
-    for (var px = Math.round(x); px <= Math.round(x + width + pinSpacing / 2); px++) {
-        var py = y;
-        for (var i = 0; i < pinCount; i++) {
-            var pinValue = pins && pins[i];
-            var dipShape = dipShapes[pinValue];
-            if (dipShape) {
-                var dipWidth = dipShape.length;
-                var pinCenter = Math.round(x + (i + 1) * pinSpacing);
-                var dipStart = pinCenter - Math.floor(dipWidth / 2);
-                var dipEnd = pinCenter + Math.floor(dipWidth / 2);
-                if (px >= dipStart && px < dipEnd) {
-                    var dipIdx = px - dipStart;
-                    py = y + dipShape[dipIdx];
-                    break;
-                }
-            }
-        }
-        display.drawPixel(px, py, color);
-    }
+    var startPx = Math.round(x);
+    var endPx = Math.round(x + width + pinSpacing / 2);
+    var totalLength = endPx - startPx + 1;
+    var profile = generateBladeProfile(startPx, totalLength, pinSpacing, pinCount, pins,
+                                       flatSpotWidth, cutDepthOffset, zeroCutOffset);
 
     var edgeX = x + width + pinSpacing / 2 + edgeOffsetX;
     var edgeY = y + height + edgeOffsetY;
-    var diagLength = 30;
-    var diagBottomX = edgeX + diagLength;
-    var diagBottomY = edgeY - diagLength;
 
-    // Draw diagonals
-    display.drawLine(edgeX, edgeY, diagBottomX, diagBottomY, color); // bottom-right diagonal
+    // Sidewinder / internal-cut keys are drawn entirely by
+    // drawInternalCutPinsWithUnderline; they never reach this path.
 
-    // Draw straight bottom edge
-    display.drawLine(x, edgeY, edgeX, edgeY, color);
+    // Top cut profile: cuts come down from the blade's uncut top edge.
+    var prevPy = y + profile[0];
+    for (var col = 0; col < totalLength; col++) {
+        var py = y + profile[col];
+        // Bridge vertical gaps between adjacent columns so steep slopes (and
+        // the inside walls at the start/end of a deep cut) stay connected
+        // instead of breaking into disconnected pixels.
+        if (col > 0 && Math.abs(py - prevPy) > 1) {
+            display.drawLine(startPx + col - 1, prevPy, startPx + col, py, color);
+        } else {
+            display.drawPixel(startPx + col, py, color);
+        }
+        prevPy = py;
+    }
+
+    if (isDoubleSided) {
+        // Mirror the cut profile on the bottom edge (automotive keys cut on
+        // both faces). Close the tip with a vertical between the two profile
+        // ends so the silhouette doesn't run off to a pointed diagonal.
+        var prevPyB = edgeY - profile[0];
+        for (var colB = 0; colB < totalLength; colB++) {
+            var pyB = edgeY - profile[colB];
+            if (colB > 0 && Math.abs(pyB - prevPyB) > 1) {
+                display.drawLine(startPx + colB - 1, prevPyB, startPx + colB, pyB, color);
+            } else {
+                display.drawPixel(startPx + colB, pyB, color);
+            }
+            prevPyB = pyB;
+        }
+        var tipX = startPx + totalLength - 1;
+        display.drawLine(tipX, y + profile[totalLength - 1], tipX, edgeY - profile[totalLength - 1], color);
+    } else {
+        // Single-sided: diagonal tip going up-right plus a flat bottom edge.
+        var diagLength = 30;
+        var diagBottomX = edgeX + diagLength;
+        var diagBottomY = edgeY - diagLength;
+        display.drawLine(edgeX, edgeY, diagBottomX, diagBottomY, color);
+        display.drawLine(x, edgeY, edgeX, edgeY, color);
+    }
 }
 
+/**
+ * Draw the row of depth numbers above the key and the blade beneath, with an
+ * underline under the currently selected cut. Delegates to the disk-detainer
+ * renderer when the key is a disc type.
+ * @param {number[]} pins - Depth index per cut position.
+ * @param {number} selectedPinIndex - Index of the highlighted cut (or an action index).
+ * @param {string} showMode - "decode" or "random".
+ * @param {number} pinSpacing - Horizontal pixels per cut position.
+ * @param {string} keyType - Brand key into `keys`.
+ */
 function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType) {
     if (keys[keyType] && keys[keyType].isDiskDetainer) {
         drawDisksWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType);
+        return;
+    }
+    if (keys[keyType] && keys[keyType].isInternalCut) {
+        drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType);
         return;
     }
 
@@ -413,6 +763,18 @@ function drawPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, key
     drawKeyShape(keyX, keyY, totalWidth, 66, priColor, pins.length, pins, keyType);
 }
 
+/**
+ * Draw the stepped blade of a disk-detainer key (e.g. Abloy), where each disc
+ * rotation maps to a discrete cut depth.
+ * @param {number} x - Left of the blade.
+ * @param {number} y - Vertical centre reference for the blade.
+ * @param {number} width - Blade width in px.
+ * @param {number} height - Vertical space available.
+ * @param {number} color - Line colour.
+ * @param {number} diskCount - Number of discs.
+ * @param {number[]} disks - Rotation index per disc.
+ * @param {string} keyType - Brand key into `keys`.
+ */
 function drawDiskKeyShape(x, y, width, height, color, diskCount, disks, keyType) {
     var keyConfig = keys[keyType] || {};
     var pinSpacing = keyConfig.pinSpacing || 32;
@@ -467,6 +829,15 @@ function drawDiskKeyShape(x, y, width, height, color, diskCount, disks, keyType)
     display.drawLine(30, bladeBottom + 10, entryX, bladeBottom, color);
 }
 
+/**
+ * Disk-detainer counterpart of drawPinsWithUnderline: draws the disc numbers
+ * and the disk-detainer blade with the selected disc underlined.
+ * @param {number[]} disks - Rotation index per disc.
+ * @param {number} selectedDiskIndex - Highlighted disc index.
+ * @param {string} showMode - "decode" or "random".
+ * @param {number} pinSpacing - Horizontal pixels per disc.
+ * @param {string} keyType - Brand key into `keys`.
+ */
 function drawDisksWithUnderline(disks, selectedDiskIndex, showMode, pinSpacing, keyType) {
     var startY = 55;
     var underlineY = startY + 15;
@@ -488,24 +859,430 @@ function drawDisksWithUnderline(disks, selectedDiskIndex, showMode, pinSpacing, 
     drawDiskKeyShape(keyX, keyY, totalWidth, 66, priColor, disks.length, disks, keyType);
 }
 
+/**
+ * Sidewinder / internal-cut counterpart of drawPinsWithUnderline. Splits the
+ * pins array in half: pins[0..half-1] are the top milled track, pins[half..]
+ * are the bottom milled track. Top-track depths display above the blade,
+ * bottom-track below, underline on whichever row holds the selected cut.
+ *
+ * Layout: the blade hugs the left screen edge and the area between the left
+ * edge and the first cut is drawn as a max-depth "leading groove" -- both
+ * tracks meet near the centre line, the same look a real TOY51 blade has
+ * before the cut features start. This gives the user a visual reference for
+ * aligning the cuts against the shoulder.
+ *
+ * @param {number[]} pins - Length = 2 * positions. pins[0..half-1] = top
+ *   track, pins[half..2*half-1] = bottom track.
+ * @param {number} selectedPinIndex - Highlighted cut (0..pins.length-1) or an
+ *   action index past the cuts.
+ * @param {string} showMode - "decode" or "random".
+ * @param {number} pinSpacing - Horizontal pixels per cut position.
+ * @param {string} keyType - Brand key into `keys`.
+ */
+function drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinSpacing, keyType) {
+    var keyConfig = keys[keyType] || {};
+    var cutDepthOffset = keyConfig.cutDepthOffset || 3;
+    var maxKeyCut = keyConfig.maxKeyCut || 4;
+    var flatSpotWidth = keyConfig.flatSpotWidth || 4;
+    var pinsStartCount = keyConfig.pinsStartAtZero === true;
+
+    // Top track may have fewer cuts than the bottom (e.g. Subaru DSD 435 is 4+5).
+    // Default to an even split when topCutCount isn't specified.
+    var topCount = (typeof keyConfig.topCutCount === "number")
+        ? keyConfig.topCutCount
+        : Math.floor(pins.length / 2);
+    var botCount = pins.length - topCount;
+
+    // Optional half-position stagger between the two tracks (units of pinSpacing).
+    // Subaru DSD 435 uses 0.5 so the 4 top cuts sit between the 5 bottom cuts.
+    var topCutOffsetUnits = (typeof keyConfig.topCutOffset === "number")
+        ? keyConfig.topCutOffset
+        : 0;
+    var topCutOffsetPx = Math.round(topCutOffsetUnits * pinSpacing);
+
+    // Blade dimensions at ~7.5 px/mm (see CLAUDE.md "Pixel scale"):
+    //   leadingGroove 90 px ~= 12 mm shoulder-to-first-cut runout
+    //   bladeHeight 56 px   ~= 7.5 mm blade height
+    //   trailingMargin      = room past the last cut for the 45-degree run
+    //                         from the last cut's depth out to the outer edge.
+    var bladeX = 6;
+    var leadingGroove = 90;
+    var bladeHeight = 56;
+    var maxDepth = (maxKeyCut - 1) * cutDepthOffset;
+    var trailingMargin = Math.floor(bladeHeight / 4) + maxDepth + 6;
+    var botFirstCutX = bladeX + leadingGroove;
+    var topFirstCutX = botFirstCutX + topCutOffsetPx;
+    var topLastCutX = topFirstCutX + pinSpacing * (topCount - 1);
+    var botLastCutX = botFirstCutX + pinSpacing * (botCount - 1);
+    var lastCutX = topLastCutX > botLastCutX ? topLastCutX : botLastCutX;
+    var bladeRight = lastCutX + trailingMargin;
+    var bladeWidth = bladeRight - bladeX;
+
+    var topNumY = 50;
+    var topUnderlineY = topNumY + 15;
+    var bladeY = topNumY + 22;
+    var bladeBot = bladeY + bladeHeight;
+    var botNumY = bladeBot + 6;
+    var botUnderlineY = botNumY + 15;
+
+    var flatHalfWidth = Math.floor(flatSpotWidth / 2);
+    // Slope rate for the rise/fall between the milled channel and each cut.
+    // 1 = 45 deg; lower = gentler/longer slope. The trailing diagonal past
+    // the last cut still uses 1 (45 deg) per the spec sheet geometry.
+    var channelSlope = 0.5;
+
+    // Top-track numbers row, each centred over its cut column.
+    for (var i = 0; i < topCount; i++) {
+        var cutX = topFirstCutX + i * pinSpacing;
+        var topNumX = cutX - 6;
+        var topDisplay = pinsStartCount ? pins[i] : (pins[i] + 1);
+        display.drawString(topDisplay.toString(), topNumX, topNumY);
+        if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && i === selectedPinIndex) {
+            display.drawRect(topNumX - 1, topUnderlineY, 12, 2, secColor);
+        }
+    }
+
+    // Closed rectangular blade silhouette.
+    display.drawLine(bladeX, bladeY, bladeRight, bladeY, priColor);
+    display.drawLine(bladeX, bladeBot, bladeRight, bladeBot, priColor);
+    display.drawLine(bladeX, bladeY, bladeX, bladeBot, priColor);
+    display.drawLine(bladeRight, bladeY, bladeRight, bladeBot, priColor);
+
+    var topBaseY = bladeY + Math.floor(bladeHeight / 4);
+    var botBaseY = bladeY + Math.floor(3 * bladeHeight / 4);
+    // Depth at which each track meets its outer blade edge (negative = away
+    // from the centreline, toward the outer surface).
+    var topOuterDepth = -(topBaseY - bladeY);
+    var botOuterDepth = -(bladeBot - botBaseY);
+
+    // Render two milled tracks column-by-column. In the leading groove each
+    // track sits at max depth (closest to centre); between its own first and
+    // last cut, depth comes from the per-cut profile. The tracks are
+    // evaluated independently because they may have different cut counts
+    // and may be staggered relative to one another.
+    var prevTopY = topBaseY + maxDepth;
+    var prevBotY = botBaseY - maxDepth;
+
+    for (var col = 0; col < bladeWidth; col++) {
+        var colX = bladeX + col;
+        var topDepth, botDepth;
+
+        if (colX > topLastCutX) {
+            // After the last cut, slope outward at 45 degrees from the last
+            // cut's depth until the track reaches the outer blade edge, then
+            // run flat along the edge.
+            var topLastDepth = maxDepth - (pins[topCount - 1] || 0) * cutDepthOffset;
+            topDepth = topLastDepth - (colX - topLastCutX);
+            if (topDepth < topOuterDepth) topDepth = topOuterDepth;
+        } else {
+            // Default everywhere is the milled channel at maxDepth. Each cut
+            // pulls the track outward (smaller depth) by pinValue * cutDepthOffset,
+            // with a gentle channelSlope ramp on each side of its flat.
+            topDepth = maxDepth;
+            for (var ti = 0; ti < topCount; ti++) {
+                var topCutCenter = topFirstCutX + ti * pinSpacing;
+                var topPinDepth = maxDepth - (pins[ti] || 0) * cutDepthOffset;
+                // Extend the flat shoulder when adjacent cuts share the same
+                // depth, so equal neighbours read as one continuous flat.
+                var topFlatLeft = topCutCenter - flatHalfWidth;
+                var topFlatRight = topCutCenter + flatHalfWidth;
+                if (ti > 0 && pins[ti - 1] === pins[ti]) {
+                    topFlatLeft = topCutCenter - Math.floor(pinSpacing / 2);
+                }
+                if (ti < topCount - 1 && pins[ti + 1] === pins[ti]) {
+                    topFlatRight = topCutCenter + Math.floor(pinSpacing / 2);
+                }
+                var topHere;
+                if (colX >= topFlatLeft && colX <= topFlatRight) {
+                    topHere = topPinDepth;
+                } else {
+                    var topDist = (colX < topFlatLeft) ? (topFlatLeft - colX) : (colX - topFlatRight);
+                    topHere = topPinDepth + topDist * channelSlope;
+                    if (topHere > maxDepth) topHere = maxDepth;
+                }
+                if (topHere < topDepth) topDepth = topHere;
+            }
+        }
+
+        if (colX > botLastCutX) {
+            var botLastDepth = maxDepth - (pins[topCount + botCount - 1] || 0) * cutDepthOffset;
+            botDepth = botLastDepth - (colX - botLastCutX);
+            if (botDepth < botOuterDepth) botDepth = botOuterDepth;
+        } else {
+            botDepth = maxDepth;
+            for (var bi = 0; bi < botCount; bi++) {
+                var botCutCenter = botFirstCutX + bi * pinSpacing;
+                var botPinDepth = maxDepth - (pins[topCount + bi] || 0) * cutDepthOffset;
+                var botFlatLeft = botCutCenter - flatHalfWidth;
+                var botFlatRight = botCutCenter + flatHalfWidth;
+                if (bi > 0 && pins[topCount + bi - 1] === pins[topCount + bi]) {
+                    botFlatLeft = botCutCenter - Math.floor(pinSpacing / 2);
+                }
+                if (bi < botCount - 1 && pins[topCount + bi + 1] === pins[topCount + bi]) {
+                    botFlatRight = botCutCenter + Math.floor(pinSpacing / 2);
+                }
+                var botHere;
+                if (colX >= botFlatLeft && colX <= botFlatRight) {
+                    botHere = botPinDepth;
+                } else {
+                    var botDist = (colX < botFlatLeft) ? (botFlatLeft - colX) : (colX - botFlatRight);
+                    botHere = botPinDepth + botDist * channelSlope;
+                    if (botHere > maxDepth) botHere = maxDepth;
+                }
+                if (botHere < botDepth) botDepth = botHere;
+            }
+        }
+
+        var topY = topBaseY + topDepth;
+        var botY = botBaseY - botDepth;
+
+        if (col > 0 && Math.abs(topY - prevTopY) > 1) {
+            display.drawLine(colX - 1, prevTopY, colX, topY, priColor);
+        } else {
+            display.drawPixel(colX, topY, priColor);
+        }
+        if (col > 0 && Math.abs(botY - prevBotY) > 1) {
+            display.drawLine(colX - 1, prevBotY, colX, botY, priColor);
+        } else {
+            display.drawPixel(colX, botY, priColor);
+        }
+        prevTopY = topY;
+        prevBotY = botY;
+    }
+
+    // Bottom-track numbers row.
+    for (var j = 0; j < botCount; j++) {
+        var cutX2 = botFirstCutX + j * pinSpacing;
+        var botNumX = cutX2 - 6;
+        var botDisplay = pinsStartCount ? pins[topCount + j] : (pins[topCount + j] + 1);
+        display.drawString(botDisplay.toString(), botNumX, botNumY);
+        if (showMode !== "random" && typeof selectedPinIndex !== "undefined" && (topCount + j) === selectedPinIndex) {
+            display.drawRect(botNumX - 1, botUnderlineY, 12, 2, secColor);
+        }
+    }
+}
+
 var key = null;
 var selectedPinIndex = 0;
 
+/**
+ * Pick a generic category glyph for a brand: padlock, SFIC core, disc, angled
+ * (Medeco) or the default key. These are category cues, not brand logos.
+ * @param {string} name - Brand key into `keys`.
+ * @returns {ArrayBuffer} One of the ICON_* bitmaps.
+ */
+function iconForKey(name) {
+    var padlocks = { Master: 1, American: 1 };
+    var cores = { Best: 1, Falcon: 1, Arrow: 1, Eagle: 1, KSP: 1, GMS: 1 };
+    var discs = { AbloyClassic: 1, AbloyHighProfile: 1 };
+    var angled = { MedecoBiaxial: 1 };
+    if (padlocks[name]) return ICON_PADLOCK;
+    if (cores[name]) return ICON_CORE;
+    if (discs[name]) return ICON_DISC;
+    if (angled[name]) return ICON_ANGLE;
+    return ICON_KEY;
+}
+
+// Tested pin/disk options per brand, mirroring the README's supported-keys
+// table. Drives the checkmark badge on the outline picker menu.
+var verifiedOutlines = {
+    ASSA: { "5 pins": 1, "6 pins": 1, "7 pins": 1 },
+    AbloyClassic: { "7 disks": 1, "9 disks": 1, "11 disks": 1 },
+    AbloyHighProfile: { "7 disks": 1, "9 disks": 1, "11 disks": 1 },
+    American: { "5 pins": 1, "6 pins": 1 },
+    Best: { "7 pins/A2": 1 },
+    CorbinRusswin: { "5 pins/RU45": 1, "6 pins/CX6A": 1 },
+    Kwikset: { "5 pins": 1 },
+    Master: { "4 pins": 1, "5 pins": 1 },
+    MedecoBiaxial: { "6 pins": 1 },
+    Schlage: { "5 pins/SC1": 1, "6 pins/SC4": 1 },
+    Titan: { "5 pins/KW10": 1 },
+    Yale: { "5 pins/Y1": 1 },
+    YaleSmall: { "4 pins": 1, "5 pins": 1 }
+};
+
+/**
+ * Whether a specific brand+outline combination has been tested per the README.
+ * @param {string} name - Brand key into `keys`.
+ * @param {string} outline - Outline label like "5 pins" or "6 pins/SC4".
+ * @returns {boolean}
+ */
+function isVerifiedOutline(name, outline) {
+    var b = verifiedOutlines[name];
+    return !!(b && b[outline]);
+}
+
+// Scrolling menu with an icon per row. entries: [{ label, value, icon }].
+// Returns the chosen value, or null if the user backs out.
+var MENU_LIST_TOP = 36;
+var MENU_ROW_H = 24;
+
+/**
+ * Render one frame of the icon menu: title, divider, the visible window of
+ * rows (icon + label) with the selected row boxed.
+ * @param {string} title - Header text.
+ * @param {{label:string,value:*,icon:ArrayBuffer}[]} entries - All rows.
+ * @param {number} sel - Index of the selected row.
+ * @param {number} top - Index of the first visible row (scroll offset).
+ * @param {number} visible - Number of rows that fit on screen.
+ */
+function drawMenu(title, entries, sel, top, visible) {
+    display.fill(bgColor);
+    display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
+    display.setTextColor(priColor);
+
+    display.setTextSize(2);
+    display.drawString(title, 12, 8);
+    display.drawLine(8, 30, displayWidth - 8, 30, priColor);
+
+    for (var r = 0; r < visible; r++) {
+        var idx = top + r;
+        if (idx >= entries.length) {
+            break;
+        }
+        var y = MENU_LIST_TOP + r * MENU_ROW_H;
+        var e = entries[idx];
+
+        if (idx === sel) {
+            display.drawRoundRect(8, y - 2, displayWidth - 16, MENU_ROW_H, 3, secColor);
+        }
+        if (e.icon) {
+            renderBitmap(14, y + 1, e.icon, ICON_W, ICON_H, priColor);
+        }
+        display.setTextSize(2);
+        display.drawString(e.label, 14 + ICON_W + 8, y + 3);
+        if (e.verified) {
+            renderBitmap(displayWidth - 12 - ICON_CHECK_W, y + (MENU_ROW_H - ICON_CHECK_H) / 2,
+                ICON_CHECK, ICON_CHECK_W, ICON_CHECK_H, secColor);
+        }
+    }
+}
+
+/**
+ * Run a scrolling, icon-per-row menu and block until the user chooses or backs
+ * out. Next/Previous move (with wrap-around), Select confirms, Back exits.
+ * @param {string} title - Header text.
+ * @param {{label:string,value:*,icon:ArrayBuffer}[]} entries - Selectable rows.
+ * @returns {*} The chosen entry's `value`, or null if the user backed out (Esc).
+ */
+function selectFromMenu(title, entries) {
+    var sel = 0;
+    var top = 0;
+    var visible = Math.floor((displayHeight - MENU_LIST_TOP) / MENU_ROW_H);
+    if (visible < 1) {
+        visible = 1;
+    }
+    var dirty = true;
+
+    while (true) {
+        if (sel < top) {
+            top = sel;
+        }
+        if (sel >= top + visible) {
+            top = sel - visible + 1;
+        }
+        if (dirty) {
+            drawMenu(title, entries, sel, top, visible);
+            dirty = false;
+        }
+
+        if (keyboard.getNextPress()) {
+            sel = (sel + 1) % entries.length;
+            dirty = true;
+        } else if (keyboard.getPrevPress()) {
+            sel = (sel - 1 + entries.length) % entries.length;
+            dirty = true;
+        } else if (keyboard.getSelPress()) {
+            return entries[sel].value;
+        } else if (keyboard.getEscPress()) {
+            return null;
+        }
+        delay(10);
+    }
+}
+
+
+function showInstructions() {
+    var pages = [
+        ["This tool simulates how", "a key will look", "with a specific bitting."],
+        ["Pick a key brand and key", "from the list."],
+        ["Choose Decode to enter", "a known bitting."],
+        ["Choose Random to make", "a practice bitting."],
+        ["Press Select to move to", "the next code position."],
+        ["Scroll up to cut the", "position deeper."],
+        ["Scroll down to cut", "it shallower."]
+    ];
+    var i = 0;
+    var dirty = true;
+
+    while (true) {
+        if (dirty) {
+            display.fill(bgColor);
+            display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
+            display.setTextColor(priColor);
+
+            display.setTextSize(2);
+            display.drawString("Instructions", 12, 8);
+            display.drawLine(8, 30, displayWidth - 8, 30, priColor);
+
+            display.setTextSize(1);
+            display.drawString((i + 1) + "/" + pages.length, displayWidth - 40, 12);
+
+            display.setTextSize(2);
+            var page = pages[i];
+            for (var L = 0; L < page.length; L++) {
+                display.drawString(page[L], 14, 64 + L * 24);
+            }
+
+            display.setTextSize(1);
+            display.drawString("Press Next to continue.", 12, displayHeight - 12);
+            dirty = false;
+        }
+
+        if (keyboard.getNextPress()) {
+            if (i < pages.length - 1) {
+                i++;
+            }
+            dirty = true;
+        } else if (keyboard.getPrevPress()) {
+            if (i > 0) {
+                i--;
+            }
+            dirty = true;
+        } else if (keyboard.getSelPress() || keyboard.getEscPress()) {
+            return;
+        }
+        delay(10);
+    }
+}
+
+/**
+ * Top-level flow: show the brand menu, then (for a real brand) the pin-count
+ * and Decode/Random pickers, then build the global `key` and draw it. Handles
+ * the Instructions, Load and Exit entries. Recurses to re-show the menu when
+ * the user backs out of a sub-step.
+ */
 function chooseAndCreateKey() {
     selectedPinIndex = 0;
 
-    var keyTypeChoices = {};
+    var entries = [];
     var brandNames = Object.keys(keys).sort();
     for (var i = 0; i < brandNames.length; i++) {
         var brand = brandNames[i];
-        var displayName = keys[brand].displayName || brand;
-        keyTypeChoices[displayName] = brand;
+        var label = keys[brand].displayName || brand;
+        entries.push({ label: label, value: brand, icon: iconForKey(brand) });
     }
-    keyTypeChoices.Load = "Load";
-    keyTypeChoices.Exit = "Exit";
+    entries.push({ label: "Instructions", value: "Instructions", icon: ICON_INFO });
+    entries.push({ label: "Load", value: "Load", icon: ICON_LOAD });
+    entries.push({ label: "Exit", value: "Exit", icon: ICON_EXIT });
 
-    var type = dialog.choice(keyTypeChoices);
+    var type = selectFromMenu("Key Decoding", entries);
     if (!type) type = "Exit";
+
+    if (type === "Instructions") {
+        showInstructions();
+        return chooseAndCreateKey();
+    }
 
     var outline, show;
 
@@ -522,25 +1299,33 @@ function chooseAndCreateKey() {
             }
             key.load(fileContent);
         } else {
-            var outlines = keys[String(type)].outlines || [];
-            var outlineChoices = {};
-            for (var j = 0; j < outlines.length; j++) {
-                var o = outlines[j];
-                outlineChoices[o] = o;
-            }
-            outlineChoices.Cancel = "Cancel";
+            var brandLabel = keys[String(type)].displayName || type;
 
-            outline = dialog.choice(outlineChoices);
-            if (!outline || outline === "Cancel") {
+            // Pin-count picker (icon menu). Each row carries the brand's glyph.
+            var outlines = keys[String(type)].outlines || [];
+            var outlineEntries = [];
+            for (var j = 0; j < outlines.length; j++) {
+                outlineEntries.push({
+                    label: outlines[j],
+                    value: outlines[j],
+                    icon: iconForKey(type),
+                    verified: isVerifiedOutline(type, outlines[j])
+                });
+            }
+            outlineEntries.push({ label: "Back", value: null, icon: ICON_BACK });
+
+            outline = selectFromMenu(brandLabel, outlineEntries);
+            if (!outline) { // null = Back chosen or backed out
                 return chooseAndCreateKey();
             }
 
-            show = dialog.choice({
-                Decode: "decode",
-                Random: "random",
-                Cancel: "Cancel"
-            });
-            if (!show || show === "Cancel") {
+            // Mode picker (icon menu): Decode an existing key, or Random.
+            show = selectFromMenu(brandLabel, [
+                { label: "Decode", value: "decode", icon: ICON_DECODE },
+                { label: "Random", value: "random", icon: ICON_RANDOM },
+                { label: "Back", value: null, icon: ICON_BACK }
+            ]);
+            if (!show) {
                 return chooseAndCreateKey();
             }
         }
@@ -581,7 +1366,13 @@ while (true) {
         } else if (selectedPinIndex === key.pins.length) { // Save action
             key.save();
         } else if (selectedPinIndex === key.pins.length + 1) { // Load action
-            key.load(storage.read(dialog.pickFile("/keys", {withFileTypes: true})))
+            var filePath = dialog.pickFile("/keys", {withFileTypes: true});
+            if (filePath) {
+                var fileContent = storage.read(filePath);
+                if (fileContent) {
+                    key.load(fileContent);
+                }
+            }
         }
         key.draw();
     }
