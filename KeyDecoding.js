@@ -1065,7 +1065,7 @@ function drawInternalCutPinsWithUnderline(pins, selectedPinIndex, showMode, pinS
 
 var key = null;
 var selectedPinIndex = 0;
-var lastBrandMenuSelection = 0;
+var lastMainMenuSelection = 0;
 
 /**
  * Pick a generic category glyph for a brand: padlock, SFIC core, disc, angled
@@ -1303,12 +1303,14 @@ function chooseAndCreateKey() {
             return "";
         }
         return (sel + 1) + "/" + total;
-    }, lastBrandMenuSelection);
-    if (!type) type = "Exit";
-    var selectedBrandIndex = brandNames.indexOf(type);
-    if (selectedBrandIndex >= 0) {
-        lastBrandMenuSelection = selectedBrandIndex;
+    }, lastMainMenuSelection);
+    for (var entryIndex = 0; entryIndex < entries.length; entryIndex++) {
+        if (entries[entryIndex].value === type) {
+            lastMainMenuSelection = entryIndex;
+            break;
+        }
     }
+    if (!type) type = "Exit";
 
     if (type === "Instructions") {
         showInstructions();
