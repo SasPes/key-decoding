@@ -136,17 +136,16 @@ KeyExample: {
 - [Deviant Ollam: Key-and-Pin-Decoding](https://github.com/deviantollam/Key-and-Pin-Decoding)
 - [Flipper Zero: KeyCopier](https://github.com/zinongli/KeyCopier)
 - [LILYGO T-Embed CC1101](https://lilygo.cc/products/t-embed-cc1101)
-- [ASSA Mow](https://assamow.com/specs/)
+- [Mow: ASSA Key Specifications](https://assamow.com/specs/)
+- [Tyler J. Thomas](https://securityengineeringconsultants.com/): [Key Bitting Specifications Edition 1, 2025](https://lsamichigan.org/Tech/KeyBittingSpecifications-TylerJThomas.pdf)
+- [Greg Bryant: Sidewinder Key Bitting](https://www.sopl.us/uploads/1/3/0/1/1301029/high_security_specs_from_greg_bryant.pdf)
+- <a href="https://www.flaticon.com/free-icons/digital-key" title="digital key icons">Digital key icons created by Fliqqer - Flaticon</a>
 
 
 ## ⭐ Contributors
-
 - [@Phred_Phlintstoner](https://www.youtube.com/@Phred_Phlintstoner) for testing the [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
 - [@argtime](https://github.com/argtime) for PR [Add delay to KeyDecoding.js loop](https://github.com/SasPes/key-decoding/pull/2)
-- [Tyler J. Thomas](https://securityengineeringconsultants.com/) for [Key Bitting Specifications Edition 1, 2025](https://lsamichigan.org/Tech/KeyBittingSpecifications-TylerJThomas.pdf)
-- [Greg Bryant](https://www.sopl.us/uploads/1/3/0/1/1301029/high_security_specs_from_greg_bryant.pdf) for sidewinder key bitting
-- [@ellygaytor](https://github.com/ellygaytor) for DSD aliasing, icons, and help menu
-- <a href="https://www.flaticon.com/free-icons/digital-key" title="digital key icons">Digital key icons created by Fliqqer - Flaticon</a>
+- [@ellygaytor](https://github.com/ellygaytor) for DSD aliasing, icons and help menu (PR [Improved renderer, new keys and key types, DSD aliases, menu icons](https://github.com/SasPes/key-decoding/pull/5))
 
 ## ☠️ Disclaimer
 
