@@ -1133,12 +1133,17 @@ var MENU_ROW_H = 24;
  * @param {number} sel - Index of the selected row.
  * @param {number} top - Index of the first visible row (scroll offset).
  * @param {number} visible - Number of rows that fit on screen.
+ * @param {string} [leftHeaderText] - Optional small text shown left of title.
  */
-function drawMenu(title, entries, sel, top, visible) {
+function drawMenu(title, entries, sel, top, visible, leftHeaderText) {
     display.fill(bgColor);
     display.drawRoundRect(1, 1, displayWidth - 2, displayHeight - 2, 4, priColor);
     display.setTextColor(priColor);
 
+    if (leftHeaderText) {
+        display.setTextSize(1);
+        display.drawString(leftHeaderText, displayWidth - 40, 12);
+    }
     display.setTextSize(2);
     display.drawString(title, 12, 8);
     display.drawLine(8, 30, displayWidth - 8, 30, priColor);
@@ -1171,9 +1176,11 @@ function drawMenu(title, entries, sel, top, visible) {
  * out. Next/Previous move (with wrap-around), Select confirms, Back exits.
  * @param {string} title - Header text.
  * @param {{label:string,value:*,icon:ArrayBuffer}[]} entries - Selectable rows.
+ * @param {function(number, Array): string} [keyCountTextFn] - Optional key-count
+ * text generator called as (sel, entries), e.g. "3/40".
  * @returns {*} The chosen entry's `value`, or null if the user backed out (Esc).
  */
-function selectFromMenu(title, entries) {
+function selectFromMenu(title, entries, keyCountTextFn) {
     var sel = 0;
     var top = 0;
     var visible = Math.floor((displayHeight - MENU_LIST_TOP) / MENU_ROW_H);
@@ -1190,7 +1197,8 @@ function selectFromMenu(title, entries) {
             top = sel - visible + 1;
         }
         if (dirty) {
-            drawMenu(title, entries, sel, top, visible);
+            var keyCountText = keyCountTextFn ? keyCountTextFn(sel, entries) : "";
+            drawMenu(title, entries, sel, top, visible, keyCountText);
             dirty = false;
         }
 
@@ -1284,7 +1292,13 @@ function chooseAndCreateKey() {
     entries.push({label: "Load", value: "Load", icon: ICON_LOAD});
     entries.push({label: "Exit", value: "Exit", icon: ICON_EXIT});
 
-    var type = selectFromMenu("Key Decoding", entries);
+    var type = selectFromMenu("Key Decoding", entries, function (sel) {
+        var total = brandNames.length;
+        if (sel >= total) {
+            return "";
+        }
+        return (sel + 1) + "/" + total;
+    });
     if (!type) type = "Exit";
 
     if (type === "Instructions") {
