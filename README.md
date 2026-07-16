@@ -8,9 +8,9 @@
 
 A Bruce app for hackers, tinkerers and lock nerds.  
 Decode and randomly generate key bitting patterns for a bunch of lock brands.  
-Visualize the cuts, tweak the pins, and save/load your keys.  
+Visualize the cuts, tweak the pins and save/load your keys.  
 
-## Supported Devices
+## 📟 Supported Devices
 
 This app is designed for Bruce Interpreter compatible devices with screen 170x320. Devices of other sizes will render the key incorrectly.
 
@@ -18,308 +18,67 @@ This app is designed for Bruce Interpreter compatible devices with screen 170x32
 - [LILYGO T-Embed CC1101 Plus](https://lilygo.cc/products/t-embed-cc1101-plus)
 - [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
 
-## Supported Keys
-
-A ✔️ marks a brand + outline combination that has been verified against a real key. Other rows are selectable in the menu but unverified, so accuracy may be poor.
-
-### Abloy Classic
-
-| Tested | Outline   |
-|:------:|:----------|
-| ✔️     | 7 disks   |
-| ✔️     | 9 disks   |
-| ✔️     | 11 disks  |
-
-### Abloy High Profile
-
-| Tested | Outline   |
-|:------:|:----------|
-| ✔️     | 7 disks   |
-| ✔️     | 9 disks   |
-| ✔️     | 11 disks  |
-
-### American
-
-| Tested | Outline |
-|:------:|:--------|
-| ✔️     | 5 pins  |
-| ✔️     | 6 pins  |
-
-### Arrow
-
-Shares DSD with Best (A2 small-format interchangeable core).
-
-| Tested | Outline    |
-|:------:|:-----------|
-|        | 6 pins/A   |
-|        | 7 pins/A   |
-
-### ASSA
-
-| Tested | Outline |
-|:------:|:--------|
-| ✔️     | 5 pins  |
-| ✔️     | 6 pins  |
-| ✔️     | 7 pins  |
-
-### Best
-
-| Tested | Outline     |
-|:------:|:------------|
-|        | 6 pins/A2   |
-| ✔️     | 7 pins/A2   |
-
-### Buick
-
-Shares DSD with Chevy B102.
-
-| Tested | Outline       |
-|:------:|:--------------|
-|        | 10 cuts/B102  |
-
-### Chevy 
-
-| Tested | Outline       |
-|:------:|:--------------|
-|        | 10 cuts/B102  |
-
-### Chrysler
-
-Shares DSD with Dodge Y159.
-
-| Tested | Outline      |
-|:------:|:-------------|
-|        | 8 cuts/Y159  |
-
-### Corbin Russwin
-
-| Tested | Outline       |
-|:------:|:--------------|
-| ✔️     | 5 pins/RU45   |
-| ✔️     | 6 pins/CX6A   |
-
-### Dodge 
-
-| Tested | Outline      |
-|:------:|:-------------|
-|        | 8 cuts/Y159  |
-
-### Eagle
-
-Shares DSD with Best (A2 small-format interchangeable core).
-
-| Tested | Outline    |
-|:------:|:-----------|
-|        | 6 pins/A   |
-|        | 7 pins/A   |
-
-### Falcon
-
-Shares DSD with Best (A2 small-format interchangeable core).
-
-| Tested | Outline    |
-|:------:|:-----------|
-|        | 6 pins/A   |
-|        | 7 pins/A   |
-
-### Ford 
-
-| Tested | Outline     |
-|:------:|:------------|
-|        | 8 cuts/H75  |
-
-### GMC
-
-Shares DSD with Chevy B102.
-
-| Tested | Outline       |
-|:------:|:--------------|
-|        | 10 cuts/B102  |
-
-### GMS
-
-Shares DSD with Best (A2 small-format interchangeable core).
-
-| Tested | Outline    |
-|:------:|:-----------|
-|        | 6 pins/A   |
-|        | 7 pins/A   |
-
-### Jeep
-
-Shares DSD with Dodge Y159.
-
-| Tested | Outline      |
-|:------:|:-------------|
-|        | 8 cuts/Y159  |
-
-### Kawasaki 
-
-| Tested | Outline      |
-|:------:|:-------------|
-|        | 6 cuts/KA14  |
-
-### KSP
-
-Shares DSD with Best (A2 small-format interchangeable core).
-
-| Tested | Outline    |
-|:------:|:-----------|
-|        | 6 pins/A   |
-|        | 7 pins/A   |
-
-### Kwikset
-
-| Tested | Outline |
-|:------:|:--------|
-| ✔️     | 5 pins  |
-
-### Lincoln
-
-Shares DSD with Ford H75.
-
-| Tested | Outline     |
-|:------:|:------------|
-|        | 8 cuts/H75  |
-
-### Lockwood
-
-| Tested | Outline      |
-|:------:|:-------------|
-|        | 5 pins/LW4   |
-|        | 6 pins/LW5   |
-
-### Master
-
-| Tested | Outline |
-|:------:|:--------|
-| ✔️     | 4 pins  |
-| ✔️     | 5 pins  |
-|        | 6 pins  |
-
-### Medeco Biaxial
-
-| Tested | Outline |
-|:------:|:--------|
-| ✔️     | 6 pins  |
-
-### Mercury
-
-Shares DSD with Ford H75.
-
-| Tested | Outline     |
-|:------:|:------------|
-|        | 8 cuts/H75  |
-
-### National
-
-| Tested | Outline        |
-|:------:|:---------------|
-|        | 5 pins/D8775   |
-
-### Oldsmobile
-
-Shares DSD with Chevy B102.
-
-| Tested | Outline       |
-|:------:|:--------------|
-|        | 10 cuts/B102  |
-
-### Plymouth
-
-Shares DSD with Dodge Y159.
-
-| Tested | Outline      |
-|:------:|:-------------|
-|        | 8 cuts/Y159  |
-
-### Pontiac
-
-Shares DSD with Chevy B102.
-
-| Tested | Outline       |
-|:------:|:--------------|
-|        | 10 cuts/B102  |
-
-### RV
-
-| Tested | Outline |
-|:------:|:--------|
-|        | 5 cuts  |
-
-### Sargent
-
-| Tested | Outline     |
-|:------:|:------------|
-|        | 5 pins/LA   |
-|        | 6 pins/LA   |
-
-### Schlage
-
-| Tested | Outline      |
-|:------:|:-------------|
-| ✔️     | 5 pins/SC1   |
-| ✔️     | 6 pins/SC4   |
-
-### Subaru 
-
-| Tested | Outline         |
-|:------:|:----------------|
-|        | 9 cuts/DSD435   |
-
-### Suzuki 
-
-| Tested | Outline       |
-|:------:|:--------------|
-|        | 7 cuts/SUZ18  |
-
-### Titan
-
-Shares DSD with Kwikset.
-
-| Tested | Outline       |
-|:------:|:--------------|
-| ✔️     | 5 pins/KW10   |
-
-### Weiser
-
-| Tested | Outline      |
-|:------:|:-------------|
-|        | 5 pins/WR5   |
-|        | 6 pins/WR3   |
-
-### Weslock
-
-| Tested | Outline |
-|:------:|:--------|
-|        | 5 pins  |
-
-### Yale
-
-| Tested | Outline     |
-|:------:|:------------|
-| ✔️     | 5 pins/Y1   |
-|        | 6 pins/Y2   |
-
-### Yale Small
-
-| Tested | Outline |
-|:------:|:--------|
-| ✔️     | 4 pins  |
-| ✔️     | 5 pins  |
-
-### Yamaha 
-
-| Tested | Outline      |
-|:------:|:-------------|
-|        | 7 cuts/YM63  |
-
-## Installation
+## 🏴‍☠️ Supported Keys
+
+A ✔️ indicates a key outline verified against a real key. Unmarked outlines are still selectable, but they are unverified and may be less accurate.
+
+| Brand | Key Outlines | Comments                                                    |
+|:-----:|:------------|:------------------------------------------------------------|
+| ASSA | ✔️ 5 pins<br>✔️ 6 pins<br>✔️ 7 pins |                                                             |
+| Abloy Classic | ✔️ 7 disks<br>✔️ 9 disks<br>✔️ 11 disks |                                                             |
+| Abloy High Profile | ✔️ 7 disks<br>✔️ 9 disks<br>✔️ 11 disks |                                                             |
+| American | ✔️ 5 pins<br>✔️ 6 pins |                                                             |
+| Arrow | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+| Best | ⬜ 6 pins/A2<br>✔️ 7 pins/A2 |                                                             |
+| Buick | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
+| Chevy | ⬜ 10 cuts/B102 |                                                             |
+| Chrysler | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
+| Corbin Russwin | ✔️ 5 pins/RU45<br>✔️ 6 pins/CX6A |                                                             |
+| Dodge | ⬜ 8 cuts/Y159 |                                                             |
+| Eagle | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+| Falcon | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+| Ford | ⬜ 8 cuts/H75 |                                                             |
+| GMC | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
+| GMS | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+| Jeep | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
+| Kawasaki | ⬜ 6 cuts/KA14 |                                                             |
+| KSP | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+| Kwikset | ✔️ 5 pins |                                                             |
+| Lincoln | ⬜ 8 cuts/H75 | Shares DSD with Ford H75                                    |
+| Lockwood | ⬜ 5 pins/LW4<br>⬜ 6 pins/LW5 |                                                             |
+| Master | ✔️ 4 pins<br>✔️ 5 pins<br>⬜ 6 pins |                                                             |
+| Medeco Biaxial | ✔️ 6 pins |                                                             |
+| Mercury | ⬜ 8 cuts/H75 | Shares DSD with Ford H75                                    |
+| National | ⬜ 5 pins/D8775 |                                                             |
+| Oldsmobile | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
+| Plymouth | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
+| Pontiac | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
+| RV | ⬜ 5 cuts |                                                             |
+| Sargent | ⬜ 5 pins/LA<br>⬜ 6 pins/LA |                                                             |
+| Schlage | ✔️ 5 pins/SC1<br>✔️ 6 pins/SC4 |                                                             |
+| Subaru | ⬜ 9 cuts/DSD435 |                                                             |
+| Suzuki | ⬜ 7 cuts/SUZ18 |                                                             |
+| Titan | ✔️ 5 pins | Similar to Yale                                                |
+| Weiser | ⬜ 5 pins/WR5<br>⬜ 6 pins/WR3 |                                                             |
+| Weslock | ⬜ 5 pins |                                                             |
+| Yale | ✔️ 5 pins/Y1<br>⬜ 6 pins/Y2 |                                                             |
+| Yale Small | ✔️ 4 pins<br>✔️ 5 pins |                                                             |
+| Yamaha | ⬜ 7 cuts/YM63 |                                                             |
+
+## ⚡ Install
+
+### Option 1: Bruce App Store
+1. Open Bruce App Store via **JS Interpreter → Tools → App Store**
+   - if App Store is not present, go to **Config → Install App Store**
+2. Navigate to **Tools**
+3. Download and install **Key Decoding**
+
+### Option 2: Manual Install
 1. Drop `KeyDecoding.js` onto your Bruce device
 2. Fire up the Bruce Interpreter
 3. Have fun
 
-## Usage
+## 🕹️ Usage
 
 ### Navigation
 
@@ -328,7 +87,7 @@ Shares DSD with Kwikset.
 - **PREV:** Decrease pin depth
 - **ESC:** Back to main menu
 
-### Workflow
+### ⚙️ Workflow
 
 1. **Pick a Brand:** Choose your target lock or load a saved key
 2. **Pin Count:** Select how many pins (brand-dependent)
@@ -339,7 +98,7 @@ Shares DSD with Kwikset.
 5. **Save:** SEL to "Save", then NEXT to write your key JSON
 6. **Load:** SEL to "Load", then NEXT to pick a saved key
 
-## Key File Format
+## 📂 Key File Format
 
 Keys are saved as JSON in `/keys/`:
 
@@ -371,7 +130,7 @@ KeyExample: {
 }
 ```
 
-## Links
+## 🔗 Links
 
 - [Bruce Interpreter](https://github.com/pr3y/Bruce/wiki/Interpreter)
 - [Deviant Ollam: Key-and-Pin-Decoding](https://github.com/deviantollam/Key-and-Pin-Decoding)
@@ -380,7 +139,7 @@ KeyExample: {
 - [ASSA Mow](https://assamow.com/specs/)
 
 
-## Contributors
+## ⭐ Contributors
 
 - [@Phred_Phlintstoner](https://www.youtube.com/@Phred_Phlintstoner) for testing the [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
 - [@argtime](https://github.com/argtime) for PR [Add delay to KeyDecoding.js loop](https://github.com/SasPes/key-decoding/pull/2)
@@ -388,8 +147,8 @@ KeyExample: {
 - [Greg Bryant](https://www.sopl.us/uploads/1/3/0/1/1301029/high_security_specs_from_greg_bryant.pdf) for sidewinder key bitting
 - [@ellygaytor](https://github.com/ellygaytor) for DSD aliasing, icons, and help menu
 
-## Disclaimer
+## ☠️ Disclaimer
 
 For educational, CTF and red team use only.  
-Don't break the law. Don't be a jerk.
+Don't break the law. Don't be a jerk.  
 Accuracy of non-verified options may be poor.
