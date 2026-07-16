@@ -146,6 +146,7 @@ KeyExample: {
 - [Tyler J. Thomas](https://securityengineeringconsultants.com/) for [Key Bitting Specifications Edition 1, 2025](https://lsamichigan.org/Tech/KeyBittingSpecifications-TylerJThomas.pdf)
 - [Greg Bryant](https://www.sopl.us/uploads/1/3/0/1/1301029/high_security_specs_from_greg_bryant.pdf) for sidewinder key bitting
 - [@ellygaytor](https://github.com/ellygaytor) for DSD aliasing, icons, and help menu
+- <a href="https://www.flaticon.com/free-icons/digital-key" title="digital key icons">Digital key icons created by Fliqqer - Flaticon</a>
 
 ## ☠️ Disclaimer
 
