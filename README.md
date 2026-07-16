@@ -144,8 +144,8 @@ KeyExample: {
 
 ## ⭐ Contributors
 - [@Phred_Phlintstoner](https://www.youtube.com/@Phred_Phlintstoner) for testing the [Bruce PCB V2 by Smoochiees](https://bruce.computer/boards)
-- [@argtime](https://github.com/argtime) for PR [Add delay to KeyDecoding.js loop](https://github.com/SasPes/key-decoding/pull/2)
-- [@ellygaytor](https://github.com/ellygaytor) for DSD aliasing, icons and help menu (PR [Improved renderer, new keys and key types, DSD aliases, menu icons](https://github.com/SasPes/key-decoding/pull/5))
+- [@argtime](https://github.com/argtime) for [Add delay to KeyDecoding.js loop](https://github.com/SasPes/key-decoding/pull/2)
+- [@ellygaytor](https://github.com/ellygaytor) for [DSD aliasing, icons and help menu](https://github.com/SasPes/key-decoding/pull/5)
 
 ## ☠️ Disclaimer
 
