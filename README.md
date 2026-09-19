@@ -57,7 +57,6 @@ A ✔️ indicates a key outline verified against a real key. Unmarked outlines 
 | RV | ⬜ 5 cuts |                                                             |
 | Sargent | ⬜ 5 pins/LA<br>⬜ 6 pins/LA |                                                             |
 | Schlage | ✔️ 5 pins/SC1<br>✔️ 6 pins/SC4 |                                                             |
-| Subaru | ⬜ 9 cuts/DSD435 |                                                             |
 | Suzuki | ⬜ 7 cuts/SUZ18 |                                                             |
 | Titan | ✔️ 5 pins | Similar to Yale                                                |
 | Weiser | ⬜ 5 pins/WR5<br>⬜ 6 pins/WR3 |                                                             |
