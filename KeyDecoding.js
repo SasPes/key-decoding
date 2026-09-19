@@ -195,7 +195,7 @@ var keys = {
     },
     AbusSmallSquare: {
         displayName: "Abus Small Square Bow",
-        outlines: ["4 pins, 5 pins"],
+        outlines: ["4 pins", "5 pins"],
         pinSpacing: 26,
         maxKeyCut: 10,
         flatSpotWidth: 7,
@@ -207,7 +207,7 @@ var keys = {
     },
     AbusSmallRound: {
         displayName: "Abus Small Round Bow",
-        outlines: ["4 pins, 5 pins"],
+        outlines: ["4 pins", "5 pins"],
         pinSpacing: 26,
         maxKeyCut: 10,
         cutDepthOffset: 2,
@@ -1131,7 +1131,9 @@ var verifiedOutlines = {
     Schlage: {"5 pins/SC1": 1, "6 pins/SC4": 1},
     Titan: {"5 pins/KW10": 1},
     Yale: {"5 pins/Y1": 1},
-    YaleSmall: {"4 pins": 1, "5 pins": 1}
+    YaleSmall: {"4 pins": 1, "5 pins": 1},
+    AbusSmallSquare: {"4 pins": 1},
+    AbusSmallRound: {"5 pins": 1}
 };
 
 /**
