@@ -25,6 +25,7 @@ A ✔️ indicates a key outline verified against a real key. Unmarked outlines 
 | Brand | Key Outlines | Comments                                                    |
 |:-----:|:------------|:------------------------------------------------------------|
 | ASSA | ✔️ 5 pins<br>✔️ 6 pins<br>✔️ 7 pins |                                                             |
+| Abus Small | ✔️ 4 pins Square Bow<br>⬜ 5 pins Square Bow<hr>⬜ 4 pins Round Bow<br>✔️ 5 pins Round Bow |                                                             |
 | Abloy Classic | ✔️ 7 disks<br>✔️ 9 disks<br>✔️ 11 disks |                                                             |
 | Abloy High Profile | ✔️ 7 disks<br>✔️ 9 disks<br>✔️ 11 disks |                                                             |
 | American | ✔️ 5 pins<br>✔️ 6 pins |                                                             |

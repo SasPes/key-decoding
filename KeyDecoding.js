@@ -193,6 +193,29 @@ var keys = {
         pinNumbersOffset: -4,
         pinsStartAtZero: true
     },
+    AbusSmallSquare: {
+        displayName: "Abus Small Square Bow",
+        outlines: ["4 pins, 5 pins"],
+        pinSpacing: 26,
+        maxKeyCut: 10,
+        flatSpotWidth: 7,
+        cutDepthOffset: 2.9,
+        edgeOffsetX: -6,
+        edgeOffsetY: -9,
+        pinsStartAtZero: true,
+        pinNumbersOffset: -4
+    },
+    AbusSmallRound: {
+        displayName: "Abus Small Round Bow",
+        outlines: ["4 pins, 5 pins"],
+        pinSpacing: 26,
+        maxKeyCut: 10,
+        cutDepthOffset: 2,
+        edgeOffsetX: 13,
+        edgeOffsetY: -8,
+        pinsStartAtZero: true,
+        pinNumbersOffset: -4
+    },
     AbloyClassic: {
         displayName: "Abloy Classic",
         isDiskDetainer: true,
