@@ -22,48 +22,49 @@ This app is designed for Bruce Interpreter compatible devices with screen 170x32
 
 A ✔️ indicates a key outline verified against a real key. Unmarked outlines are still selectable, but they are unverified and may be less accurate.
 
-| Brand | Key Outlines | Comments                                                    |
-|:-----:|:------------|:------------------------------------------------------------|
-| ASSA | ✔️ 5 pins<br>✔️ 6 pins<br>✔️ 7 pins |                                                             |
-| Abus Small | ✔️ 4 pins Square Bow<br>⬜ 5 pins Square Bow<hr>⬜ 4 pins Round Bow<br>✔️ 5 pins Round Bow |                                                             |
-| Abloy Classic | ✔️ 7 disks<br>✔️ 9 disks<br>✔️ 11 disks |                                                             |
+|       Brand        | Key Outlines | Comments                                                    |
+|:------------------:|:------------|:------------------------------------------------------------|
+|   Abloy Classic    | ✔️ 7 disks<br>✔️ 9 disks<br>✔️ 11 disks |                                                             |
 | Abloy High Profile | ✔️ 7 disks<br>✔️ 9 disks<br>✔️ 11 disks |                                                             |
-| American | ✔️ 5 pins<br>✔️ 6 pins |                                                             |
-| Arrow | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
-| Best | ⬜ 6 pins/A2<br>✔️ 7 pins/A2 |                                                             |
-| Buick | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
-| Chevy | ⬜ 10 cuts/B102 |                                                             |
-| Chrysler | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
-| Corbin Russwin | ✔️ 5 pins/RU45<br>✔️ 6 pins/CX6A |                                                             |
-| Dodge | ⬜ 8 cuts/Y159 |                                                             |
-| Eagle | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
-| Falcon | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
-| Ford | ⬜ 8 cuts/H75 |                                                             |
-| GMC | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
-| GMS | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
-| Jeep | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
-| Kawasaki | ⬜ 6 cuts/KA14 |                                                             |
-| KSP | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
-| Kwikset | ✔️ 5 pins |                                                             |
-| Lincoln | ⬜ 8 cuts/H75 | Shares DSD with Ford H75                                    |
-| Lockwood | ⬜ 5 pins/LW4<br>⬜ 6 pins/LW5 |                                                             |
-| Master | ✔️ 4 pins<br>✔️ 5 pins<br>⬜ 6 pins |                                                             |
-| Medeco Biaxial | ✔️ 6 pins |                                                             |
-| Mercury | ⬜ 8 cuts/H75 | Shares DSD with Ford H75                                    |
-| National | ⬜ 5 pins/D8775 |                                                             |
-| Oldsmobile | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
-| Plymouth | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
-| Pontiac | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
-| RV | ⬜ 5 cuts |                                                             |
-| Sargent | ⬜ 5 pins/LA<br>⬜ 6 pins/LA |                                                             |
-| Schlage | ✔️ 5 pins/SC1<br>✔️ 6 pins/SC4 |                                                             |
-| Suzuki | ⬜ 7 cuts/SUZ18 |                                                             |
-| Titan | ✔️ 5 pins | Similar to Yale                                                |
-| Weiser | ⬜ 5 pins/WR5<br>⬜ 6 pins/WR3 |                                                             |
-| Weslock | ⬜ 5 pins |                                                             |
-| Yale | ✔️ 5 pins/Y1<br>⬜ 6 pins/Y2 |                                                             |
-| Yale Small | ✔️ 4 pins<br>✔️ 5 pins |                                                             |
-| Yamaha | ⬜ 7 cuts/YM63 |                                                             |
+|        ABUS        | ✔️ 5 pins |                                                             |
+|     ABUS Small     | ✔️ 4 pins Square Bow<br>⬜ 5 pins Square Bow<hr>⬜ 4 pins Round Bow<br>✔️ 5 pins Round Bow |                                                             |
+|      American      | ✔️ 5 pins<br>✔️ 6 pins |                                                             |
+|       Arrow        | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+|        ASSA        | ✔️ 5 pins<br>✔️ 6 pins<br>✔️ 7 pins |                                                             |
+|        Best        | ⬜ 6 pins/A2<br>✔️ 7 pins/A2 |                                                             |
+|       Buick        | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
+|       Chevy        | ⬜ 10 cuts/B102 |                                                             |
+|      Chrysler      | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
+|   Corbin Russwin   | ✔️ 5 pins/RU45<br>✔️ 6 pins/CX6A |                                                             |
+|       Dodge        | ⬜ 8 cuts/Y159 |                                                             |
+|       Eagle        | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+|       Falcon       | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+|        Ford        | ⬜ 8 cuts/H75 |                                                             |
+|        GMC         | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
+|        GMS         | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+|        Jeep        | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
+|      Kawasaki      | ⬜ 6 cuts/KA14 |                                                             |
+|        KSP         | ⬜ 6 pins/A<br>⬜ 7 pins/A | Shares DSD with Best (A2 small-format interchangeable core) |
+|      Kwikset       | ✔️ 5 pins |                                                             |
+|      Lincoln       | ⬜ 8 cuts/H75 | Shares DSD with Ford H75                                    |
+|      Lockwood      | ⬜ 5 pins/LW4<br>⬜ 6 pins/LW5 |                                                             |
+|       Master       | ✔️ 4 pins<br>✔️ 5 pins<br>⬜ 6 pins |                                                             |
+|   Medeco Biaxial   | ✔️ 6 pins |                                                             |
+|      Mercury       | ⬜ 8 cuts/H75 | Shares DSD with Ford H75                                    |
+|      National      | ⬜ 5 pins/D8775 |                                                             |
+|     Oldsmobile     | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
+|      Plymouth      | ⬜ 8 cuts/Y159 | Shares DSD with Dodge Y159                                  |
+|      Pontiac       | ⬜ 10 cuts/B102 | Shares DSD with Chevy B102                                  |
+|         RV         | ⬜ 5 cuts |                                                             |
+|      Sargent       | ⬜ 5 pins/LA<br>⬜ 6 pins/LA |                                                             |
+|      Schlage       | ✔️ 5 pins/SC1<br>✔️ 6 pins/SC4 |                                                             |
+|       Suzuki       | ⬜ 7 cuts/SUZ18 |                                                             |
+|       Titan        | ✔️ 5 pins | Similar to Yale                                                |
+|       Weiser       | ⬜ 5 pins/WR5<br>⬜ 6 pins/WR3 |                                                             |
+|      Weslock       | ⬜ 5 pins |                                                             |
+|        Yale        | ✔️ 5 pins/Y1<br>⬜ 6 pins/Y2 |                                                             |
+|     Yale Small     | ✔️ 4 pins<br>✔️ 5 pins |                                                             |
+|       Yamaha       | ⬜ 7 cuts/YM63 |                                                             |
 
 ## ⚡ Install
 

@@ -193,8 +193,17 @@ var keys = {
         pinNumbersOffset: -4,
         pinsStartAtZero: true
     },
+    ABUS: {
+        outlines: ["5 pins"],
+        pinSpacing: 30,
+        maxKeyCut: 10,
+        cutDepthOffset: 2.8,
+        edgeOffsetX: 14,
+        edgeOffsetY: 2,
+        pinsStartAtZero: true,
+    },
     AbusSmallSquare: {
-        displayName: "Abus Small Square Bow",
+        displayName: "ABUS Small Square Bow",
         outlines: ["4 pins", "5 pins"],
         pinSpacing: 26,
         maxKeyCut: 10,
@@ -206,7 +215,7 @@ var keys = {
         pinNumbersOffset: -4
     },
     AbusSmallRound: {
-        displayName: "Abus Small Round Bow",
+        displayName: "ABUS Small Round Bow",
         outlines: ["4 pins", "5 pins"],
         pinSpacing: 26,
         maxKeyCut: 10,
@@ -299,7 +308,7 @@ var keys = {
         pinsStartAtZero: true
     },
     // --- Automotive / power-sport 2-sided keys (sourced from KeyCopier) ---
-    // For some of these the displayed bitting is taken as symmetric and renders 
+    // For some of these the displayed bitting is taken as symmetric and renders
     // the same depth on the top and bottom faces at each position.
     Ford: {
         displayName: "Ford",
@@ -371,10 +380,10 @@ var keys = {
 
     Some lock brands share identical Depth-and-Spacing Data (DSD) with a brand
     already defined in `keys` above, with the same cut positions and depth
-    increments. 
+    increments.
 
     An alias names a `base` (any key in `keys`) and inherits every cut parameter
-    from it; you normally override only `displayName` and `outlines`. 
+    from it; you normally override only `displayName` and `outlines`.
 */
 var interchangeable = {
     Lincoln: {
@@ -906,6 +915,7 @@ var verifiedOutlines = {
     Titan: {"5 pins/KW10": 1},
     Yale: {"5 pins/Y1": 1},
     YaleSmall: {"4 pins": 1, "5 pins": 1},
+    ABUS: {"5 pins": 1},
     AbusSmallSquare: {"4 pins": 1},
     AbusSmallRound: {"5 pins": 1}
 };
@@ -1140,7 +1150,13 @@ function chooseAndCreateKey() {
     selectedPinIndex = 0;
 
     var entries = [];
-    var brandNames = Object.keys(keys).sort();
+    var brandNames = Object.keys(keys).sort(function (a, b) {
+        var lowerA = a.toLowerCase();
+        var lowerB = b.toLowerCase();
+        if (lowerA < lowerB) return -1;
+        if (lowerA > lowerB) return 1;
+        return 0;
+    });
     for (var i = 0; i < brandNames.length; i++) {
         var brand = brandNames[i];
         var label = keys[brand].displayName || brand;
