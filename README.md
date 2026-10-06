@@ -1,17 +1,17 @@
-~~# 🔑 Key Decoding
+# 🔑 Key Decoding
 <img src="ss/ss.png" width="500"/>
 
 <p align="center">
-  <img src="ss/ss1.png" width="25%">
-  <img src="ss/ss2.png" width="25%">
-  <img src="ss/ss3.png" width="25%">
-  <img src="ss/ss4.png" width="25%">
+  <img src="ss/ss1.png" width="24%">
+  <img src="ss/ss2.png" width="24%">
+  <img src="ss/ss3.png" width="24%">
+  <img src="ss/ss4.png" width="24%">
 </p>
 <p align="center">
-  <img src="ss/ss5.png" width="25%">
-  <img src="ss/ss6.png" width="25%">
-  <img src="ss/ss7.png" width="25%">
-  <img src="ss/ss8.png" width="25%">
+  <img src="ss/ss5.png" width="24%">
+  <img src="ss/ss6.png" width="24%">
+  <img src="ss/ss7.png" width="24%">
+  <img src="ss/ss8.png" width="24%">
 </p>
 
 | [![Key Decoding LILYGO T-Embed CC1101 Bruce Firmware](ss/yt1.jpg)](https://www.youtube.com/watch?v=NysOI3OZwJ4) | [![Key Decoding - Update LILYGO T-Embed CC1101 Bruce Firmware](ss/yt2.jpg)](https://www.youtube.com/watch?v=Y-vgaZMATa0) | [![Key Decoding on App Store Bruce Firmware LILYGO T-Embed CC1101](ss/yt3.jpg)](https://www.youtube.com/watch?v=BiwuVsPcDyk) |
