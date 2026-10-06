@@ -1,5 +1,5 @@
 # 🔑 Key Decoding
-<img src="ss/ss.png" width="500"/>
+<img src="ss/ss.png" width="50%"/>
 
 <p align="center">
   <img src="ss/ss1.png" width="24%">
